@@ -194,6 +194,12 @@ main {
   border-radius: 0;
 }
 
+#home {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .tab-content > *[role=tabpanel]{
   display: none;
 }
