@@ -17,6 +17,7 @@
   <!-- Tempus Dominus Styles -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.4/dist/css/tempus-dominus.min.css" crossorigin="anonymous">
   <!--script src="components/home/calendar.js"></script-->
+
   <style>
     /* RESET DI BASE */
     * {
@@ -42,6 +43,26 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 1rem;
+    }
+    header .left-section {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    header .back-arrow {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: #d3d3d3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    header .back-arrow svg {
+      width: 18px;
+      height: 18px;
+      stroke: #333;
     }
     header .logo {
       font-size: 1.2rem;
@@ -71,69 +92,66 @@
       margin: 0 auto;
     }
 
-    /* TITOLO PAGINA NOTIFICHE */
-    .notifications-header {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1.5rem;
+    /* TITOLO INVITO */
+    .invitation-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
     }
 
-    .back-arrow {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background-color: #d3d3d3;
+    /* INFO DI CHI INVITA E DATA */
+    .invitation-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    .invitation-info .inviter {
+      font-weight: 500;
+    }
+    .invitation-info .invite-date {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* IMMAGINE (PLACEHOLDER) E TESTO */
+    .image-placeholder {
+      width: 300px;
+      height: 200px;
+      border: 2px dashed #ccc;
+      border-radius: 4px;
+      background-color: #f5f5f5;
+      margin: 0 auto 1.5rem auto; /* centrare e spazio in basso */
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-right: 0.75rem;
-      cursor: pointer;
-    }
-    .back-arrow svg {
-      width: 18px;
-      height: 18px;
-      stroke: #333;
+      color: #999;
+      font-size: 0.9rem;
     }
 
-    .notifications-header h1 {
-      font-size: 1.5rem;
-      font-weight: 600;
-    }
-
-    /* BARRA DI RICERCA */
-    .search-bar {
+    .invitation-message {
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 500;
       margin-bottom: 1rem;
     }
-    .search-bar input {
-      width: 100%;
-      max-width: 300px;
-      padding: 0.5rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
 
-    /* TABELLA NOTIFICHE */
-    .notifications-table {
-      width: 100%;
-      border-collapse: collapse;
+    /* BOTTONI: I'm going, Maybe, Not going */
+    .response-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
     }
-    .notifications-table tr {
-      border-bottom: 1px solid #ddd;
+    .response-buttons button {
+      padding: 0.5rem 1rem;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
     }
-    .notifications-table td {
-      padding: 0.75rem 0.5rem;
-    }
-    .notifications-table td:nth-child(1) {
-      width: 25%;
-      font-weight: 500;
-    }
-    .notifications-table td:nth-child(2) {
-      width: 55%;
-    }
-    .notifications-table td:nth-child(3) {
-      width: 20%;
-      text-align: right;
-      color: #666;
+    .response-buttons button:hover {
+      background-color: #f0f0f0;
     }
 
     /* FOOTER */
@@ -149,48 +167,36 @@
     <!-- Header -->
     <header id="main_header" xlu-include-file="base_layout/header.html" class="container-fluid row"></header>
 
-
   <!-- CONTENUTO PRINCIPALE -->
   <main>
-    <!-- Titolo pagina e freccia di ritorno -->
-    <div class="notifications-header">
-      <div class="back-arrow" onclick="goBack()">
-        <!-- Freccia sinistra in SVG -->
-        <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-             viewBox="0 0 24 24">
-          <path d="M19 12H5M12 19l-7-7 7-7"></path>
-        </svg>
-      </div>
-      <h1>Notifications</h1>
+    <!-- Titolo invito -->
+    <div class="invitation-title">
+      INVITATION: Join us to Event #1!
     </div>
 
-    <!-- Barra di ricerca -->
-    <div class="search-bar">
-      <input type="text" placeholder="Search">
+    <!-- Info su chi invita e data -->
+    <div class="invitation-info">
+      <span class="inviter">EventCreator - random@gmail.com</span>
+      <span class="invite-date">October 30, 2025, 2:35PM</span>
     </div>
 
-    <!-- Tabella Notifiche -->
-    <table class="notifications-table">
-      <tbody>
-        <tr>
-          <td>EventCreator</td>
-          <td>INVITATION: join us to Event #1</td>
-          <td>Oct. 15</td>
-        </tr>
-        <tr>
-          <td>EventMaker</td>
-          <td>REMINDER: it starts soon!</td>
-          <td>Oct. 28</td>
-        </tr>
-        <tr>
-          <td>Lorem Ipsum</td>
-          <td>Dolor sit amet, consectetur adipisicing elit</td>
-          <td>March 3</td>
-        </tr>
-      </tbody>
-    </table>
+    <!-- Placeholder immagine -->
+    <div class="image-placeholder">
+      <span>Image Placeholder</span>
+    </div>
+
+    <!-- Messaggio di invito -->
+    <div class="invitation-message">
+      Hey! I want you to join this event!
+    </div>
+
+    <!-- Bottoni di risposta -->
+    <div class="response-buttons">
+      <button>I'm going</button>
+      <button>Maybe</button>
+      <button>Not going</button>
+    </div>
   </main>
-
 
     <!-- Footer -->
     <footer id="main_footer" xlu-include-file="base_layout/footer.html" class="container-fluid row" ></footer>
