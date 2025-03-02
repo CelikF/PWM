@@ -6,6 +6,7 @@
   --secondary: #949090;
   --tertiary: #666666;
   --text-primary: #111111;
+  --text-secondary: #ffffff;
   color: var(--text-primary);
   --bs-primary: var(--primary);
   --bs-secondary: var(--secondary);
@@ -15,11 +16,16 @@
   --bs-danger: var();
   --bs-light: var();
   --bs-dark: var();
+
   --bs-btn-hover-bg: var(--secondary);
   --bs-btn-hover-border-color: var(--secondary);
   --bs-btn-active-bg: var(--tertiary);
   --bs-btn-active-border-color: var(--tertiary);
   --bs-btn-focus-shadow-rgb: var(--primary);
+
+  
+
+  --bs-nav-pills-link-active-bg: var(--secondary) !important;
 }
 
 .btn {
@@ -42,6 +48,14 @@
   border-color: var(--tertiary);
 }
 
+.badge {
+  width: fit-content;
+  padding: .5rem .75rem;
+  --bs-badge-border-radius: 999px;
+  --bs-badge-color: var(--text-secondary);
+  background-color: var(--secondary);
+}
+
 
 /*
 *  01 - BASE LAYOUT
@@ -49,7 +63,7 @@
 body {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 #main_header {
@@ -78,7 +92,7 @@ body {
 
 main {
   width: auto;
-  height: 100%;
+  min-height: 100vh;
 }
 
 #main_footer {
@@ -89,6 +103,7 @@ main {
   display: flex;
   justify-content: center;
   background-color: var(--tertiary);
+  color: var(--text-secondary);
 }
 
 /*
@@ -146,7 +161,7 @@ main {
 .event-card {
   width: 200px;
   height: 200px;
-  background-color: #ddd;
+  background-color: var(--primary);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -179,9 +194,19 @@ main {
 /*
 *  05 - EVENT
 */
+#event_tabs {
+  padding: 1.5rem 0;
+}
+
 .nav {
   display: flex;
   justify-content: space-between;
+}
+
+.nav-pills {
+  --bs-nav-pills-link-active-bg: var(--secondary);
+  --bs-nav-pills-link-active-color: var(--text-secondary);
+  --bs-nav-pills-link-color: var(--text-primary);
 }
 
 .nav-item {
@@ -189,8 +214,13 @@ main {
 }
 
 .nav-pills .nav-link {
+  --bs-nav-link-color: var(--text-primary);
   width: 100%;
   border-radius: 0;
+}
+
+.nav-pills .nav-link:hover {
+  --bs-nav-link-hover-color: var(--text-primary);
 }
 
 .tab-content > *[role=tabpanel]{
@@ -198,16 +228,56 @@ main {
 }
 
 .tab-content > *[role=tabpanel].active {
-  display: block;
+  display: flex;
+  flex-direction: row;
+}
+
+.event-info {
+  min-width: 250px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  float: right;
+  margin: 0 2rem;
+}
+
+.event-info-card {
+  min-width: 250px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  top: 1rem;
+  padding: 1rem;
+  background-color: var(--primary);
+  border-radius: 8px;
 }
 
 /*
 *  05.01 - EVENT: Description
 */
+#agenda_content {
+  flex: 1;
+}
 
 /*
 *  05.02 - EVENT: Agenda
 */
+#agenda_content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.activity-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+}
 
 /*
 *  05.02 - EVENT: Attendees
@@ -216,3 +286,6 @@ main {
 /*
 *  05.02 - EVENT: News
 */
+#news_content {
+  flex: 1;
+}

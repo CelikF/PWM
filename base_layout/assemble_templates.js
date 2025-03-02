@@ -14,8 +14,25 @@ function xLuIncludeFile() {
             xhttp.onreadystatechange = function () {
                 if (xhttp.readyState === 4 && xhttp.status === 200) {
                     a.removeAttribute("xlu-include-file");
-                    a.innerHTML = xhttp.responseText;
+                    let content = xhttp.responseText
+
+                    // Hydrate template
+                    let templateData = {};
+                    for (let attr of a.attributes) {
+                        if (attr.name.startsWith("data-")) {
+                            let key = attr.name.slice(5); // Remove "data-" prefix
+                            templateData[key] = attr.value;
+                        }
+                    }
+                    for (let key in templateData) {
+                        let placeholder = `{{${key}}}`;
+                        content = content.replace(new RegExp(placeholder, "g"), templateData[key] || '');
+                    }
+
+                    a.innerHTML = content;
                     z[i].parentNode.replaceChild(a, z[i]);
+
+                    xLuIncludeFile();
 
                     // Execute template scripts
                     let scripts = a.getElementsByTagName("script");
@@ -26,8 +43,6 @@ function xLuIncludeFile() {
                             document.body.appendChild(newScript);
                         }
                     }
-
-                    xLuIncludeFile();
                 }
             }
 
