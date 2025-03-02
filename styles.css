@@ -420,13 +420,13 @@ main {
   margin-bottom: 15px;
   margin-left: 5%;
 }
-label {
+.acc-label {
   width: 100%;
   font-weight: bold;
   display: block;
   margin-bottom: 5px;
 }
-input {
+.acc-input {
   width: 20rem;
   padding: 10px;
   border: 1px solid var(--secondary);
