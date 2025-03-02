@@ -57,6 +57,7 @@ body {
     height: 70px;
     align-items: center;
     justify-content: space-between;
+    padding: 0 3rem;
     background-color: var(--primary);
 }
 
@@ -70,10 +71,8 @@ body {
 }
 
 #header_nav {
-  margin: 1rem;
   width: auto;
   text-align: right;
-  margin-right: 3rem;
 }
 
 
@@ -192,12 +191,6 @@ main {
 .nav-pills .nav-link {
   width: 100%;
   border-radius: 0;
-}
-
-#home {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
 }
 
 .tab-content > *[role=tabpanel]{
