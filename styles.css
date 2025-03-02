@@ -361,3 +361,93 @@ main {
 #news_content {
   flex: 1;
 }
+
+/*
+* Account Page
+*/
+.acc-profile-container {
+  width: auto;
+  background: white;
+  padding: 20px;
+  margin-top: 50px;
+}
+.acc-profile-section {
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+
+.acc-profile-label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+  margin-left: 15%;
+}
+.acc-profile-pic {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-left: 20%;
+  margin-top: 15px;
+}
+.acc-profile-pic img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.acc-profile-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 20%;
+}
+.acc-edit-icon {
+  cursor: pointer;
+}
+
+.acc-reset-container {
+  width: auto;
+  background: white;
+  margin-left: 15%;
+  margin-top: 60px;
+}
+
+.acc-input-group {
+  margin-bottom: 15px;
+  margin-left: 5%;
+}
+label {
+  width: 100%;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+input {
+  width: 20rem;
+  padding: 10px;
+  border: 1px solid var(--secondary);
+  border-radius: 5px;
+  background-color: #eee;
+}
+
+.acc-save-button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.acc-save-button {
+  background-color: var(--primary);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 10px;
+  width: 10rem;
+  margin-right: 10%;
+  right: 10px;
+}
