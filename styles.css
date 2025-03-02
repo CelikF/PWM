@@ -193,3 +193,27 @@ main {
   width: 100%;
   border-radius: 0;
 }
+
+.tab-content > *[role=tabpanel]{
+  display: none;
+}
+
+.tab-content > *[role=tabpanel].active {
+  display: block;
+}
+
+/*
+*  05.01 - EVENT: Description
+*/
+
+/*
+*  05.02 - EVENT: Agenda
+*/
+
+/*
+*  05.02 - EVENT: Attendees
+*/
+
+/*
+*  05.02 - EVENT: News
+*/
