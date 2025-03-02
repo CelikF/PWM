@@ -22,8 +22,13 @@
     <!-- Header -->
     <header id="main_header" xlu-include-file="base_layout/header.html" class="container-fluid row"></header>
 
-    <div id="second_header" data-header-title="Invitation Customizer" xlu-include-file="components/core/body_header.html"></div>
-    <main xlu-include-file="components/core/text_editor.html"></main>
+    
+    <main>
+      <div id="editor_container">
+        <div id="second_header" data-header-title="Invitation Customizer" xlu-include-file="components/core/body_header.html"></div>
+        <div id="editor" xlu-include-file="components/core/text_editor.html"></div>
+      </div>
+    </main>
 
     <!-- Footer -->
     <footer id="main_footer" xlu-include-file="base_layout/footer.html" class="container-fluid row" ></footer>
