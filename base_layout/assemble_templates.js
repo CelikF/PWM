@@ -16,6 +16,17 @@ function xLuIncludeFile() {
                     a.removeAttribute("xlu-include-file");
                     a.innerHTML = xhttp.responseText;
                     z[i].parentNode.replaceChild(a, z[i]);
+
+                    // Execute template scripts
+                    let scripts = a.getElementsByTagName("script");
+                    for (let script of scripts) {
+                        if (script.src) {
+                            let newScript = document.createElement("script");
+                            newScript.src = script.src;
+                            document.body.appendChild(newScript);
+                        }
+                    }
+
                     xLuIncludeFile();
                 }
             }

@@ -1,2 +1,16 @@
-import { TempusDominus } from 'https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.4/dist/js/tempus-dominus.min.js';
-
+new window.tempusDominus.TempusDominus(document.getElementById('event_date_filer'), {
+    display: {
+        inline: true,
+        theme: "light",
+        components: {
+            decades: true,
+            year: true,
+            month: true,
+            date: true,
+            hours: false,
+            minutes: false,
+            seconds: false
+        }
+    },
+    
+});

@@ -28,18 +28,12 @@
     <header id="main_header" xlu-include-file="base_layout/header.html" class="container-fluid row"></header>
 
     <!-- Page Content -->
-    <main xlu-include-file="components/home/content.html" class="container-fluid row">
+    <main class="row">
 
-      <div class="calendar" id="datetimepicker1"></div>
-      <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          new window.tempusDominus.TempusDominus(document.getElementById('datetimepicker1'), {
-              display: {
-                  inline: true
-              }
-          });
-      });
-      </script>
+        <section id="event_list" class="container col" xlu-include-file="components/home/event_list.html"></section>
+
+        <section id="filters" class="container col" xlu-include-file="components/home/calendar.html"></section>
+      
     </main>
 
     <!-- Footer -->
