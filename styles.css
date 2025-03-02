@@ -213,6 +213,72 @@ main {
 *  05.02 - EVENT: Attendees
 */
 
+.coming-card {
+  width: 250px;
+  border: 1px solid #aaa;
+  border-radius: 10px;
+  background-color: white;
+  overflow: hidden;
+  margin: auto;
+  margin-top: 1rem;
+}
+.coming-header {
+  background-color: #ddd;
+  padding: 0px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.person-list {
+  padding: 10px;
+}
+.person {
+  display: flex;
+  align-items: center;
+  background-color: #eee;
+  padding: 5px 10px;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+.person-icon {
+  margin-right: 5px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-button {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 10px 100px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  width: max-content;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 150px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  z-index: 1;
+}
+.dropdown-content a {
+  color: black;
+  padding: 10px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 /*
 *  05.02 - EVENT: News
 */
