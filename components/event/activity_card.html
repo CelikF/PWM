@@ -1,6 +1,9 @@
-<div class="activity-title">
+<div class="activity-title" style="display: flex; justify-content: space-between;">
     <h4>{{activity-title}}</h4>
-    <button class="host-tool {{host}}">Host</button>
+    <div style="display: flex; flex-direction: row;">
+        <button class="btn host-tool {{host}}"> Edit ✎ </button>
+        <button class="btn host-tool {{host}}"> Delete 🗑 </button>
+    </div>
 </div>
 <div class="activity-duration badge">
     <span>{{start}}</span> - <span>{{end}}</span>

@@ -572,3 +572,16 @@ main {
   width: 75%;
   background-color: white;
 }
+
+/*
+* 08 - CREATIOR
+*/
+
+.edit_footer  > *[role=edit_btn] {
+  display: flex;
+}
+
+.edit_footer  > *[role=edit_btn].active {
+  display: flex;
+  justify-content: center;
+}
