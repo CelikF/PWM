@@ -1,11 +1,19 @@
-const signUpButton = document.getElementById('signUp');
-const signInButton = document.getElementById('signIn');
-const container = document.getElementById('container');
+document.addEventListener("templatesLoaded", function() {
+  const signUpButton = document.getElementById("signUp");
+  const signInButton = document.getElementById("signIn");
+  const container = document.getElementById("container");
+    console.log("Evento arrivato");
 
-signUpButton.addEventListener('click', () => {
-  container.classList.add("right-panel-active");
+  if (signUpButton && signInButton && container) {
+    signUpButton.addEventListener("click", function() {
+      container.classList.add("right-panel-active");
+    });
+
+    signInButton.addEventListener("click", function() {
+      container.classList.remove("right-panel-active");
+    });
+  } else {
+    console.error("Elementi non trovati: verifica che il template sia stato correttamente caricato.");
+  }
 });
 
-signInButton.addEventListener('click', () => {
-  container.classList.remove("right-panel-active");
-});

@@ -1,32 +1,61 @@
-
-<section id="auth" class="row container-fluid">
-  <section id="sign-in" class="container col">
-    <button class="btn btn-primary">Sign in</button>
-  </section>
-  <section id="sign-up" class="container col">
-    <form action="" class="container-fluid">
-      <div class="input-field">
-        <label for="name" class="form-label">Your Name</label>
-        <input type="text" id="name" placeholder="Enter your name" class="form-control">
+<div class="container" id="container">
+  <!-- Form di registrazione -->
+  <div class="form-container sign-up-container">
+    <form class="forms" method="post" action="">
+      <h1>Create Account</h1>
+      <div class="white-preview">
+        <div class="btn-container">
+          <i class="fa fa-sun-o" aria-hidden="true"></i>
+          <label class="switch btn-color-mode-switch">
+            <input type="checkbox" name="chisono" id="color_mode" value="1">
+            <label for="chisono" data-on="User" data-off="Promoter" class="btn-color-mode-switch-inner"></label>
+          </label>
+          <i class="fa fa-moon-o" aria-hidden="true"></i>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" 
+          integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" 
+          crossorigin="anonymous"></script>
       </div>
 
-      <div class="input-field">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" id="password" placeholder="Enter your password" class="form-control">
+      <div class="form-group">
+        <input type="text" name="username" placeholder="Username" value=""/>
+        <span class="invalid-feedback"></span>
+        <input type="email" name="email" placeholder="E-mail" value="">
+        <span class="invalid-feedback"></span>
+        <input type="password" name="password" placeholder="Password" value="">
+        <span class="invalid-feedback"></span>
+        <input type="hidden" name="action" value="registrazione" />                
       </div>
-
-      <div class="input-field">
-        <label for="confirm-password" class="form-label">Confirm Password</label>
-        <input type="password" id="confirm-password" placeholder="Enter your password" class="form-control">
-      </div>
-      
-      <button class="btn btn-primary">Sign Up</button>
+      <button name="registrazione">Sign Up</button>
     </form>
-    <aside>
-      <p style="text-align: center;">Or</p>
-      <button class="google-btn">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" width="20"> Sign up with Google
-      </button>
-    </aside>
-  </section>
-</section>
+  </div>
+
+  <!-- Form di login -->
+  <div class="form-container sign-in-container">
+    <form class="forms" action="" method="post">
+      <h1>Sign in</h1>
+      <span>or use your account</span>
+      <input type="text" name="username/email" placeholder="Username / E-mail">
+      <input type="password" name="password" placeholder="Password">
+      <input type="hidden" name="action" value="login" />                
+      <button name="login">Sign In</button>
+      <div class="error-message"></div>
+    </form>
+  </div>
+
+  <!-- Overlay per il cambio pannello -->
+  <div class="overlay-container">
+    <div class="overlay">
+      <div class="overlay-panel overlay-left">
+        <h1>Welcome Back!</h1>
+        <p>To keep connected with us please login with your personal info</p>
+        <button class="ghost" id="signIn">Sign In</button>
+      </div>
+      <div class="overlay-panel overlay-right">
+        <h1>Hello, Friend!</h1>
+        <p>Enter your personal details and start journey with us</p>
+        <button class="ghost" id="signUp">Sign Up</button>
+      </div>
+    </div>
+  </div>
+</div>
