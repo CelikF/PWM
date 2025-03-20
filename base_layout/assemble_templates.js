@@ -1,138 +1,103 @@
-// https://stackoverflow.com/questions/40162907/w3includehtml-sometimes-includes-twice
-
 function xLuIncludeFile() {
-    let z, i, a, file, xhttp;
-
-    z = document.getElementsByTagName("*");
-
-    for (i = 0; i < z.length; i++) {
-        if (z[i].getAttribute("xlu-include-file")) {
-            a = z[i].cloneNode(false);
-            file = z[i].getAttribute("xlu-include-file");
-            xhttp = new XMLHttpRequest();
-
-            xhttp.onreadystatechange = function () {
-                if (xhttp.readyState === 4 && xhttp.status === 200) {
-                    a.removeAttribute("xlu-include-file");
-                    let content = xhttp.responseText
-
-                    // Hydrate template
-                    let templateData = {};
-                    for (let attr of a.attributes) {
-                        if (attr.name.startsWith("data-")) {
-                            let key = attr.name.slice(5); // Remove "data-" prefix
-                            templateData[key] = attr.value;
-                        }
-                    }
-                    for (let key in templateData) {
-                        let placeholder = `{{${key}}}`;
-                        content = content.replace(new RegExp(placeholder, "g"), templateData[key] || '');
-                    }
-
-                    a.innerHTML = content;
-                    z[i].parentNode.replaceChild(a, z[i]);
-
-                    xLuIncludeFile();
-
-                    // Execute template scripts
-                    let scripts = a.getElementsByTagName("script");
-                    for (let script of scripts) {
-                        if (script.src) {
-                            let newScript = document.createElement("script");
-                            newScript.src = script.src;
-                            document.body.appendChild(newScript);
-                        }
-                    }
-                }
-            }
-
-            // false makes the send operation synchronous, which solves a problem
-            // when using this function in short pages with Chrome. But it is
-            // deprecated on the main thread due to its impact on responsiveness.
-            // This call may end up throwing an exception someday.
-
-            xhttp.open("GET", file, false);
-            xhttp.send();
-
-            return;
-        }
+    let elements = document.querySelectorAll("[xlu-include-file]");
+    
+    if (elements.length === 0) {
+      document.dispatchEvent(new Event("templatesLoaded"));
+      console.log("templatesLoaded event dispatched");
+      return;
     }
-}
     
-/* async function xLuIncludeFile() {
-    let z = document.getElementsByTagName("*");
-
-    for (let i = 0; i < z.length; i++) {
-        if (z[i].getAttribute("xlu-include-file")) {
-            let a = z[i].cloneNode(false);
-            let file = z[i].getAttribute("xlu-include-file");
-
-            try {
-                let response = await fetch(file);
-                if (response.ok) {
-                    let content = await response.text();
-                    a.removeAttribute("xlu-include-file");
-                    //a.innerHTML = await response.text();
-                    a.innerHTML = content;
-                    z[i].parentNode.replaceChild(a, z[i]);
-                    xLuIncludeFile();
-                }
-            } catch (error) {
-                console.error("Error fetching file:", error);
-            }
-
-            return;
+    let elem = elements[0];
+    let file = elem.getAttribute("xlu-include-file");
+    let xhttp = new XMLHttpRequest();
+  
+    xhttp.onreadystatechange = function () {
+      if (xhttp.readyState === 4 && xhttp.status === 200) {
+        // Create an "empty" clone of the element to be updated
+        let clone = elem.cloneNode(false);
+        clone.removeAttribute("xlu-include-file");
+        
+        // Get the content of the file
+        let content = xhttp.responseText;
+        
+        // Hydrate template: replace placeholders with the values of data-attributes
+        let templateData = {};
+        for (let attr of clone.attributes) {
+          if (attr.name.startsWith("data-")) {
+            let key = attr.name.slice(5);
+            templateData[key] = attr.value;
+          }
         }
-    }
-} */
-
-function replaceArticleTemplatePlaceholders(content, element) {
-        let articleData = {
-            title: element.getAttribute("data-title"),
-            subtitle: element.getAttribute("data-subtitle"),
-            date: element.getAttribute("data-date"),
-            displayDate: element.getAttribute("data-display-date"),
-            content: element.getAttribute("data-content"),
-            image: element.getAttribute("data-image"),
-            imageCaption: element.getAttribute("data-image-caption")
-        };
-    
-        /*
-        return content.replace(/{{title}}/g, articleData.title)
-            .replace(/{{subtitle}}/g, articleData.subtitle)
-            .replace(/{{date}}/g, articleData.date)
-            .replace(/{{displayDate}}/g, articleData.displayDate)
-            .replace(/{{content}}/g, articleData.content)
-            .replace(/{{image}}/g, articleData.image || '')
-            .replace(/{{imageCaption}}/g, articleData.imageCaption || '');
-        */
-    
-        return content
-            .replace(/{{title}}/g, articleData.title ?? "{{title}}")
-            .replace(/{{subtitle}}/g, articleData.subtitle ?? "{{subtitle}}")
-            .replace(/{{date}}/g, articleData.date ?? "{{date}}")
-            .replace(/{{displayDate}}/g, articleData.displayDate ?? "{{displayDate}}")
-            .replace(/{{content}}/g, articleData.content ?? "{{content}}")
-            .replace(/{{image}}/g, articleData.image ?? "{{image}}")
-            .replace(/{{imageCaption}}/g, articleData.imageCaption ?? "{{imageCaption}}");
-    
-}
-
-function redirectToArticle(event, element) {
-        event.preventDefault(); // Evita la navegación predeterminada
-    
-        // Obtener datos del artículo desde los atributos
-        let params = new URLSearchParams();
-        params.append("title", element.getAttribute("data-title"));
-        params.append("subtitle", element.getAttribute("data-subtitle"));
-        params.append("date", element.getAttribute("data-date"));
-        params.append("displayDate", element.getAttribute("data-display-date"));
-        params.append("content", element.getAttribute("data-content"));
-        params.append("image", element.getAttribute("data-image") || "");
-        params.append("imageCaption", element.getAttribute("data-image-caption") || "");
-    
-        // Redirigir a article.html con los parámetros
-        window.location.href = "article.html?" + params.toString();
-}
-
-window.addEventListener("DOMContentLoaded", xLuIncludeFile)
+        for (let key in templateData) {
+          let placeholder = new RegExp(`{{${key}}}`, "g");
+          content = content.replace(placeholder, templateData[key] || '');
+        }
+        
+        // Insert the updated content into the element
+        clone.innerHTML = content;
+        elem.parentNode.replaceChild(clone, elem);
+        
+        // Execute any scripts present in the template
+        let scripts = clone.getElementsByTagName("script");
+        for (let script of scripts) {
+          if (script.src) {
+            let newScript = document.createElement("script");
+            newScript.src = script.src;
+            document.body.appendChild(newScript);
+          } else {
+            // If inline scripts, execute them (if necessary)
+            eval(script.innerText);
+          }
+        }
+        
+        xLuIncludeFile();
+      }
+    };
+  
+    xhttp.open("GET", file, false);
+    xhttp.send();
+  }
+  
+  function replaceArticleTemplatePlaceholders(content, element) {
+    let articleData = {
+      title: element.getAttribute("data-title"),
+      subtitle: element.getAttribute("data-subtitle"),
+      date: element.getAttribute("data-date"),
+      displayDate: element.getAttribute("data-display-date"),
+      content: element.getAttribute("data-content"),
+      image: element.getAttribute("data-image"),
+      imageCaption: element.getAttribute("data-image-caption")
+    };
+  
+    return content
+      .replace(/{{title}}/g, articleData.title ?? "{{title}}")
+      .replace(/{{subtitle}}/g, articleData.subtitle ?? "{{subtitle}}")
+      .replace(/{{date}}/g, articleData.date ?? "{{date}}")
+      .replace(/{{displayDate}}/g, articleData.displayDate ?? "{{displayDate}}")
+      .replace(/{{content}}/g, articleData.content ?? "{{content}}")
+      .replace(/{{image}}/g, articleData.image ?? "{{image}}")
+      .replace(/{{imageCaption}}/g, articleData.imageCaption ?? "{{imageCaption}}");
+  }
+  
+  function redirectToArticle(event, element) {
+    event.preventDefault(); // Prevent the default navigation
+  
+    // Get the article data from the related data-attributes
+    let params = new URLSearchParams();
+    params.append("title", element.getAttribute("data-title"));
+    params.append("subtitle", element.getAttribute("data-subtitle"));
+    params.append("date", element.getAttribute("data-date"));
+    params.append("displayDate", element.getAttribute("data-display-date"));
+    params.append("content", element.getAttribute("data-content"));
+    params.append("image", element.getAttribute("data-image") || "");
+    params.append("imageCaption", element.getAttribute("data-image-caption") || "");
+  
+    // Redirect to article.html with the parameters
+    window.location.href = "article.html?" + params.toString();
+  }
+  
+  // Start including templates once the DOM has loaded
+  window.addEventListener("DOMContentLoaded", function() {
+    xLuIncludeFile();
+  });
+  
