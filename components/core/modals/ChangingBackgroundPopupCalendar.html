@@ -1,0 +1,47 @@
+<!-- Changing Background Popup Calendar -->
+
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content activity-modal">
+    
+    <!-- Header -->
+    <div class="activity-header">
+      <h4>Adding Activity</h4>
+      <button class="close-modal" aria-label="Close">&times;</button>
+    </div>
+    
+    <!-- Corpo principale -->
+    <div class="activity-body">
+      <!-- Nome attività -->
+      <div class="form-group">
+        <label for="activityName">Name of Activity</label>
+        <input 
+          type="text" 
+          id="activityName" 
+          placeholder="Enter the activity name..."
+        >
+      </div>
+      
+      <!-- Orari "From" / "Until" -->
+      <div class="time-row">
+        <div class="time-field">
+          <label for="startTime">From</label>
+          <input 
+            type="time" 
+            id="startTime"
+          >
+        </div>
+        <div class="time-field">
+          <label for="endTime">Until</label>
+          <input 
+            type="time" 
+            id="endTime"
+          >
+        </div>
+      </div>
+      
+      <!-- Pulsante Salva -->
+      <button class="save-button">Save</button>
+    </div> <!-- /.activity-body -->
+    
+  </div> <!-- /.modal-content -->
+</div> <!-- /.modal-dialog -->

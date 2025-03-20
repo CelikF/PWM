@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="./auth.css" />
+</head>
+<body>
+  <!--REGISTER-->
+  <div class="container" id="container">
+    <div class="form-container sign-up-container">
+      <form class="forms" method="post" action="">
+        <h1>Create Account</h1>
+        <div class="white-preview">
+          <div class="btn-container">
+            <i class="fa fa-sun-o" aria-hidden="true"></i>
+            <label class="switch btn-color-mode-switch">
+              <input type="checkbox" name="chisono" id="color_mode" value="1">
+              <label for="chisono" data-on="User" data-off="Promoter" class="btn-color-mode-switch-inner"></label>
+            </label>
+            <i class="fa fa-moon-o" aria-hidden="true"></i>
+          </div>
+          <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+          <script type="text/javascript" src="script.js"></script>
+        </div>
+
+        <div class="form-group">
+          <input type="text" name="username" placeholder="Username" value=""/>
+          <span class="invalid-feedback"></span>
+
+          <input type="email" name="email" placeholder="E-mail" value="">
+          <span class="invalid-feedback"></span>
+
+          <input type="password" name="password" placeholder="Password" value="">
+          <span class="invalid-feedback"></span>
+
+          <input type="hidden" name="action" value="registrazione" />                
+        </div>
+
+        <button name="registrazione">Sign Up</button>
+      </form>
+    </div>
+
+    <!--LOGIN-->
+    <div class="form-container sign-in-container">
+      <form class="forms" action="" method="post">
+        <h1>Sign in</h1>
+        <span>or use your account</span>
+        <input type="text" name="username/email" placeholder="Username / E-mail">
+        <input type="password" name="password" placeholder="Password">
+        <input type="hidden" name="action" value="login" />                
+
+        <button name="login">Sign In</button>
+        <div class="error-message"></div>
+      </form>
+    </div>
+
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <h1>Welcome Back!</h1>
+          <p>To keep connected with us please login with your personal info</p>
+          <button class="ghost" id="signIn">Sign In</button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <h1>Hello, Friend!</h1>
+          <p>Enter your personal details and start journey with us</p>
+          <button class="ghost" id="signUp">Sign Up</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="./script_login.js"></script>
+</body>
+</html>
