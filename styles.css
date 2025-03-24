@@ -26,6 +26,11 @@
 .btn {
   padding: .5rem 3rem;
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
 .btn-primary {
@@ -121,6 +126,60 @@ body {
     justify-content: space-between;
     padding: 0 3rem;
     background-color: var(--primary);
+}
+
+
+.button-container {
+  position: relative;
+}
+
+/* Desktop view: show buttons in a row */
+.desktop-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* Hide mobile dropdown on larger screens */
+.mobile-dropdown {
+  display: none;
+}
+
+/* Mobile view: hide desktop buttons and show dropdown toggle */
+@media (max-width: 600px) {
+  .desktop-buttons {
+    display: none;
+  }
+  .mobile-dropdown {
+    display: block;
+  }
+}
+
+/* Dropdown menu styling */
+.dropdown-menu {
+  display: none; /* Hidden by default */
+  position: absolute;
+  top: 100%; /* Position right below the Menu button */
+  right: 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 1000;
+  flex-direction: column;
+}
+
+/* Style dropdown buttons */
+.dropdown-menu button {
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* Show dropdown when toggled */
+.mobile-dropdown.open .dropdown-menu {
+  display: flex;
 }
 
 #logo_img {
@@ -321,11 +380,49 @@ main {
   border-radius: 8px;
 }
 
+
+.event-info-btn.host-tool.host-logged-in {
+  display: block;
+}
+
+.event-info.host-tool.host-logged-in {
+  display: none;
+}
+
 /*
 *  05.01 - EVENT: Description
 */
 #agenda_content {
   flex: 1;
+}
+
+.responsive-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+/* Default ordering for larger screens */
+#description-content {
+  flex: 2;
+  order: 1;
+}
+.event-info {
+  flex: 1;
+  order: 2;
+}
+
+/* For small screens, stack vertically and place aside first */
+@media (max-width: 768px) {
+  .responsive-container {
+    flex-direction: column;
+  }
+  #description-content {
+    order: 2;
+  }
+  .event-info {
+    order: 1;
+  }
 }
 
 /*
@@ -431,6 +528,11 @@ main {
 */
 #news_content {
   flex: 1;
+  margin: 50px
+}
+
+#news {
+  flex-direction: column;
 }
 
 /*
