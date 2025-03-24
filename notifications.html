@@ -2,160 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>EventHub</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <title>EventHub - Notifications</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
   <link href="styles.css" rel="stylesheet">
+  <link href="notifications.css" rel="stylesheet">
   <script src="base_layout/assemble_templates.js"></script>
 
-  <!-- Popperjs -->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha256-BRqBN7dYgABqtY9Hd4ynE+1slnEw+roEPFzQ7TRRfcg=" crossorigin="anonymous"></script>
-  <!-- Tempus Dominus JavaScript -->
-  <script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.4/dist/js/tempus-dominus.min.js" crossorigin="anonymous"></script>
-
-  <!-- Tempus Dominus Styles -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.4/dist/css/tempus-dominus.min.css" crossorigin="anonymous">
-  <!--script src="components/home/calendar.js"></script-->
-  <style>
-    /* RESET DI BASE */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: sans-serif;
-    }
-
-    body {
-      background-color: #ffffff;
-      color: #333333;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    /* HEADER */
-    header {
-      background-color: #e0e0e0; /* Grigio chiaro */
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 1rem;
-    }
-    header .logo {
-      font-size: 1.2rem;
-      font-weight: 600;
-    }
-    header .header-right {
-      display: flex;
-      gap: 1rem;
-    }
-    header .header-right button {
-      background: none;
-      border: none;
-      font-size: 1rem;
-      cursor: pointer;
-      color: #333;
-    }
-    header .header-right button:hover {
-      text-decoration: underline;
-    }
-
-    /* CONTENUTO PRINCIPALE */
-    main {
-      flex: 1;
-      padding: 1rem 2rem;
-      max-width: 1200px;
-      width: 100%;
-      margin: 0 auto;
-    }
-
-    /* TITOLO PAGINA NOTIFICHE */
-    .notifications-header {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1.5rem;
-    }
-
-    .back-arrow {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background-color: #d3d3d3;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 0.75rem;
-      cursor: pointer;
-    }
-    .back-arrow svg {
-      width: 18px;
-      height: 18px;
-      stroke: #333;
-    }
-
-    .notifications-header h1 {
-      font-size: 1.5rem;
-      font-weight: 600;
-    }
-
-    /* BARRA DI RICERCA */
-    .search-bar {
-      margin-bottom: 1rem;
-    }
-    .search-bar input {
-      width: 100%;
-      max-width: 300px;
-      padding: 0.5rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-
-    /* TABELLA NOTIFICHE */
-    .notifications-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    .notifications-table tr {
-      border-bottom: 1px solid #ddd;
-    }
-    .notifications-table td {
-      padding: 0.75rem 0.5rem;
-    }
-    .notifications-table td:nth-child(1) {
-      width: 25%;
-      font-weight: 500;
-    }
-    .notifications-table td:nth-child(2) {
-      width: 55%;
-    }
-    .notifications-table td:nth-child(3) {
-      width: 20%;
-      text-align: right;
-      color: #666;
-    }
-
-    /* FOOTER */
-    footer {
-      background-color: #e0e0e0; /* Grigio chiaro */
-      text-align: center;
-      padding: 0.75rem;
-    }
-  </style>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.4/dist/js/tempus-dominus.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.4/dist/css/tempus-dominus.min.css">
 </head>
-<body>
+<body class="notifications-page">
 
-    <!-- Header -->
-    <header id="main_header" xlu-include-file="base_layout/header.html" class="container-fluid row"></header>
+  <!-- Header -->
+  <header id="main_header" xlu-include-file="base_layout/header.html" class="container-fluid row"></header>
 
-
-  <!-- CONTENUTO PRINCIPALE -->
+  <!-- Main Content -->
   <main>
-    <!-- Titolo pagina e freccia di ritorno -->
     <div class="notifications-header">
       <div class="back-arrow" onclick="goBack()">
-        <!-- Freccia sinistra in SVG -->
         <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
              viewBox="0 0 24 24">
           <path d="M19 12H5M12 19l-7-7 7-7"></path>
@@ -164,42 +31,41 @@
       <h1>Notifications</h1>
     </div>
 
-    <!-- Barra di ricerca -->
+    <!-- Search Bar -->
     <div class="search-bar">
       <input type="text" placeholder="Search">
     </div>
 
-    <!-- Tabella Notifiche -->
+    <!-- Notifications Table with Cards -->
     <table class="notifications-table">
       <tbody>
         <tr>
-          <td>EventCreator</td>
-          <td>INVITATION: join us to Event #1</td>
-          <td>Oct. 15</td>
+          <td>
+            <div xlu-include-file="components/notifications/notification_card.html"></div>
+          </td>
         </tr>
         <tr>
-          <td>EventMaker</td>
-          <td>REMINDER: it starts soon!</td>
-          <td>Oct. 28</td>
+          <td>
+            <div xlu-include-file="components/notifications/notification_card.html"></div>
+          </td>
         </tr>
         <tr>
-          <td>Lorem Ipsum</td>
-          <td>Dolor sit amet, consectetur adipisicing elit</td>
-          <td>March 3</td>
+          <td>
+            <div xlu-include-file="components/notifications/notification_card.html"></div>
+          </td>
         </tr>
       </tbody>
     </table>
   </main>
 
-
-    <!-- Footer -->
-    <footer id="main_footer" xlu-include-file="base_layout/footer.html" class="container-fluid row" ></footer>
+  <!-- Footer -->
+  <footer id="main_footer" xlu-include-file="base_layout/footer.html" class="container-fluid row"></footer>
 
   <script>
-    // Se vuoi che la freccia torni indietro nella cronologia del browser
     function goBack() {
       window.history.back();
     }
   </script>
+
 </body>
 </html>

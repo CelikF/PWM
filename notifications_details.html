@@ -1,211 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>EventHub</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <title>EventHub - Notification Details</title>
+    
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <link href="styles.css" rel="stylesheet">
-  <script src="base_layout/assemble_templates.js"></script>
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="notifications.css">
 
-  <!-- Popperjs -->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha256-BRqBN7dYgABqtY9Hd4ynE+1slnEw+roEPFzQ7TRRfcg=" crossorigin="anonymous"></script>
-  <!-- Tempus Dominus JavaScript -->
-  <script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.4/dist/js/tempus-dominus.min.js" crossorigin="anonymous"></script>
+    <!-- JavaScript -->
+    <script src="base_layout/assemble_templates.js"></script>
 
-  <!-- Tempus Dominus Styles -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.4/dist/css/tempus-dominus.min.css" crossorigin="anonymous">
-  <!--script src="components/home/calendar.js"></script-->
-
-  <style>
-    /* RESET DI BASE */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: sans-serif;
-    }
-
-    body {
-      background-color: #ffffff;
-      color: #333333;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    /* HEADER */
-    header {
-      background-color: #e0e0e0; /* Grigio chiaro */
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 1rem;
-    }
-    header .left-section {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    header .back-arrow {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background-color: #d3d3d3;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
-    header .back-arrow svg {
-      width: 18px;
-      height: 18px;
-      stroke: #333;
-    }
-    header .logo {
-      font-size: 1.2rem;
-      font-weight: 600;
-    }
-    header .header-right {
-      display: flex;
-      gap: 1rem;
-    }
-    header .header-right button {
-      background: none;
-      border: none;
-      font-size: 1rem;
-      cursor: pointer;
-      color: #333;
-    }
-    header .header-right button:hover {
-      text-decoration: underline;
-    }
-
-    /* CONTENUTO PRINCIPALE */
-    main {
-      flex: 1;
-      padding: 1rem 2rem;
-      max-width: 1200px;
-      width: 100%;
-      margin: 0 auto;
-    }
-
-    /* TITOLO INVITO */
-    .invitation-title {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
-
-    /* INFO DI CHI INVITA E DATA */
-    .invitation-info {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-    }
-    .invitation-info .inviter {
-      font-weight: 500;
-    }
-    .invitation-info .invite-date {
-      font-size: 0.9rem;
-      color: #666;
-    }
-
-    /* IMMAGINE (PLACEHOLDER) E TESTO */
-    .image-placeholder {
-      width: 300px;
-      height: 200px;
-      border: 2px dashed #ccc;
-      border-radius: 4px;
-      background-color: #f5f5f5;
-      margin: 0 auto 1.5rem auto; /* centrare e spazio in basso */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #999;
-      font-size: 0.9rem;
-    }
-
-    .invitation-message {
-      text-align: center;
-      font-size: 1.1rem;
-      font-weight: 500;
-      margin-bottom: 1rem;
-    }
-
-    /* BOTTONI: I'm going, Maybe, Not going */
-    .response-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-    }
-    .response-buttons button {
-      padding: 0.5rem 1rem;
-      border: 1px solid #ccc;
-      background-color: #fff;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-    .response-buttons button:hover {
-      background-color: #f0f0f0;
-    }
-
-    /* FOOTER */
-    footer {
-      background-color: #e0e0e0; /* Grigio chiaro */
-      text-align: center;
-      padding: 0.75rem;
-    }
-  </style>
+    <!-- Popper.js & Tempus Dominus -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.4/dist/js/tempus-dominus.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.4/dist/css/tempus-dominus.min.css">
 </head>
-<body>
+<body class="notification-details-page">
 
     <!-- Header -->
     <header id="main_header" xlu-include-file="base_layout/header.html" class="container-fluid row"></header>
 
-  <!-- CONTENUTO PRINCIPALE -->
-  <main>
-    <!-- Titolo invito -->
-    <div class="invitation-title">
-      INVITATION: Join us to Event #1!
-    </div>
+    <!-- Main Content -->
+    <main class="notification-content">
+        <div xlu-include-file="components/notifications/notification_detail_card.html"></div>
+    </main>
 
-    <!-- Info su chi invita e data -->
-    <div class="invitation-info">
-      <span class="inviter">EventCreator - random@gmail.com</span>
-      <span class="invite-date">October 30, 2025, 2:35PM</span>
-    </div>
+    <footer id="main_footer" xlu-include-file="base_layout/footer.html" class="container-fluid row"></footer>
 
-    <!-- Placeholder immagine -->
-    <div class="image-placeholder">
-      <span>Image Placeholder</span>
-    </div>
+    <!-- JavaScript -->
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 
-    <!-- Messaggio di invito -->
-    <div class="invitation-message">
-      Hey! I want you to join this event!
-    </div>
-
-    <!-- Bottoni di risposta -->
-    <div class="response-buttons">
-      <button>I'm going</button>
-      <button>Maybe</button>
-      <button>Not going</button>
-    </div>
-  </main>
-
-    <!-- Footer -->
-    <footer id="main_footer" xlu-include-file="base_layout/footer.html" class="container-fluid row" ></footer>
-
-  <script>
-    // Se vuoi che la freccia torni indietro nella cronologia del browser
-    function goBack() {
-      window.history.back();
-    }
-  </script>
 </body>
 </html>
