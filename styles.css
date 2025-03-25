@@ -307,6 +307,67 @@ main {
 }
 
 /*
+ EVENT DETAIL NEWS
+*/
+/* Contenitore delle news */
+#news_content {
+  display: flex;
+  flex-direction: column; /* Se preferisci le carte affiancate, puoi usare row */
+  gap: 1rem;             /* Spazio tra le carte */
+  margin-top: 1rem;
+}
+
+/* Stile generale della carta */
+.news-card {
+  position: relative;          /* Per poter posizionare il tasto cestino in alto a destra */
+  background-color: #ffffff;   /* Colore di sfondo della carta */
+  border: 1px solid #dddddd;  /* Bordo sottile */
+  border-radius: 8px;         /* Angoli arrotondati */
+  padding: 16px;              /* Spaziatura interna */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Leggera ombra */
+  transition: box-shadow 0.3s;
+}
+
+/* Effetto hover (opzionale) */
+.news-card:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Titolo della carta */
+.news-card h5 {
+  margin: 0;               /* Niente spazio aggiuntivo sopra/sotto */
+  font-size: 1.2rem;       /* Dimensione del font */
+  font-weight: 600;        /* Grassetto */
+  color: #333333;
+}
+
+/* Testo descrittivo della carta */
+.news-card p {
+  margin: 0.75rem 0 0;     /* Spazio sopra al testo */
+  color: #555555;          /* Colore testo */
+  line-height: 1.4;
+}
+
+/* Pulsante per eliminare la news (cestino) */
+.delete-news-btn {
+  position: absolute;
+  top: 8px;        /* Regola per spostare più o meno in alto */
+  right: 8px;      /* Regola per spostare più o meno a destra */
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #999999;  /* Colore icona iniziale */
+  font-size: 1.2rem;
+  transition: color 0.2s;
+}
+
+/* Effetto hover sul pulsante cestino */
+.delete-news-btn:hover {
+  color: #666666;
+}
+
+
+/*
 *  05 - EVENT
 */
 .host-tool {
