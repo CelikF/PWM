@@ -1,8 +1,18 @@
-<div class="news-thumbnail">
-    <img src={{thumbnail-src}} alt={{thumnail}}>
-</div>
-<div class="news-title">
-    <h4>{{news-title}}</h4>
-</div>
-<div class="news-description">
-</div>
+<article>
+    <!-- Immagine di anteprima -->
+    <figure class="news-thumbnail">
+      <img src="{{thumbnail-src}}" alt="{{thumbnail-alt}}">
+    </figure>
+    
+    <!-- Contenuto testuale della news -->
+    <div class="news-content">
+      <h4 class="news-title">{{news-title}}</h4>
+      <p class="news-description">{{news-description}}</p>
+    </div>
+  
+    <!-- Esempio di pulsante per eliminare la news (opzionale) -->
+    <button class="delete-news-btn" aria-label="Elimina news">
+      <i class="bi bi-trash"></i>
+    </button>
+  </article>
+  
