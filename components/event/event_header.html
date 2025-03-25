@@ -1,4 +1,90 @@
-<div>
-    <img src="placeholder.png" alt="Event Image Placeholder"/>
-    <h1 style="font-size: 500%; margin-top: 20%;">{{header-title}}</h1>
-</div>
+<div class="header-container">
+    <img src="placeholder.png" alt="Event Image Placeholder">
+    
+    <!-- Left side: Header title and edit button -->
+    <div class="left-section">
+      <h1>{{header-title}}</h1>
+      <button class="btn edit-btn host-tool {{host}}">Edit</button>
+    </div>
+    
+    <!-- Right side: Action buttons -->
+    <div class="right-section">
+      <button class="btn change-bg-btn host-tool {{host}}">Change Background</button>
+      <button class="btn delete-event-btn host-tool {{host}}">Delete</button>
+    </div>
+  </div>
+  
+  <style>
+    .header-container {
+      position: relative;
+      width: 100%;
+      height: 30vh;
+      max-height: 250px;
+      background-color: #d3d3d3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+    }
+    
+    .header-container img {
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+    
+    .left-section {
+      position: absolute;
+      bottom: -1.5rem;
+      left: 15%;
+      display: flex;
+      align-items: center;
+    }
+    
+    .left-section h1 {
+      font-size: clamp(32px, 8vw, 96px);
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .left-section .edit-btn {
+      margin-left: 10px;
+      padding: 0.5em 1em;
+    }
+    
+    .right-section {
+      position: absolute;
+      bottom: -1.5rem;
+      right: 15%;
+      display: flex;
+      gap: 10px;
+    }
+    
+    .right-section .btn {
+      padding: 0.5em 1em;
+    }
+    
+    /* Adjust margins on medium screens */
+    @media (max-width: 1024px) {
+      .left-section {
+        left: 10%;
+      }
+      .right-section {
+        right: 10%;
+      }
+    }
+    
+    /* On small screens, further reduce margins and stack right-side buttons */
+    @media (max-width: 600px) {
+      .left-section {
+        left: 5%;
+      }
+      .right-section {
+        right: 5%;
+        flex-direction: column;
+        align-items: flex-end;
+      }
+    }
+  </style>

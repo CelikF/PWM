@@ -21,8 +21,9 @@
     <header id="main_header" xlu-include-file="base_layout/header.html"></header>
 
     <!-- Page Content -->
-    <main>
-      <div class="container mt-5">
+    <main style="display: flex; flex-direction: column;">
+        <div id="event_header" data-header-title="Event" xlu-include-file="components/event/event_header.html"></div>
+        <div class="container mt-5">
           <!-- Nav Tabs -->
           <ul class="nav nav-pills" id="myTab" role="tablist">
               <li class="nav-item" role="presentation">
@@ -41,10 +42,10 @@
       
           <!-- Tab Content -->
           <div class="tab-content" id="event_tabs">
-              <div id="description"  class="active show" role="tabpanel" aria-labelledby="description-tab" xlu-include-file="components/event/description.html"></div>
-              <div id="agenda" role="tabpanel" aria-labelledby="agenda-tab" xlu-include-file="components/event/agenda.html"></div>
-              <div id="attendees" role="tabpanel" aria-labelledby="attendees-tab" xlu-include-file="components/event/attendees.html"></div>
-              <div id="news" role="tabpanel" aria-labelledby="news-tab" xlu-include-file="components/event/news.html"></div>
+              <div id="description"  class="active show" role="tabpanel" data-host="attendee" aria-labelledby="description-tab" xlu-include-file="components/event/description.html"></div>
+              <div id="agenda" role="tabpanel" data-host="attendee" aria-labelledby="agenda-tab" xlu-include-file="components/event/agenda.html"></div>
+              <div id="attendees" role="tabpanel" data-host="attendee" aria-labelledby="attendees-tab" xlu-include-file="components/event/attendees.html"></div>
+              <div id="news" role="tabpanel" data-host="attendee" aria-labelledby="news-tab" xlu-include-file="components/event/news.html"></div>
           </div>
       </div>
     </main>
