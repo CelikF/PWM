@@ -1,40 +1,54 @@
+<!-- --- SEZIONE MOBILE (visibile su schermi <=768px) --- -->
+<div class="mobile-header">
+  <button id="tab-login" class="active">Login</button>
+  <button id="tab-signup">Sign Up</button>
+</div>
+
+<div class="mobile-container">
+  <!-- Form di Login (mobile) -->
+  <div class="mobile-form active" id="mobile-login-form">
+    <h1>Sign in</h1>
+    <p class="subtitle">Use your account</p>
+    <input type="text" placeholder="Username / E-mail"/>
+    <input type="password" placeholder="Password"/>
+    <button class="primary-btn">Sign In</button>
+  </div>
+
+  <!-- Form di Registrazione (mobile) -->
+  <div class="mobile-form" id="mobile-signup-form">
+    <h1>Create Account</h1>
+    <p class="subtitle">Join us, it's free!</p>
+    <input type="text" placeholder="Username"/>
+    <input type="email" placeholder="E-mail"/>
+    <input type="password" placeholder="Password"/>
+    <button class="primary-btn">Sign Up</button>
+  </div>
+</div>
+
+<!-- --- SEZIONE DESKTOP/IPAD (overlay) --- -->
 <div class="container" id="container">
-  <!-- Form di registrazione -->
+  <!-- Form di registrazione (desktop/ipad) -->
   <div class="form-container sign-up-container">
     <form class="forms" method="post" action="">
       <h1>Create Account</h1>
       <div class="white-preview">
-        <div class="btn-container">
-          <i class="fa fa-sun-o" aria-hidden="true"></i>
-          <label class="switch btn-color-mode-switch">
-            <input type="checkbox" name="chisono" id="color_mode" value="1">
-            <label for="chisono" data-on="User" data-off="Promoter" class="btn-color-mode-switch-inner"></label>
-          </label>
-          <i class="fa fa-moon-o" aria-hidden="true"></i>
-        </div>
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js" 
-          integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" 
-          crossorigin="anonymous"></script>
+        <!-- Eventuale switch User/Promoter -->
       </div>
-
       <div class="form-group">
-        <input type="text" name="username" placeholder="Username" value=""/>
-        <span class="invalid-feedback"></span>
-        <input type="email" name="email" placeholder="E-mail" value="">
-        <span class="invalid-feedback"></span>
-        <input type="password" name="password" placeholder="Password" value="">
-        <span class="invalid-feedback"></span>
+        <input type="text" name="username" placeholder="Username" />
+        <input type="email" name="email" placeholder="E-mail">
+        <input type="password" name="password" placeholder="Password">
         <input type="hidden" name="action" value="registrazione" />                
       </div>
       <button name="registrazione">Sign Up</button>
     </form>
   </div>
 
-  <!-- Form di login -->
-  <div class="form-container sign-in-container">
+  <!-- Form di login (desktop/ipad) -->
+  <div class="form-container sign-in-container active">
     <form class="forms" action="" method="post">
       <h1>Sign in</h1>
-      <span>or use your account</span>
+      <span>Use your account</span>
       <input type="text" name="username/email" placeholder="Username / E-mail">
       <input type="password" name="password" placeholder="Password">
       <input type="hidden" name="action" value="login" />                
@@ -43,7 +57,7 @@
     </form>
   </div>
 
-  <!-- Overlay per il cambio pannello -->
+  <!-- Overlay per desktop/ipad -->
   <div class="overlay-container">
     <div class="overlay">
       <div class="overlay-panel overlay-left">

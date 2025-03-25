@@ -5,7 +5,7 @@
 }
 
 body {
-  /* Sfondo in gradiente con i toni scuri */
+  /* Sfondo in gradiente con toni scuri */
   background: linear-gradient(to right, #070F2B, #1B1A55);
   display: flex;
   justify-content: center;
@@ -112,6 +112,7 @@ input {
   min-height: 480px;
 }
 
+/* Impostazioni per il layout desktop */
 .form-container {
   position: absolute;
   top: 0;
@@ -125,7 +126,6 @@ input {
   z-index: 2;
 }
 
-/* Nasconde completamente il form sign in quando viene attivato il pannello della registrazione */
 .container.right-panel-active .sign-in-container {
   transform: translateX(100%);
   opacity: 0;
@@ -387,4 +387,138 @@ label {
 
 .dark-preview p.by a {
   color: #9290C3;
+}
+@media only screen and (min-width: 769px) {
+  .mobile-header,
+  .mobile-container {
+    display: none;
+  }
+}
+
+
+/* ===== STILI MOBILE (max-width: 768px) ===== */
+@media only screen and (max-width: 768px) {
+
+  /* Nascondi il formato desktop */
+  .container {
+    display: none;
+  }
+  /* Mostra i blocchi mobile */
+  .mobile-header,
+  .mobile-container {
+    display: block;
+  }
+
+  /* Reset base */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* Corpo pagina: background, dimensione e layout verticale */
+  body {
+    background: linear-gradient(to right, #070F2B, #1B1A55);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* --- Header (Barra di navigazione) --- */
+  .mobile-header {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .mobile-header button {
+    flex: 1;
+    max-width: 150px;
+    background: transparent;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* Evidenzia la scheda attiva con una linea bianca */
+  .mobile-header button.active {
+    border-bottom: 3px solid #fff;
+  }
+
+  /* --- Container dei form --- */
+  .mobile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+    padding: 0 20px;
+    flex: 1;
+  }
+
+  /* Ogni form è un box bianco con ombreggiatura */
+  .mobile-form {
+    display: none;
+    background: #fff;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+  }
+
+  /* Visualizza il form attivo */
+  .mobile-form.active {
+    display: block;
+  }
+
+  /* Titolo del form */
+  .mobile-form h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #070F2B;
+  }
+
+  /* Sottotitolo */
+  .mobile-form .subtitle {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+  }
+
+  /* Campi di input */
+  .mobile-form input {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+
+  /* Bottone principale */
+  .primary-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background: #070F2B;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 10px;
+    text-transform: uppercase;
+  }
+
+  /* Effetto hover sul bottone */
+  .primary-btn:hover {
+    background: #1B1A55;
+  }
 }
