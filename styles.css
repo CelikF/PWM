@@ -511,7 +511,7 @@ main {
   flex-direction: column;
 }
 
-.coming-card {
+.status-card {
   width: 250px;
   border: 1px solid #aaa;
   border-radius: 10px;
@@ -520,7 +520,7 @@ main {
   margin: auto;
   margin-top: 1rem;
 }
-.coming-header {
+.status-header {
   background-color: #ddd;
   padding: 0px;
   text-align: center;
