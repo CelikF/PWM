@@ -4,13 +4,13 @@
     <!-- Left side: Header title and edit button -->
     <div class="left-section">
       <h1 id="event-title" style="color:white; text-shadow: 0 0 2px #fff, 0 0 2px #fff, 0 0 3px #b7c3eb, 0 0 4px #213766, 0 0 5px #005ce6, 0 0 9px #887780, 0 0 10px #f0d3e2;">{{header-title}}</h1>
-      <button class="btn edit-btn host-tool {{host}}">Edit</button>
+      <button class="btn edit-btn host-tool {{host}}">Change Name ✎</button>
     </div>
     
     <!-- Right side: Action buttons -->
     <div class="right-section">
       <button class="btn change-bg-btn host-tool {{host}}">Change Background</button>
-      <button class="btn delete-event-btn host-tool {{host}}">Delete</button>
+      <button class="btn delete-event-btn host-tool {{host}}">Delete Event</button>
     </div>
   </div>
   
@@ -53,20 +53,21 @@
     .left-section .edit-btn {
       margin-left: 10px;
       padding: 0.5em 1em;
-      background-color: #fff;
     }
     
     .right-section {
       position: absolute;
+      flex-direction: column;
+      align-items: flex-end;
       bottom: -1rem;
-      right: 15%;
+      top: 5%;
+      right: 5%;
       display: flex;
       gap: 10px;
     }
     
     .right-section .btn {
       padding: 0.5em 1em;
-      background-color: #fff;
     }
     
     /* Adjust margins on medium screens */
@@ -80,11 +81,12 @@
     }
     
     /* On small screens, further reduce margins and stack right-side buttons */
-    @media (max-width: 600px) {
+    @media (max-width: 930px) {
       .left-section {
         left: 5%;
       }
       .right-section {
+        top: 5%;
         right: 5%;
         flex-direction: column;
         align-items: flex-end;
