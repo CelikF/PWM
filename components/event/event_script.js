@@ -11,6 +11,11 @@ window.addEventListener('DOMContentLoaded', function () {
         if (events.length > 0) {
           // Use the first event from the JSON file
           const event = events[0];
+
+          // Render host tools
+          if(getUserId() == event.host_id){
+            renderHostToolbar("./event_details.html");
+          }
   
           // Inject the event description
           const descriptionElement = document.getElementById('event-description');
@@ -64,7 +69,7 @@ window.addEventListener('DOMContentLoaded', function () {
             })
             .catch(error => console.error('Error loading activity template:', error));
 
-            // Inject user data into the attendees overview
+          // Inject user data into the attendees overview
           fetch('./components/event/attendee_card.html')
           .then(response => {
           if (!response.ok) {
@@ -74,9 +79,24 @@ window.addEventListener('DOMContentLoaded', function () {
           })
           .then(template => {
               if(getUserId() == event.host_id){
-                    renderAttendeeCards(template, event.attendees, true);
+                    renderAttendeeCards(template, event.attendees);
               } else {
-                    renderAttendeeCards(template, event.attendees, false);
+                    renderAttendeeCards(template, event.attendees);
+              }
+          })
+          .catch(error => console.error('Error loading activity template:', error));
+
+          // Inject news card into the news overview
+          fetch('./components/event/news_card.html')
+          .then(response => {
+          if (!response.ok) {
+              throw new Error('Failed to load news_card.html');
+          }
+          return response.text();
+          })
+          .then(template => {
+              if(getUserId() == event.host_id){
+                    renderNewsCards(template, event.news);
               }
           })
           .catch(error => console.error('Error loading activity template:', error));
@@ -119,12 +139,45 @@ function renderActivityCards(template, activities, host) {
     });
 }
 
-// Render activities by replacing placeholders in the template
-function renderAttendeeCards(template, attendees, host) {
+function renderHostToolbar(path){
+    fetch(path).then(response => {return response.text();})
+    .then(template => {
+
+         // Find the container element where the HTML should be inserted
+         const desc_container = document.getElementById("description"); // Replace with the correct element ID
+         if (desc_container) {
+            desc_container.innerHTML = desc_container.innerHTML.replace(/{{host}}/g, "host-logged-in");// = updatedTemplate;  // Insert the updated template into the container
+         }
+
+         const agenda_container = document.getElementById("agenda"); // Replace with the correct element ID
+         if (agenda_container) {
+            agenda_container.innerHTML = agenda_container.innerHTML.replace(/{{host}}/g, "host-logged-in");// = updatedTemplate;  // Insert the updated template into the container
+         }
+
+         const attendee_container = document.getElementById("attendee"); // Replace with the correct element ID
+         if (attendee_container) {
+            attendee_container.innerHTML = attendee_container.innerHTML.replace(/{{host}}/g, "host-logged-in");// = updatedTemplate;  // Insert the updated template into the container
+         }
+         const user_invitation = document.getElementById("user_invitation");
+         fetch("./components/event/manage_attendees.html").then(response => {return response.text();})
+         .then(manage_invites_html => {
+            user_invitation.innerHTML = manage_invites_html.replace(/{{host}}/g, "host-logged-in");
+        })
+
+         const news_container = document.getElementById("news"); // Replace with the correct element ID
+         if (news_container) {
+            news_container.innerHTML = news_container.innerHTML.replace(/{{host}}/g, "host-logged-in");// = updatedTemplate;  // Insert the updated template into the container
+         }
+     })
+     .catch(error => console.error('Error fetching template:', error));  // Handle errors
+}
+
+// Render attendees by replacing placeholders in the template
+function renderAttendeeCards(template, attendees) {
     fetch('./db/db.json')
         .then(response => response.json())
-        .then(usersData => {
-            const users = usersData.users;
+        .then(data => {
+            const users = data.users;
 
             // Get containers for different attendee statuses
             const categories = {
@@ -158,40 +211,36 @@ function renderAttendeeCards(template, attendees, host) {
 
 }
 
-/*
-// Function to render activity cards using the activities array from the event JSON
-function renderActivityCards(activities) {
-  // Find the container in agenda.html where the activity cards are injected
-  const container = document.getElementById('agenda_content');
-  if (!container) {
-    console.error('No container with id "agenda_content" found.');
-    return;
-  }
-  
-  // Optionally clear any existing static content
-  container.innerHTML = '';
-  
-  activities.forEach((activity, index) => {
-    // Create an article element for each activity
-    const article = document.createElement('article');
-    article.id = `activity-card-${index + 1}`;
-    article.classList.add('activity-card');
-    
-    // Set the data attributes for the xlu-include template
-    //article.setAttribute('data-host', '{{host}}');  // placeholder maintained if host is injected elsewhere
-    article.setAttribute('data-activity-title', activity.activity_name);
-    article.setAttribute('data-start', formatTime(activity.start_time));
-    article.setAttribute('data-end', formatTime(activity.end_time));
-    article.setAttribute('style',"display: flex; flex-direction: column; padding: 1.5rem;");
-    
-    // Specify the include file for the activity card template
-    article.setAttribute('xlu-include-file', "components/event/activity_card.html");
-    
-    // Append the article to the agenda container
-    container.appendChild(article);
-  });
-} */
-  
+function renderNewsCards(template, news) {
+    const container = document.getElementById('news_content');
+    if (!container) {
+        console.error('No container with id "news_content" found.');
+        return;
+    }
+    console.log(news)
+
+    news.forEach(newscard => {
+        const article = document.createElement('article');
+        article.classList.add('news-card');
+        if (false){
+            let newsHTML = template
+                .replace(/{{host}}/g, "host-logged-in")
+                .replace(/{{news-title}}/g, newscard.title)
+                .replace(/{{news-description}}/g, newscard.description);
+                article.innerHTML += newsHTML;
+        } else {
+            let newsHTML = template
+                .replace(/{{news-title}}/g, newscard.title)
+                .replace(/{{news-description}}/g, newscard.description);
+            article.innerHTML += newsHTML;
+        }
+        
+        container.appendChild(article)
+        xLuIncludeFile();
+    });
+}
+
+
 // Helper function to format time
 function formatTime(timeValue) {
   const hour = Math.floor(timeValue);

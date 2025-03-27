@@ -1,6 +1,10 @@
-<div class="event-info-card" style="width:20%">
-  <button class="btn event-info-btn host-tool {{host}}">Add a location.</button>
-  <button class="btn event-info-btn host-tool {{host}}">Add a time and date.</button>
-  <b id="event-location" class="event-info host-tool {{host}}" style="margin: 10px">Loading event location...</b>
-  <b id="event-datetime" class="event-info host-tool {{host}}" style="margin: 10px">Loading date and time...</b>
+<div class="event-info-card" style="width:auto">
+  <div style="display: flex; position: relative; flex-direction: column-reverse;">
+    <b id="event-location" class="event-info" style="margin: 10px">Location: Loading event location...</b>
+    <button class="btn event-info-btn host-tool {{host}}">Edit Location.</button>
+  </div>
+  <div style="display: flex; position: relative; flex-direction: column-reverse;">
+    <b id="event-datetime" class="event-info" style="margin: 10px">Loading date and time...</b>
+    <button class="btn event-info-btn host-tool {{host}}">Edit Time and Date.</button>  
+  </div>
 </div>
