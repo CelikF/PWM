@@ -109,4 +109,13 @@ function getUserId() {
   return localStorage.getItem('userID')
 }
 
+function setEventId(id) {
+  localStorage.setItem("eventId", id);
+}
+
+function getEventId() {
+  return localStorage.getItem("eventId");
+}
+
 setUserId(1)
+setEventId(1)
