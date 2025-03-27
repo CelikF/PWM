@@ -460,7 +460,7 @@ main {
 .responsive-container {
   display: flex;
   flex-direction: row;
-  gap: 20px;
+  justify-content: space-between;
 }
 
 /* Default ordering for larger screens */
@@ -477,6 +477,7 @@ main {
 @media (max-width: 768px) {
   .responsive-container {
     flex-direction: column;
+    gap: auto;
   }
   #description-content {
     order: 2;

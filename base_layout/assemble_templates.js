@@ -98,6 +98,15 @@ function xLuIncludeFile() {
   
   // Start including templates once the DOM has loaded
   window.addEventListener("DOMContentLoaded", function() {
-    xLuIncludeFile();
+    xLuIncludeFile()
   });
   
+//Temporary set the users ID in local storage to test event views planned of different hosts
+function setUserId(userID) {
+  localStorage.setItem('userID', userID);
+}
+function getUserId() {
+  return localStorage.getItem('userID')
+}
+
+setUserId(1)

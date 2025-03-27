@@ -1,61 +1,66 @@
 [
-    {
-      "id": 1,
-      "image": "https://example.com/images/event1.jpg",
-      "host_id": 1,
-      "title" : "BestEvent",
-      "location": "Rome",
-      "datetime": "2025-04-01T10:00:00",
-      "description": "Description of event 1.",
-      "attendees": [
-        {
-          "user_id": 2,
-          "status": "confirmed"
-        },
-        {
-          "user_id": 3,
-          "status": "pending"
-        }
-      ],
-      "activities": [
-        {
-          "activity_name": "Opening Ceremony",
-          "start_time": 10,
-          "end_time": 11
-        },
-        {
-          "activity_name": "Workshop",
-          "start_time": 11,
-          "end_time": 12.5
-        }
-      ],
-      "news": [1, 2]
-    },
-    {
-      "id": 2,
-      "image": "https://example.com/images/event2.jpg",
-      "host_id": 2,
-      "location": "Milan",
-      "datetime": "2025-05-15T18:00:00",
-      "description": "Description of event 2.",
-      "attendees": [
-        {
-          "user_id": 1,
-          "status": "pending"
-        }
-      ],
-      "activities": [
-        {
-          "activity_name": "Keynote",
-          "start_time": 18,
-          "end_time": 19
-        },
-        {
-          "activity_name": "Networking",
-          "start_time": 19,
-          "end_time": 20.5
-        }
-      ],
-      "news": [3]
-    }
-  ]
+  {
+    "id": 1,
+    "image": "https://example.com/images/event1.jpg",
+    "host_id": 1,
+    "title" : "BestEvent",
+    "location": "Rome",
+    "datetime": "2025-04-01T10:00:00",
+    "description": "Description of event 1.",
+    "attendees": [
+      {
+        "user_id": 2,
+        "status": "coming"
+      },
+      {
+        "user_id": 3,
+        "status": "pending"
+      }
+    ],
+    "activities": [
+      {
+        "activity_name": "Opening Ceremony",
+        "start_time": 10,
+        "end_time": 11
+      },
+      {
+        "activity_name": "Workshop",
+        "start_time": 11,
+        "end_time": 12.5
+      },
+      {
+        "activity_name": "Networking",
+        "start_time": 12.5,
+        "end_time": 13
+      }
+    ],
+    "news": [1, 2]
+  },
+  {
+    "id": 2,
+    "image": "https://example.com/images/event2.jpg",
+    "host_id": 2,
+    "location": "Milan",
+    "datetime": "2025-05-15T18:00:00",
+    "description": "Description of event 2.",
+    "attendees": [
+      {
+        "user_id": 1,
+        "status": "pending"
+      }
+    ],
+    "activities": [
+      {
+        "activity_name": "Keynote",
+        "start_time": 18,
+        "end_time": 19
+      },
+      {
+        "activity_name": "Networking",
+        "start_time": 19,
+        "end_time": 20.5
+      }
+    ],
+    "news": [3]
+  }
+]

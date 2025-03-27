@@ -22,8 +22,21 @@
       "created_events": [2],
 	  "role": "User",
       "attending_events": {
-        "1": "confirmed",
+        "1": "coming",
         "3": "cancelled"
+      }
+    },
+    {
+      "id": 3,
+      "image": "https://example.com/images/user3.jpg",
+      "username": "user3",
+      "email": "user3@example.com",
+      "password": "pass333",
+      "created_events": [],
+	  "role": "User",
+      "attending_events": {
+        "1": "pending",
+        "2": "cancelled"
       }
     }
   ],
