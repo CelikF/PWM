@@ -295,6 +295,7 @@ main {
   font-weight: bold;
   position: absolute;
   top: 40%;
+  color: #ffffff;
 }
 .event-timer {
   position: absolute;

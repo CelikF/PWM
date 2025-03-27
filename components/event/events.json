@@ -1,12 +1,12 @@
 [
   {
     "id": 1,
-    "image": "https://example.com/images/event1.jpg",
+    "image": "./assets/event_images/rome.jpg",
     "host_id": 1,
-    "title" : "BestEvent",
+    "title" : "Rome Tour",
     "location": "Rome",
     "datetime": "2025-04-01T10:00:00",
-    "description": "Description of event 1.",
+    "description": "🏛️ Discover the Wonders of Rome – A Guided Tour Through History! 🇮🇹 Join us for an unforgettable journey through the heart of Rome, where ancient history meets modern charm. This guided tour will take you through the city's most iconic landmarks, from the awe-inspiring Colosseum, where gladiators once battled, to the breathtaking Trevi Fountain, where you can toss a coin and make a wish. Stroll through the cobbled streets of the Piazza Navona, admire the grandeur of St. Peter’s Basilica, and step back in time at the Roman Forum, the political and social hub of ancient Rome. Along the way, our expert guide will share fascinating stories, hidden gems, and the rich history that makes Rome the Eternal City.",
     "attendees": [
       {
         "user_id": 2,
@@ -19,19 +19,19 @@
     ],
     "activities": [
       {
-        "activity_name": "Opening Ceremony",
+        "activity_name": "Meeting",
         "start_time": 10,
         "end_time": 11
       },
       {
-        "activity_name": "Workshop",
+        "activity_name": "Tour",
         "start_time": 11,
-        "end_time": 12.5
+        "end_time": 15.5
       },
       {
-        "activity_name": "Networking",
-        "start_time": 12.5,
-        "end_time": 13
+        "activity_name": "Workshop",
+        "start_time": 15.5,
+        "end_time": 17
       }
     ],
     "news": [

@@ -10,12 +10,23 @@ window.addEventListener('DOMContentLoaded', function () {
       .then(events => {
         if (events.length > 0) {
           // Use the first event from the JSON file
-          const event = events[0];
+          const event = events[getEventId()-1];
 
           // Render host tools
           if(getUserId() == event.host_id){
-            renderHostToolbar("./event_details.html");
+            renderHostToolbar();
           }
+
+          //Load Event Image
+          const headerContainer = document.querySelector('.header-container');
+
+          if (headerContainer && event.image) {
+              // Set the background image dynamically
+              headerContainer.style.backgroundImage = `url('${event.image}')`;
+              headerContainer.style.backgroundSize = "cover";  // Ensures it covers the entire area
+              headerContainer.style.backgroundPosition = "center";  // Centers the image
+              headerContainer.style.backgroundRepeat = "no-repeat";  // Prevents tiling
+    }
   
           // Inject the event description
           const descriptionElement = document.getElementById('event-description');
@@ -96,7 +107,9 @@ window.addEventListener('DOMContentLoaded', function () {
           })
           .then(template => {
               if(getUserId() == event.host_id){
-                    renderNewsCards(template, event.news);
+                    renderNewsCards(template, event.news, true);
+              } else {
+                    renderNewsCards(template, event.news, false);
               }
           })
           .catch(error => console.error('Error loading activity template:', error));
@@ -140,10 +153,17 @@ function renderActivityCards(template, activities, host) {
 }
 
 function renderHostToolbar(path){
-    fetch(path).then(response => {return response.text();})
+    fetch("./event_details.html").then(response => {return response.text();})
     .then(template => {
 
          // Find the container element where the HTML should be inserted
+
+        const event_header = document.getElementById("event_header");
+        if (event_header) {
+          event_header.innerHTML = event_header.innerHTML.replace(/{{host}}/g, "host-logged-in");// = updatedTemplate;  // Insert the updated template into the container
+       }
+
+
          const desc_container = document.getElementById("description"); // Replace with the correct element ID
          if (desc_container) {
             desc_container.innerHTML = desc_container.innerHTML.replace(/{{host}}/g, "host-logged-in");// = updatedTemplate;  // Insert the updated template into the container
@@ -211,18 +231,17 @@ function renderAttendeeCards(template, attendees) {
 
 }
 
-function renderNewsCards(template, news) {
+function renderNewsCards(template, news, host) {
     const container = document.getElementById('news_content');
     if (!container) {
         console.error('No container with id "news_content" found.');
         return;
     }
-    console.log(news)
 
     news.forEach(newscard => {
         const article = document.createElement('article');
         article.classList.add('news-card');
-        if (false){
+        if (host){
             let newsHTML = template
                 .replace(/{{host}}/g, "host-logged-in")
                 .replace(/{{news-title}}/g, newscard.title)
