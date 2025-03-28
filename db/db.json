@@ -22,103 +22,22 @@
       "created_events": [2],
 	  "role": "User",
       "attending_events": {
-        "1": "confirmed",
+        "1": "coming",
         "3": "cancelled"
       }
-    }
-  ],
-  "events": [
-    {
-      "id": 1,
-      "image": "https://example.com/images/event1.jpg",
-      "host_id": 1,
-      "location": "Rome",
-      "datetime": "2025-04-01T10:00:00",
-      "coordinates": {
-        "latitude": 41.9028,
-        "longitude": 12.4964
-      },
-      "description": "Description of event 1.",
-      "attendees": [
-        {
-          "user_id": 2,
-          "status": "confirmed"
-        },
-        {
-          "user_id": 3,
-          "status": "pending"
-        }
-      ],
-      "activities": [
-        {
-          "activity_name": "Opening Ceremony",
-          "start_time": 10,
-          "end_time": 11
-        },
-        {
-          "activity_name": "Workshop",
-          "start_time": 11,
-          "end_time": 12.5
-        }
-      ],
-      "news": [1, 2]
-    },
-    {
-      "id": 2,
-      "image": "https://example.com/images/event2.jpg",
-      "host_id": 2,
-      "location": "Milan",
-      "datetime": "2025-05-15T18:00:00",
-      "coordinates": {
-        "latitude": 45.4642,
-        "longitude": 9.1900
-      },
-      "description": "Description of event 2.",
-      "attendees": [
-        {
-          "user_id": 1,
-          "status": "pending"
-        }
-      ],
-      "activities": [
-        {
-          "activity_name": "Keynote",
-          "start_time": 18,
-          "end_time": 19
-        },
-        {
-          "activity_name": "Networking",
-          "start_time": 19,
-          "end_time": 20.5
-        }
-      ],
-      "news": [3]
-    }
-  ],
-  "news": [
-    {
-      "id": 1,
-      "event_id": 1,
-      "image": "https://example.com/images/news1.jpg",
-      "title": "News Title 1",
-      "description": "Brief description of news 1.",
-      "content": "Full content of news 1."
-    },
-    {
-      "id": 2,
-      "event_id": 1,
-      "image": "https://example.com/images/news2.jpg",
-      "title": "News Title 2",
-      "description": "Brief description of news 2.",
-      "content": "Full content of news 2."
     },
     {
       "id": 3,
-      "event_id": 2,
-      "image": "https://example.com/images/news3.jpg",
-      "title": "News Title 3",
-      "description": "Brief description of news 3.",
-      "content": "Full content of news 3."
+      "image": "https://example.com/images/user3.jpg",
+      "username": "user3",
+      "email": "user3@example.com",
+      "password": "pass333",
+      "created_events": [],
+	  "role": "User",
+      "attending_events": {
+        "1": "pending",
+        "2": "cancelled"
+      }
     }
   ],
   "notifications": [
