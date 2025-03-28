@@ -37,9 +37,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     const diffMs = eventTime - now;
   
     if (diffMs <= 0) return "Event started";
-  
-    const hours = Math.floor(diffMs / (1000 * 60 * 60));
+
+    const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
-    return `Starts in ${hours}h ${minutes}m`;
-  }
+    const seconds = Math.floor((diffMs % (1000 * 60)) / 1000);
+    if (days >= 1) return `Starts in ${days} days`;
+    if (days < 1) return `Starts in ${hours}h ${minutes}m ${seconds}s`;
+}
   
