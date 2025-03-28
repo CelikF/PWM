@@ -685,6 +685,13 @@ main {
 }
 
 /* 08 - CREATOR */
+.edit_footer {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px; /* Adds some space above the buttons */
+}
+
 .edit_footer > *[role=edit_btn] {
   display: flex;
 }
