@@ -539,30 +539,34 @@ main {
 * 06 - ACCOUNT
 */
 .acc-profile-container {
-  width: auto;
+  width: 60%; /* Reduced width to center the content */
   background: white;
   padding: 20px;
-  margin-top: 50px;
+  margin: 50px auto; /* Centered the container */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Added shadow for depth effect */
+  border-radius: 8px; /* Added rounded border */
 }
+
 .acc-profile-section {
   margin-bottom: 20px;
   margin-top: 10px;
 }
 
-
 .acc-profile-label {
   font-weight: bold;
   margin-bottom: 5px;
   display: block;
-  margin-left: 15%;
+  margin-left: 0; /* Left aligned */
 }
+
 .acc-profile-pic {
   display: flex;
   align-items: center;
   gap: 15px;
-  margin-left: 20%;
+  margin-left: 0; /* Left aligned */
   margin-top: 15px;
 }
+
 .acc-profile-pic img {
   width: 100px;
   height: 100px;
@@ -572,35 +576,41 @@ main {
   justify-content: center;
   align-items: center;
 }
+
 .acc-profile-info {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-left: 20%;
+  margin-left: 0; /* Left aligned */
 }
+
 .acc-edit-icon {
   cursor: pointer;
 }
 
 .acc-reset-container {
-  width: auto;
+  width: 60%; /* Reduced width to center the content */
   background: white;
-  margin-left: 15%;
-  margin-top: 60px;
+  margin: 60px auto; /* Centered the container */
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Added shadow for depth effect */
+  border-radius: 8px; /* Added rounded border */
 }
 
 .acc-input-group {
   margin-bottom: 15px;
-  margin-left: 5%;
+  margin-left: 0; /* Left aligned */
 }
+
 .acc-label {
   width: 100%;
   font-weight: bold;
   display: block;
   margin-bottom: 5px;
 }
+
 .acc-input {
-  width: 20rem;
+  width: 100%; /* Full width for inputs */
   padding: 10px;
   border: 1px solid var(--secondary);
   border-radius: 5px;
@@ -620,9 +630,7 @@ main {
   border-radius: 5px;
   font-size: 16px;
   margin-top: 10px;
-  width: 10rem;
-  margin-right: 10%;
-  right: 10px;
+  width: auto;
 }
 
 /*
@@ -655,35 +663,33 @@ main {
   left: 20px;
 }
 
-/*
-* 07 - CUSTOMIZER
-*/
+/* 07 - CUSTOMIZER */
 #editor_container {
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  padding: 20px;
 }
 
 #editor {
-  display: flex;
-  justify-content: center;
-  background-color: var(--primary);
-}
-
-.ql-editor {
   width: 75%;
+  min-height: 300px;
   background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
 }
 
-/*
-* 08 - CREATIOR
-*/
+.ql-toolbar {
+  background-color: #f3f3f3;
+}
 
-.edit_footer  > *[role=edit_btn] {
+/* 08 - CREATOR */
+.edit_footer > *[role=edit_btn] {
   display: flex;
 }
 
-.edit_footer  > *[role=edit_btn].active {
+.edit_footer > *[role=edit_btn].active {
   display: flex;
   justify-content: center;
 }
