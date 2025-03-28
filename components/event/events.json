@@ -55,11 +55,12 @@
   },
   {
     "id": 2,
-    "image": "https://example.com/images/event2.jpg",
+    "image": "./assets/event_images/milan.jpg",
     "host_id": 2,
     "location": "Milan",
+    "title": "Milan Design Week 2025",
     "datetime": "2025-05-15T18:00:00",
-    "description": "Description of event 2.",
+    "description": "Join us in the heart of Italy’s fashion and design capital for Milan Design Week 2025, the world’s premier event dedicated to innovation, creativity, and cutting-edge design. From April 14th to April 21st, the city transforms into an open-air exhibition, with showrooms, galleries, and iconic locations hosting exclusive installations, interactive exhibits, and networking events. Discover the latest trends in interior design, architecture, and sustainable solutions from top global designers and emerging talents. Whether you're a design enthusiast, industry professional, or just looking for inspiration, Milan Design Week offers a unique experience of art, craftsmanship, and technology.",
     "attendees": [
       {
         "user_id": 1,
@@ -83,8 +84,8 @@
       "id": 3,
       "event_id": 2,
       "image": "https://example.com/images/news3.jpg",
-      "title": "News Title 3",
-      "description": "Brief description of news 3.",
+      "title": "New Venue & Expanded Program",
+      "description": "Organizers of Milan Design Week 2025 have revealed key updates, including a new venue expansion at Tortona District to accommodate rising interest. This year’s edition will also feature extended opening hours for select exhibitions and a stronger focus on sustainable design solutions. Attendees can expect a more immersive experience with interactive installations and exclusive industry panels. Stay tuned for more updates as the event approaches!",
       "content": "Full content of news 3."
     }
   ]
