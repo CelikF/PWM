@@ -160,23 +160,23 @@ function renderHostToolbar(path){
 
         const event_header = document.getElementById("event_header");
         if (event_header) {
-          event_header.innerHTML = event_header.innerHTML.replace(/{{host}}/g, "host-logged-in");// = updatedTemplate;  // Insert the updated template into the container
+          event_header.innerHTML = event_header.innerHTML.replace(/{{host}}/g, "host-logged-in");
        }
 
 
-         const desc_container = document.getElementById("description"); // Replace with the correct element ID
+         const desc_container = document.getElementById("description"); 
          if (desc_container) {
-            desc_container.innerHTML = desc_container.innerHTML.replace(/{{host}}/g, "host-logged-in");// = updatedTemplate;  // Insert the updated template into the container
+            desc_container.innerHTML = desc_container.innerHTML.replace(/{{host}}/g, "host-logged-in");
          }
 
-         const agenda_container = document.getElementById("agenda"); // Replace with the correct element ID
+         const agenda_container = document.getElementById("agenda"); 
          if (agenda_container) {
-            agenda_container.innerHTML = agenda_container.innerHTML.replace(/{{host}}/g, "host-logged-in");// = updatedTemplate;  // Insert the updated template into the container
+            agenda_container.innerHTML = agenda_container.innerHTML.replace(/{{host}}/g, "host-logged-in");
          }
 
-         const attendee_container = document.getElementById("attendee"); // Replace with the correct element ID
+         const attendee_container = document.getElementById("attendee"); 
          if (attendee_container) {
-            attendee_container.innerHTML = attendee_container.innerHTML.replace(/{{host}}/g, "host-logged-in");// = updatedTemplate;  // Insert the updated template into the container
+            attendee_container.innerHTML = attendee_container.innerHTML.replace(/{{host}}/g, "host-logged-in");
          }
          const user_invitation = document.getElementById("user_invitation");
          fetch("./components/event/manage_attendees.html").then(response => {return response.text();})
@@ -184,7 +184,7 @@ function renderHostToolbar(path){
             user_invitation.innerHTML = manage_invites_html.replace(/{{host}}/g, "host-logged-in");
         })
 
-         const news_container = document.getElementById("news"); // Replace with the correct element ID
+         const news_container = document.getElementById("news"); 
          if (news_container) {
             news_container.innerHTML = news_container.innerHTML.replace(/{{host}}/g, "host-logged-in");// = updatedTemplate;  // Insert the updated template into the container
          }
