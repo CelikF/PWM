@@ -19,7 +19,6 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 2rem;
-    background-color: var(--primary);
   }
   
   
@@ -231,8 +230,6 @@
     text-align: center;
     display: flex;
     justify-content: center;
-    background-color: var(--tertiary);
-    color: var(--text-secondary);
   }
   
   /* Responsive Design */
