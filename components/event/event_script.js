@@ -255,7 +255,6 @@ function renderNewsCards(template, news, host) {
         }
         
         container.appendChild(article)
-        xLuIncludeFile();
     });
 }
 
