@@ -2,7 +2,7 @@
   "users": [
     {
       "id": 1,
-      "image": "https://example.com/images/user1.jpg",
+      "image": "assets/profiles/dog.jpg",
       "username": "user1",
       "email": "user1@example.com",
       "password": "password123",

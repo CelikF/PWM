@@ -118,4 +118,4 @@ function getEventId() {
 }
 
 setUserId(1)
-setEventId(1)
+setEventId(2)
