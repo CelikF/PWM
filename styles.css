@@ -61,6 +61,8 @@
   padding: .2rem;
   border-radius: 999px;
   background-color: var(--highlight);
+  color: #111111;
+  margin-left: 20px
 }
 
 .btn-round:hover {
@@ -360,17 +362,9 @@ main {
   position: absolute;
   top: 8px;        /* Regola per spostare più o meno in alto */
   right: 8px;      /* Regola per spostare più o meno a destra */
-  background: none;
   border: none;
   cursor: pointer;
-  color: #999999;  /* Colore icona iniziale */
   font-size: 1.2rem;
-  transition: color 0.2s;
-}
-
-/* Effetto hover sul pulsante cestino */
-.delete-news-btn:hover {
-  color: #666666;
 }
 
 
@@ -508,6 +502,10 @@ main {
   display: flex;
   flex-direction: column;
   padding: 1.5rem;
+  border: 1px solid #aaa;
+  border-radius: 10px;
+  margin: 5px;
+  background-color: white;
 }
 
 /*
@@ -542,7 +540,7 @@ main {
 .person {
   display: flex;
   align-items: center;
-  background-color: aliceblue;
+  background-color: rgb(220, 240, 250);;
   padding: 5px 10px;
   border-radius: 10px;
   margin-bottom: 5px;
@@ -563,7 +561,7 @@ main {
 .dropdown-button {
   background-color: #ffffff;
   color: rgb(0, 0, 0);
-  padding: 10px 200px;
+  padding: 10px 50px;
   font-size: 16px;
   cursor: pointer;
   border-radius: 5px;
@@ -612,7 +610,7 @@ body {
 }
 
 .acc-profile-container {
-  width: 60%; /* Reduced width to center the content */
+  width: 90%; /* Reduced width to center the content */
   background: white;
   padding: 20px;
   margin: 50px auto; /* Centered the container */
@@ -623,13 +621,15 @@ body {
 .acc-profile-section {
   margin-bottom: 20px;
   margin-top: 10px;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .acc-profile-label {
   font-weight: bold;
   margin-bottom: 5px;
   display: block;
-  margin-left: 0; /* Left aligned */
+  margin-left: 20%; /* Left aligned */
 }
 
 .acc-profile-pic {
@@ -638,6 +638,8 @@ body {
   gap: 15px;
   margin-left: 0; /* Left aligned */
   margin-top: 15px;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .acc-profile-pic img {
@@ -653,6 +655,7 @@ body {
 .acc-profile-info {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   margin-left: 0; /* Left aligned */
 }
@@ -662,19 +665,37 @@ body {
 }
 
 .acc-reset-container {
-  width: 60%; /* Reduced width to center the content */
+  width: 100%;
+  max-width: 600px; /* Limits width for a better appearance */
   background: white;
-  margin: 60px auto; /* Centered the container */
+  margin-left: 20%;
+  margin-right: 10px;
   padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Added shadow for depth effect */
-  border-radius: 8px; /* Added rounded border */
+  box-shadow: 0px -2px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.acc-reset-container h4 {
+  text-align: left; /* Aligns "RESET PASSWORD" to the left */
+  margin-bottom: 20px; /* Adds space below */
 }
 
 .acc-input-group {
   margin-bottom: 15px;
-  margin-left: 0; /* Left aligned */
+  margin-left: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
+@media (max-width: 600px){
+  .acc-input-group {
+    margin-left: 0;
+  }
+  .acc-reset-container {
+    margin-left: 0;
+  }
+}
 .acc-label {
   width: 100%;
   font-weight: bold;
@@ -684,6 +705,7 @@ body {
 
 .acc-input {
   width: 100%; /* Full width for inputs */
+  max-width: 500px;
   padding: 10px;
   border: 1px solid var(--secondary);
   border-radius: 5px;
@@ -748,7 +770,7 @@ body {
 
 #editor {
   width: 100%;
-  min-height: 500px;
+  min-height: 100px;
   background-color: #ffffff; /* White background for editor */
   border: 1px solid #d1d9e6; /* Light border color */
   padding: 20px;
@@ -820,17 +842,27 @@ button#save_changes {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 20px;
 }
 
 .image-upload i {
   font-size: 70px; /* Larger icon size */
   color: #7f8c8d; /* Grey color for icon */
-  margin-right: 10px;
+  margin-right: 5px;
+  margin-left: 5px;
 }
 
 .text-inputs {
   background-color: #ffffff; /* White background for text inputs */
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
-  padding: 20px;
+  padding: 10px;
+  margin: 20px;
+}
+
+@media (max-width: 600px){
+  #news_preview_container {
+    display: flex; 
+    flex-direction: column;
+  }
 }

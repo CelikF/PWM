@@ -39,16 +39,16 @@
       "id": 1,
       "event_id": 1,
       "image": "https://example.com/images/news1.jpg",
-      "title": "News Title 1",
-      "description": "Brief description of news 1.",
+      "title": "📢 Rome Tour Update: Meeting Point Change!",
+      "description": "Attention attendees! Our meeting point has been moved to Piazza Venezia instead of the Colosseum. Please arrive by 9:30 AM to start the tour on time. See you soon!",
       "content": "Full content of news 1."
     },
     {
       "id": 2,
       "event_id": 1,
       "image": "https://example.com/images/news2.jpg",
-      "title": "News Title 2",
-      "description": "Brief description of news 2.",
+      "title": "⏳ Schedule Adjustment: Extended Free Time",
+      "description": "Great news! We’re adding 30 extra minutes of free time at the Trevi Fountain for you to explore and take photos. Don’t forget to toss a coin for good luck! 🎭",
       "content": "Full content of news 2."
     }
   ]
