@@ -257,62 +257,145 @@ main {
 /*
 *  04 - HOME
 */
+/* ===== DESKTOP ===== */
+#homepage {
+  padding: 1rem;
+}
+
+#content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+#searchbar {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 0.2rem;
+  padding-bottom:0.2rem;
+}
+
+#searchbar input {
+  flex: 1;
+  min-width: 200px;
+}
+
+#searchbar button {
+  white-space: nowrap;
+}
+
+/* === Event Cards Layout === */
 #event_list {
-  flex: 1;
-  width: 50%;
+  width: 65%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-top: 0rem;
 }
 
+/* === Calendar / Filters === */
+/* Make calendar block look bigger */
 #filters {
-  flex: 1;
-  width: 50%;
+  width: 30%;
+  padding: 1rem;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 3rem;
-}
-
-#event_date_filter {
-  width: auto;
-}
-
-.tempus-dominus-widget {
-  width: auto !important;
-  background-color: var(--primary) !important;
-  border-radius: 12px !important;
-}
-
-.event-card {
-  width: 200px;
-  height: 200px;
-  background-color: var(--primary);
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-bottom: 100px;
+}
+
+/* Increase calendar size globally */
+.tempus-dominus-widget {
+  transform: scale(1.30); /* 💥 Scale the entire widget */
+  transform-origin: top center;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  #content-wrapper {
+    flex-direction: column;
+  }
+
+  #searchbar {
+    order: 1;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #filters {
+    order: 2;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  #event_list {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .event-card {
+    width: 100% !important;
+    
+  }
+}
+
+
+/* ===== EVENT CARD STYLING ===== */
+.event-card {
+  flex: 0 1 calc(33.33% - 1.5rem); /* 3 per row with space */
+  max-width: 300px;
+  min-width: 250px;
+  height: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-size: cover;        /* fills the card */
+  background-position: center;   /* centers the image */
+  background-repeat: no-repeat; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+  margin: 40px;
   position: relative;
-  margin: 1rem;
 }
-.event-card img {
-  width: 50px;
-  height: 50px;
-  opacity: 0.5;
+
+.event-card:hover {
+  transform: scale(1.02);
 }
-.event-title {
-  font-size: 1.5em;
-  font-weight: bold;
+
+.event-card::before {
+  content: "";
   position: absolute;
-  top: 40%;
-  color: #ffffff;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.1));
 }
+
+.event-title {
+  position: absolute;
+  bottom: 40px;
+  left: 15px;
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 600;
+  z-index: 2;
+}
+
 .event-timer {
   position: absolute;
   bottom: 10px;
-  right: 10px;
-  background-color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 0.9em;
+  left: 15px;
+  background-color: rgba(255, 255, 255, 0.85);
+  color: #333;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  z-index: 2;
 }
 
 /*
