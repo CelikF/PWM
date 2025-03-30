@@ -745,7 +745,7 @@ body {
 
 #editor {
   width: 100%;
-  min-height: 500px;
+  min-height: 100px;
   background-color: #ffffff; /* White background for editor */
   border: 1px solid #d1d9e6; /* Light border color */
   padding: 20px;
@@ -822,12 +822,21 @@ button#save_changes {
 .image-upload i {
   font-size: 70px; /* Larger icon size */
   color: #7f8c8d; /* Grey color for icon */
-  margin-right: 10px;
+  margin-right: 5px;
+  margin-left: 5px;
 }
 
 .text-inputs {
   background-color: #ffffff; /* White background for text inputs */
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
-  padding: 20px;
+  padding: 10px;
+  margin: 20px;
+}
+
+@media (max-width: 600px){
+  #news_preview_container {
+    display: flex; 
+    flex-direction: column;
+  }
 }
