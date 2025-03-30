@@ -61,6 +61,7 @@
   padding: .2rem;
   border-radius: 999px;
   background-color: var(--highlight);
+  color: #111111;
 }
 
 .btn-round:hover {
