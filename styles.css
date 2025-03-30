@@ -361,17 +361,9 @@ main {
   position: absolute;
   top: 8px;        /* Regola per spostare più o meno in alto */
   right: 8px;      /* Regola per spostare più o meno a destra */
-  background: none;
   border: none;
   cursor: pointer;
-  color: #999999;  /* Colore icona iniziale */
   font-size: 1.2rem;
-  transition: color 0.2s;
-}
-
-/* Effetto hover sul pulsante cestino */
-.delete-news-btn:hover {
-  color: #666666;
 }
 
 
