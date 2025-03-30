@@ -231,6 +231,7 @@ function renderAttendeeCards(template, attendees) {
 
 }
 
+// Render news by replacing placeholders in the template
 function renderNewsCards(template, news, host) {
     const container = document.getElementById('news_content');
     if (!container) {
