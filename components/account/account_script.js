@@ -2,11 +2,6 @@ window.addEventListener("DOMContentLoaded", async function() {
     // Function to load the database
     async function loadDatabase() {
       try {
-        //const storedDB = localStorage.getItem('database');
-        //if (storedDB) {
-        //  database = JSON.parse(storedDB);
-        //  console.log('Database loaded from localStorage:', database);
-        //} else {
           const response = await fetch('./db/db.json');
           if (!response.ok) {
             throw new Error('Unable to load the database.');
@@ -14,7 +9,6 @@ window.addEventListener("DOMContentLoaded", async function() {
           database = await response.json();
           console.log('Database loaded from JSON file:', database);
           localStorage.setItem('database', JSON.stringify(database));
-        //}
       } catch (error) {
         console.error("Error loading the database:", error);
       }
