@@ -1,9 +1,0 @@
-{
-    "users": [
-      {
-        "name": "name1",
-        "email": "name1@example.com",
-        "profile_pic": "./assets/profile_pics/john_doe.jpg"
-      }
-    ]
-  }
