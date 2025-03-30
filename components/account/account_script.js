@@ -10,7 +10,7 @@ window.addEventListener("DOMContentLoaded", async function() {
           console.log('Database loaded from JSON file:', database);
           localStorage.setItem('database', JSON.stringify(database));
       } catch (error) {
-        console.error("Error loading the database:", error);
+          console.error("Error loading the database:", error);
       }
     }
   
@@ -22,12 +22,11 @@ window.addEventListener("DOMContentLoaded", async function() {
     const accountEmail = document.getElementById("account-email");
 
     if (accountProfilePic && accountName && accountEmail) {
-      console.log("yes");
       const account = database.users[0]; // Assume we take the first user as an example
       accountProfilePic.src = account["image"];
       accountName.textContent = account["username"];
       accountEmail.textContent = account["email"];
     } else {
       console.error("Desktop elements not found");
-    }
+  }
 });
