@@ -1,1 +1,29 @@
-<p>account works!</p>
+<app-main-header></app-main-header>  <!-- Header del sito -->
+<app-body-header [title]="'My Account'"></app-body-header> <!-- Titolo pagina -->
+
+<!-- Sezione informazioni utente -->
+<div class="acc-profile-container">
+  <div class="acc-profile-pic">
+    <img src="path-to-profile-picture.jpg" alt="User Profile Picture" />
+    <!-- Puoi aggiungere un'icona per cambiare la foto del profilo -->
+    <button (click)="changeProfilePic()">Change Picture</button>
+  </div>
+
+  <div class="acc-profile-section">
+    <label class="acc-profile-label" for="name">Full Name</label>
+    <input 
+      type="text" 
+      id="name" 
+      [(ngModel)]="displayName" 
+      class="acc-input" 
+      placeholder="Enter your name"
+    />
+  </div>
+
+  <div class="acc-save-button-container">
+    <button class="acc-save-button" (click)="saveProfile()">Save</button>
+  </div>
+</div>
+
+<!-- Footer -->
+<app-main-footer></app-main-footer>
