@@ -1,23 +1,33 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import firebase from 'firebase/compat/app';
 
-import { AccountComponent } from './account.component';
+@Component({
+  selector: 'app-account',
+  templateUrl: './account.component.html',
+  styleUrls: ['./account.component.css']
+})
+export class AccountComponent implements OnInit {
+  user: firebase.User | null = null;
+  loading: boolean = true;
+  errorMessage: string | null = null;
 
-describe('AccountComponent', () => {
-  let component: AccountComponent;
-  let fixture: ComponentFixture<AccountComponent>;
+  constructor(private afAuth: AngularFireAuth) {}
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [AccountComponent]
-    })
-    .compileComponents();
+  ngOnInit(): void {
+    this.getUserData();
+  }
 
-    fixture = TestBed.createComponent(AccountComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  getUserData(): void {
+    this.afAuth.authState.subscribe({
+      next: (user) => {
+        this.user = user;
+        this.loading = false;
+      },
+      error: (error) => {
+        this.errorMessage = `Errore nel recuperare i dati dell'utente: ${error.message}`;
+        this.loading = false;
+      }
+    });
+  }
+}
