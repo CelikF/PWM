@@ -6,6 +6,8 @@ import { tap, catchError } from 'rxjs/operators';
 // Import per Firebase
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Auth } from '@angular/fire/auth';
+import { Firestore } from '@angular/fire/firestore';
 
 export interface User {
   id?: number;       // utilizzato per JSON
@@ -42,7 +44,9 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private afAuth: AngularFireAuth,
-    private afs: AngularFirestore
+    private auth: Auth,
+    private afs: AngularFirestore,
+    private fs: Firestore
   ) {
     if (!this.useFirebase) {
       this.loadDatabase();
@@ -191,5 +195,9 @@ export class AuthService {
         resolve({ success: true, message: 'Registrazione avvenuta con successo.', user: newUser });
       });
     }
+  }
+
+  getCurrentUser(){
+    return this.auth.currentUser;
   }
 }
