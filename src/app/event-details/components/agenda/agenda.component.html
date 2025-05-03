@@ -1,7 +1,7 @@
 <section id="agenda_content" class="event-page__agenda">
     <!-- “Add Activity” button -->
     <div class="edit_footer" role="edit_btn" aria-labelledby="agenda-tab">
-      <button class="btn add-activity">Add Activity</button>
+      <button class="btn add-activity" (click)="addActivity({modal_name:'activity'})">Add Activity</button>
     </div>
   
     @for ( activity of activities(); track activity.id){

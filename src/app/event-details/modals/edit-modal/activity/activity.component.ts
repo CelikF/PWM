@@ -14,7 +14,7 @@ import { Sign } from 'crypto';
 })
 export class ActivityComponent implements OnInit {
   @Input() event!: Event;
-  @Input() activityId!: string;
+  @Input() activityId: string | undefined;
 
   @Output() close = new EventEmitter<boolean>();
 
@@ -31,20 +31,22 @@ export class ActivityComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     const eventId = this.event.id.toString();
     try {
-      // Fetch the activity data once using firstValueFrom to get a single emission
-      const activity: Activity | undefined = await firstValueFrom(
-        this.dataService.activity(eventId, this.activityId)
-      );
-      if (activity) {
+      if (this.activityId){
+        // Fetch the activity data once using firstValueFrom to get a single emission
+        const activity: Activity | undefined = await firstValueFrom(
+          this.dataService.activity(eventId, this.activityId)
+        );
+        if (activity) {
 
-        const st = (activity.start_time)
-        const et = (activity.end_time)
+          const st = (activity.start_time)
+          const et = (activity.end_time)
 
-        this.form.patchValue({
-          activity_name: activity.activity_name,
-          start_time: st,
-          end_time: et
-        });
+          this.form.patchValue({
+            activity_name: activity.activity_name,
+            start_time: st,
+            end_time: et
+          });
+        }
       }
       // The Observable is automatically unsubscribed after emitting the first value.
     } catch (error) {
@@ -71,8 +73,15 @@ export class ActivityComponent implements OnInit {
     };
 
     try {
-      await this.dataService.updateActivity(eventId, actId, update);
-      this.close.emit(true);       // tell parent to close the modal
+      if (actId) {
+        // existing activity → update
+        await this.dataService.updateActivity(eventId, actId, update);
+        console.log('Activity updated.');
+      } else {
+        // new activity → create
+        await this.dataService.addActivity(eventId, update as Activity);
+        console.log('Activity created.');
+      }      // tell parent to close the modal
     } catch (err) {
       console.error('Failed to save activity', err);
       // you could show an error notification here

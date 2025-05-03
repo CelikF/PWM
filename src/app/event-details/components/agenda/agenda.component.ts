@@ -28,4 +28,8 @@ export class AgendaComponent {
     this.editModal.emit(payload);
   }
 
+  addActivity(payload: ModalPayload){
+    this.editModal.emit(payload);
+  }
+
 }
