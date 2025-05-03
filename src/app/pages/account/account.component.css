@@ -1,0 +1,151 @@
+/* 06 - ACCOUNT */
+body {
+    background-color: #f0f4f8; /* Light blue background for the entire page */
+  }
+  
+  .acc-profile-container {
+    width: 90%; /* Reduced width to center the content */
+    background: white;
+    padding: 20px;
+    margin: 50px auto; /* Centered the container */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Added shadow for depth effect */
+    border-radius: 8px; /* Added rounded border */
+  }
+  
+  .acc-profile-section {
+    margin-bottom: 20px;
+    margin-top: 10px;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .acc-profile-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    margin-left: 20%; /* Left aligned */
+  }
+  
+  .acc-profile-pic {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: 0; /* Left aligned */
+    margin-top: 15px;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .acc-profile-pic img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; /* Round image */
+    background-color: var(--primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .acc-profile-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-left: 0; /* Left aligned */
+  }
+  
+  .acc-edit-icon {
+    cursor: pointer;
+  }
+  
+  .acc-reset-container {
+    width: 100%;
+    max-width: 600px; /* Limits width for a better appearance */
+    background: white;
+    margin-left: 20%;
+    margin-right: 10px;
+    padding: 20px;
+    box-shadow: 0px -2px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+  }
+  
+  .acc-reset-container h4 {
+    text-align: left; /* Aligns "RESET PASSWORD" to the left */
+    margin-bottom: 20px; /* Adds space below */
+  }
+  
+  .acc-input-group {
+    margin-bottom: 15px;
+    margin-left: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  @media (max-width: 600px){
+    .acc-input-group {
+      margin-left: 0;
+    }
+    .acc-reset-container {
+      margin-left: 0;
+    }
+  }
+  .acc-label {
+    width: 100%;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .acc-input {
+    width: 100%; /* Full width for inputs */
+    max-width: 500px;
+    padding: 10px;
+    border: 1px solid var(--secondary);
+    border-radius: 5px;
+    background-color: #eee;
+  }
+  
+  .acc-save-button-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .acc-save-button {
+    background-color: #535C91; /* Same color as invitation page */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 10px;
+    width: auto;
+  }
+  
+  /* Second Header */
+  #second_header {
+    width: 100%;
+    height: 74px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+  
+  .header-title {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .back-button {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    position: absolute;
+    left: 20px;
+  }

@@ -3,10 +3,10 @@ import { AuthService } from './auth.service'; // esempio di un servizio di auten
 
 @Component({
   selector: 'app-account',
-  templateUrl: './account-page.component.html',
-  styleUrls: ['./account-page.component.css']
+  templateUrl: './account.component.html',
+  styleUrls: ['./account.component.css']
 })
-export class AccountPageComponent {
+export class AccountComponent {
   displayName: string = '';  // Variabile per il nome dell'utente
 
   constructor(private authService: AuthService) { }
