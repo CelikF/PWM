@@ -16,7 +16,7 @@ export class AccountComponent {
     if (this.displayName) {
       this.authService.updateUserName(this.displayName).then(() => {
         alert('Profile updated successfully!');
-      }).catch(err => {
+      }).catch((err: unknown) => {
         console.error('Error updating profile', err);
         alert('Failed to update profile.');
       });
