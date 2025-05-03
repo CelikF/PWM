@@ -1,0 +1,23 @@
+<div class="modal-overlay">
+    <div class="modal-dialog" (click)="$event.stopPropagation()">
+      <div class="modal-content">
+
+        @if (modalType() === "name-change"){
+            <app-title (close)="handleCloseModal($event)" [event]="this.event()"></app-title>
+        }
+        @if (modalType() === "description"){
+            <app-description (close)="handleCloseModal($event)" [event]="this.event()"></app-description>
+        }
+        @if (modalType() === "location"){
+            <app-location (close)="handleCloseModal($event)" [event]="this.event()"></app-location>
+        }
+        @if (modalType() === "datetime"){
+            <app-datetime (close)="handleCloseModal($event)" [event]="this.event()"></app-datetime>
+        }
+        @if (modalType() === "activity"){
+            <app-activity (close)="handleCloseModal($event)" [event]="this.event()" [activityId]="this.modalId()!"></app-activity>
+        }
+
+      </div>
+    </div>
+  </div>

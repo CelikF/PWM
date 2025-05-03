@@ -1,0 +1,30 @@
+<div class="edit_footer" role="edit_btn" aria-labelledby="agenda-tab">
+  <button class="btn add-activity">Add News</button>
+</div>
+
+@for (new of news(); track new.id){
+  <article class="news-card">
+    <div class="news-card__header">
+      <div class="news-card__title">
+        <h4>{{new.title}}</h4>
+      </div>
+      <div class="news-card__ops">
+        <button class="btn edit-news-btn">
+          Edit <i class="fa fa-pencil"></i>
+        </button>
+        <button class="btn delete-news-btn">
+            Delete <i class="fa fa-trash"></i>
+          </button>
+      </div>
+    </div>
+  
+    <div class="news-card__body">
+      <p>
+        {{new.description}}
+      </p>
+    </div>
+  </article>
+}
+
+  
+  

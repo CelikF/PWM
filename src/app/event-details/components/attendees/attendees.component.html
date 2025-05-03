@@ -1,0 +1,68 @@
+<section class="invitation-section">
+    <!-- Top Controls -->
+    <div class="invitation-controls">
+      <button class="btn">Manage Invitations</button>
+      <button class="btn">Customize Invitations</button>
+    </div>
+  
+    <!-- Status Columns -->
+    <div id="attendees_list" class="status-grid">
+      <article class="status-card">
+        <div class="status-header">Coming</div>
+        <div class="person-list">
+          @for (attendee of attendees(); track attendee.id) {
+            @if (attendee.status === "coming"){
+              <div class="person">
+                <i class="fa fa-user"></i>
+                <span>User Id:{{attendee.id}}</span>
+              </div>
+            }
+          }
+          
+        </div>
+      </article>
+  
+      <article class="status-card">
+        <div class="status-header">Maybe</div>
+        <div class="person-list">
+          @for (attendee of attendees(); track attendee.id) {
+            @if (attendee.status === "maybe"){
+              <div class="person">
+                <i class="fa fa-user"></i>
+                <span>User Id:{{attendee.id}}</span>
+              </div>
+            }
+          }
+        </div>
+      </article>
+  
+      <article class="status-card">
+        <div class="status-header">Can't</div>
+        <div class="person-list">
+          @for (attendee of attendees(); track attendee.id) {
+            @if (attendee.status === "cant"){
+              <div class="person">
+                <i class="fa fa-user"></i>
+                <span>User Id:{{attendee.id}}</span>
+              </div>
+            }
+          }
+        </div>
+      </article>
+  
+      <article class="status-card">
+        <div class="status-header">Pending</div>
+        <div class="person-list">
+          @for (attendee of attendees(); track attendee.id) {
+            @if (attendee.status === "pending"){
+              <div class="person">
+                <i class="fa fa-user"></i>
+                <span>User Id:{{attendee.id}}</span>
+              </div>
+            }
+          }
+        </div>
+      </article>
+    </div>
+  </section>
+  

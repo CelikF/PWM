@@ -1,0 +1,57 @@
+<div class="modal-dialog modal-dialog-centered dateTimeModal" role="document">
+    <div class="modal-content dateTimeModal-content">
+  
+      <div class="dateTimeModal-header">
+        <h4>Add Date &amp; Time</h4>
+        <button
+          type="button"
+          class="dateTimeModal-close btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+  
+      <form [formGroup]="form" (ngSubmit)="saveChanges()">
+        <div class="dateTimeModal-body">
+          <!-- single time input -->
+          <div class="time-row">
+            <div class="time-field">
+              <label for="timePicker">Time</label>
+              <input
+                type="time"
+                id="timePicker"
+                class="form-control"
+                formControlName="time"
+                step="60"
+                min="00:00"
+                max="23:59"
+              />
+            </div>
+          </div>
+  
+          <!-- single date input -->
+          <div class="date-field">
+            <label for="datePicker">Date</label>
+            <input
+              type="date"
+              id="datePicker"
+              class="form-control"
+              formControlName="date"
+              min="{{ minDate }}"
+              max="{{ maxDate }}"
+            />
+          </div>
+        </div>
+  
+        <div class="dateTimeModal-footer">
+          <button type="submit" class="btn save-button" [disabled]="form.invalid">
+            Save
+          </button>
+          <button type="button" class="btn" (click)="cancelChanges()">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
