@@ -34,4 +34,28 @@
     <!-- Footer -->
     <footer id="main_footer" xlu-include-file="base_layout/footer.html"></footer>
 </body>
+<div *ngIf="loading">Caricamento...</div>
+
+<div *ngIf="!loading && user">
+  <h2>Benvenuto, {{ user.username }}</h2>
+  <img [src]="user.image" alt="Foto profilo" />
+  <p>Email: {{ user.email }}</p>
+  <p>Ruolo: {{ user.role }}</p>
+
+  <h3>Eventi creati</h3>
+  <ul>
+    <li *ngFor="let event of user.created_events">
+      Event ID: {{ event }}
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="errorMessage">
+  <p style="color: red;">{{ errorMessage }}</p>
+</div>
+
+<div *ngIf="!loading && !user && !errorMessage">
+  <p>Nessun utente trovato o non ancora loggato.</p>
+</div>
+
 </html>

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { DataService } from // Adjusted the relative path
 // Ensure the following paths are correct and the services are exported
-import { AuthService } from '../../../services/authServer.service';
-import { DataService } from '../../../services/data.service';
 
 @Component({
   selector: 'app-change-name',
@@ -15,9 +14,8 @@ export class ChangeNameComponent implements OnInit {
   form: FormGroup;
 
   constructor(
-    private authService: AuthService,
-    private dataService: DataService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private dataService: DataService
   ) {
     this.form = this.fb.group({
       firstName: [''],
@@ -42,7 +40,7 @@ export class ChangeNameComponent implements OnInit {
   onSubmit(): void {
     if (this.form.valid) {
       const updatedData = this.form.value;
-      this.authService.updateUser(this.user.id, updatedData).subscribe(() => {
+      this.dataService.updateUser(this.user.id, updatedData).subscribe(() => {
         alert('User updated successfully!');
       });
     }
