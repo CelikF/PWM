@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { DataService } from // Adjusted the relative path
-// Ensure the following paths are correct and the services are exported
 
 @Component({
   selector: 'app-change-name',
@@ -12,10 +10,10 @@ export class ChangeNameComponent implements OnInit {
   displayName: string = '';
   user: any = {}; // Holds the current user data
   form: FormGroup;
+  dataService: any;
 
   constructor(
     private fb: FormBuilder,
-    private dataService: DataService
   ) {
     this.form = this.fb.group({
       firstName: [''],

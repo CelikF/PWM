@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth.service'; // Percorso al tuo AuthService
-import { User } from '../models/user.model'; // Modello User
+import { AuthService } from '../../auth/auth.service'; // Percorso corretto al tuo AuthService
 import { AngularFireAuth } from '@angular/fire/compat/auth'; // Per gestire l'autenticazione Firebase
+import firebase from 'firebase/compat/app'; // Importa Firebase per il tipo User
+import { User } from '@firebase/auth-types';
 
 @Component({
   selector: 'app-account',
@@ -9,12 +10,11 @@ import { AngularFireAuth } from '@angular/fire/compat/auth'; // Per gestire l'au
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
-  user: User | null = null;  // Dati dell'utente
+  user: firebase.User | null = null; // Define a specific property for user data
   loading: boolean = true;  // Stato di caricamento
   errorMessage: string | null = null;
 
   constructor(
-    private authService: AuthService,  // Servizio per l'autenticazione
     private afAuth: AngularFireAuth   // Firebase Auth per la gestione dell'autenticazione
   ) {}
 
@@ -26,17 +26,17 @@ export class AccountComponent implements OnInit {
   getUserData(): void {
     this.afAuth.authState.subscribe(user => {
       if (user) {
-        this.authService.getUserData(user.uid).then((userData) => {
-          this.user = userData; // Salva i dati dell'utente
+          this.user = user; // Assign the user object
           this.loading = false;  // Termina il caricamento
-        }).catch((error) => {
-          this.errorMessage = `Errore nel recuperare i dati dell'utente: ${error.message}`;
+        } else {
+          console.log('Nessun utente loggato');
           this.loading = false;
-        });
-      } else {
+        }
+      }, (error: any) => {
+        this.errorMessage = `Errore nel recuperare i dati dell'utente: ${error.message}`;
+        this.loading = false;
         console.log('Nessun utente loggato');
         this.loading = false;
-      }
-    });
+      });
   }
 }
