@@ -1,0 +1,16 @@
+<div class="acc-profile-container">
+    <div class="acc-profile-section">
+      <label class="acc-profile-label" for="name">Full Name</label>
+      <input
+        class="acc-input"
+        type="text"
+        id="name"
+        [(ngModel)]="displayName"
+        placeholder="Enter your name"
+      />
+      <div class="acc-save-button-container">
+        <button class="acc-save-button" (click)="saveName()">Save</button>
+      </div>
+    </div>
+  </div>
+  

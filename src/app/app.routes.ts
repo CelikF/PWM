@@ -7,6 +7,7 @@ import { DescriptionComponent } from './event-details/components/description/des
 import { AgendaComponent } from './event-details/components/agenda/agenda.component';
 import { AttendeesComponent } from './event-details/components/attendees/attendees.component';
 import { NewsComponent } from './event-details/components/news/news.component';
+import { AccountComponent } from './pages/account/account.component';
 
 export const routes: Routes = [
   { path: 'ed/:eventId', component:EventDetailsComponent, 
@@ -21,6 +22,6 @@ export const routes: Routes = [
   },
   { path: 'login', component: AuthContainerComponent },
   { path: 'home', component: HomeComponent },
-  // { path: '', redirectTo: 'login', pathMatch: 'full' },
-  // { path: '**', redirectTo: 'login' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '**', redirectTo: 'login' }
 ];
