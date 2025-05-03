@@ -1,6 +1,6 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
-
+import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { routes } from './app.routes';
 import {
   provideClientHydration,
@@ -10,7 +10,12 @@ import { provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { initializeApp } from 'firebase/app';
 import { } from '@angular/fire'
+
+import { AngularFireModule } from '@angular/fire/compat';
+ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { getAuth, provideAuth } from '@angular/fire/auth';
+import { environment } from '../../environments/environment';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -29,5 +34,12 @@ export const appConfig: ApplicationConfig = {
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideClientHydration(withEventReplay()),
+    provideHttpClient(),
+    importProvidersFrom(
+      HttpClientModule,
+      AngularFireModule.initializeApp(environment.firebase),
+       AngularFireAuthModule,
+       AngularFirestoreModule
+    )
   ],
 };
