@@ -20,6 +20,7 @@ export const routes: Routes = [
       { path: '', redirectTo: 'description', pathMatch: 'full' },
     ]
   },
+  { path: 'account', component: AccountComponent },
   { path: 'login', component: AuthContainerComponent },
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
