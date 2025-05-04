@@ -24,5 +24,10 @@ export const routes: Routes = [
   { path: 'login', component: AuthContainerComponent },
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: '**', redirectTo: 'login' }
+  { path: '**', redirectTo: 'login' },
+  {
+    path: 'notifications/:id',
+    loadComponent: () => import('./notification/notification-details.component').then(m => m.NotificationDetailsComponent)
+  }
+  
 ];
