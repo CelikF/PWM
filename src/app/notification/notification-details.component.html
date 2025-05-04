@@ -1,0 +1,23 @@
+<div class="notification-title">
+    <h5>{{ notification?.title }}</h5>
+  </div>
+  
+  <div class="notification-sender">
+    <img src="assets/profile-placeholder.png" alt="Profile Image" class="sender-avatar">
+    <div class="sender-details">
+      <span class="sender-name">{{ notification?.senderName }}</span>
+      <span class="sender-email">&lt;{{ notification?.senderEmail }}&gt;</span>
+    </div>
+    <span class="notification-time">{{ notification?.date }}</span>
+  </div>
+  
+  <div class="notification-message">
+    <p class="message-text">{{ notification?.message }}</p>
+  </div>
+  
+  <div class="response-buttons">
+    <button class="going-btn">✔ I'm going</button>
+    <button class="maybe-btn">❓ Maybe</button>
+    <button class="not-going-btn">✖ Not going</button>
+  </div>
+  
