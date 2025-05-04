@@ -9,8 +9,8 @@ import { FormsModule } from '@angular/forms'; // Import FormsModule for ngModel
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent {
-  userName: string = '';
-  userEmail: string = '';
+  userName: string = 'name';
+  userEmail: string = 'email';
   newPassword: string = '';
   confirmPassword: string = '';
 
