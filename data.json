@@ -1,0 +1,93 @@
+[
+    {
+      "id": 1,
+      "image": "./assets/event_images/rome.jpg",
+      "host_id": 1,
+      "title" : "Rome Tour",
+      "location": "Rome",
+      "datetime": "2025-04-02T10:00:00",
+      "description": "🏛️ Discover the Wonders of Rome – A Guided Tour Through History! 🇮🇹 Join us for an unforgettable journey through the heart of Rome, where ancient history meets modern charm. This guided tour will take you through the city's most iconic landmarks, from the awe-inspiring Colosseum, where gladiators once battled, to the breathtaking Trevi Fountain, where you can toss a coin and make a wish. Stroll through the cobbled streets of the Piazza Navona, admire the grandeur of St. Peter’s Basilica, and step back in time at the Roman Forum, the political and social hub of ancient Rome. Along the way, our expert guide will share fascinating stories, hidden gems, and the rich history that makes Rome the Eternal City.",
+      "attendees": [
+        {
+          "user_id": 2,
+          "status": "coming"
+        },
+        {
+          "user_id": 3,
+          "status": "pending"
+        }
+      ],
+      "activities": [
+        {
+          "activity_name": "Meeting",
+          "start_time": 10,
+          "end_time": 11
+        },
+        {
+          "activity_name": "Tour",
+          "start_time": 11,
+          "end_time": 15.5
+        },
+        {
+          "activity_name": "Workshop",
+          "start_time": 15.5,
+          "end_time": 17
+        }
+      ],
+      "news": [
+      {
+        "id": 1,
+        "event_id": 1,
+        "image": "https://example.com/images/news1.jpg",
+        "title": "📢 Rome Tour Update: Meeting Point Change!",
+        "description": "Attention attendees! Our meeting point has been moved to Piazza Venezia instead of the Colosseum. Please arrive by 9:30 AM to start the tour on time. See you soon!",
+        "content": "Full content of news 1."
+      },
+      {
+        "id": 2,
+        "event_id": 1,
+        "image": "https://example.com/images/news2.jpg",
+        "title": "⏳ Schedule Adjustment: Extended Free Time",
+        "description": "Great news! We’re adding 30 extra minutes of free time at the Trevi Fountain for you to explore and take photos. Don’t forget to toss a coin for good luck! 🎭",
+        "content": "Full content of news 2."
+      }
+    ]
+    },
+    {
+      "id": 2,
+      "image": "./assets/event_images/milan.jpg",
+      "host_id": 2,
+      "location": "Milan",
+      "title": "Milan Design Week 2025",
+      "datetime": "2025-05-15T18:00:00",
+      "description": "Join us in the heart of Italy’s fashion and design capital for Milan Design Week 2025, the world’s premier event dedicated to innovation, creativity, and cutting-edge design. From April 14th to April 21st, the city transforms into an open-air exhibition, with showrooms, galleries, and iconic locations hosting exclusive installations, interactive exhibits, and networking events. Discover the latest trends in interior design, architecture, and sustainable solutions from top global designers and emerging talents. Whether you're a design enthusiast, industry professional, or just looking for inspiration, Milan Design Week offers a unique experience of art, craftsmanship, and technology.",
+      "attendees": [
+        {
+          "user_id": 1,
+          "status": "pending"
+        }
+      ],
+      "activities": [
+        {
+          "activity_name": "Keynote",
+          "start_time": 18,
+          "end_time": 19
+        },
+        {
+          "activity_name": "Networking",
+          "start_time": 19,
+          "end_time": 20.5
+        }
+      ],
+      "news": [
+      {
+        "id": 3,
+        "event_id": 2,
+        "image": "https://example.com/images/news3.jpg",
+        "title": "New Venue & Expanded Program",
+        "description": "Organizers of Milan Design Week 2025 have revealed key updates, including a new venue expansion at Tortona District to accommodate rising interest. This year’s edition will also feature extended opening hours for select exhibitions and a stronger focus on sustainable design solutions. Attendees can expect a more immersive experience with interactive installations and exclusive industry panels. Stay tuned for more updates as the event approaches!",
+        "content": "Full content of news 3."
+      }
+    ]
+    }
+  ]

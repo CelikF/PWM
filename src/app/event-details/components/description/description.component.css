@@ -1,0 +1,81 @@
+/* Make sure the host is a block so flex children work */
+:host {
+    display: block;
+  }
+  
+  /* Row layout: text on the left, card on the right */
+  .event-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;       /* space between description and card */
+    flex-wrap: nowrap; /* wrap on very narrow screens */
+  }
+  
+  /* --- Description Column --- */
+  .description {
+    flex: 1 1 auto;
+  }
+  
+  .description .edit-description {
+    /* use the existing button styles, just add bottom margin */
+    margin-bottom: 1rem;
+  }
+  
+  .description p {
+    margin: 0;           /* remove extra top/bottom margins */
+    color: #333;         /* dark text on white background */
+    line-height: 1.6;
+    font-size: 1rem;
+  }
+  
+  /* --- Info Card Column --- */
+  .info-card {
+    flex: 0 0 280px;             /* fixed width */
+    background-color: #E8F4FA;   /* light blue card background */
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  .info-card .card-header {
+    text-align: center;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .info-card .card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;              /* space between elements */
+    align-items: stretch;
+  }
+  
+  .info-card .card-body button {
+    width: 100%;
+    /* buttons already styled globally */
+  }
+  
+  .info-card .event-time {
+    text-align: center;
+    font-weight: 500;
+    color: #333;
+    margin: 0;
+  }
+  
+  /* --- Responsive: stack on mobile, card on top --- */
+  @media (max-width: 767px) {
+    .event-content {
+      flex-direction: column-reverse;
+      gap: 1.5rem;
+    }
+    .info-card {
+      flex: none;
+      justify-content: space-evenly;
+      align-items: center;
+      width: 70%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  

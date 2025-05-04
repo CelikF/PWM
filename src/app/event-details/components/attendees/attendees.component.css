@@ -1,0 +1,96 @@
+.invitation-section {
+    width: 100%;
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  
+  /* Top control buttons */
+  .invitation-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  
+    .btn {
+      /* reuse your global .btn; just adjust padding */
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
+    }
+  }
+  
+  /* Four‐column grid for statuses */
+  .status-grid {
+    display: flex;
+    flex-wrap: wrap;          /* allow cards to wrap onto new rows */
+    justify-content: space-between;
+    gap: 1.5rem 1rem;         /* row-gap column-gap */
+  }
+  
+  /* Each status column */
+  .status-card {
+    flex: 1 1 200px;          /* grow, shrink, basis=200px */
+    max-width: 260px;         /* optional cap if you like */
+  }
+
+  @media (max-width: 600px) {
+    .status-grid {
+      justify-content: center;
+    }
+  }
+  
+  /* The dark header for each status */
+  .status-header {
+    background-color: #1B1A55;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    padding: 0.5rem;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  
+  /* The person list area */
+  .person-list {
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  /* Individual person pill */
+  .person {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #E8F4FA;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    color: #333;
+    font-size: 0.95rem;
+  }
+  
+  .person i {
+    color: #4b57a9; /* icon in blue tone */
+  }
+  
+  /* Responsive tweaks */
+  @media (max-width: 600px) {
+    .status-grid {
+      grid-template-columns: 1fr;
+    }
+    .invitation-controls {
+      flex-direction: column;
+    }
+  }
+  
+  .dropdown{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 1rem;
+  }
+
+  .dropdown-title{
+    width: auto;
+  }

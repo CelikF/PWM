@@ -1,11 +1,15 @@
-import { Injectable, inject, EnvironmentInjector, runInInjectionContext } from '@angular/core';
+import { Injectable, inject, EnvironmentInjector, runInInjectionContext, Signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 
 // Import per Firebase
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Auth } from '@angular/fire/auth';
+import { addDoc, collection, collectionData, CollectionReference, Firestore, orderBy, query, where } from '@angular/fire/firestore';
+import { Functions, httpsCallable, HttpsCallableResult } from '@angular/fire/functions'
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 
 export interface User {
   id?: number;       // utilizzato per JSON
@@ -15,7 +19,6 @@ export interface User {
   email: string;
   password?: string; // non utilizzata in firebase
   created_events: number[];
-  role: string;
   attending_events: { [key: string]: string };
 }
 
@@ -38,15 +41,21 @@ export class AuthService {
   private dbKey = 'database';
   private dbUrl = '/db.json';
   private database: Database | null = null;
+  private functions!: Functions;
 
   constructor(
     private http: HttpClient,
     private afAuth: AngularFireAuth,
-    private afs: AngularFirestore
+    private auth: Auth,
+    private afs: AngularFirestore,
+    private fs: Firestore,
   ) {
     if (!this.useFirebase) {
       this.loadDatabase();
     }
+    runInInjectionContext(this.injector, () => {
+       this.functions = inject(Functions);
+    })
   }
 
   // Carica il database dal LocalStorage o dal file JSON
@@ -131,11 +140,11 @@ export class AuthService {
                       uid: credential.user.uid,
                       username: username,
                       email: email,
-                      role: role,
                       image: 'https://example.com/images/default.jpg',
                       created_events: [],
                       attending_events: {}
                     };
+                    addDoc(collection(this.fs, 'users'), newUser);
                     return this.afs.collection('users').doc(credential.user.uid).set(newUser)
                       .then(() => {
                         return { success: true, message: 'Registrazione avvenuta con successo.', user: newUser };
@@ -183,7 +192,6 @@ export class AuthService {
           email,
           password, // In produzione è consigliato criptare la password
           created_events: [],
-          role,
           attending_events: {}
         };
         this.database.users.push(newUser);
@@ -214,4 +222,29 @@ export class AuthService {
     }
   }
   
+
+  getCurrentUser(){
+    return this.auth.currentUser;
+  }
+
+  // getEmailsForUids(uids: string[]){
+  //   // Prepare callable function reference (Cloud Function must be deployed separately)
+  //   const getEmailsFn = httpsCallable<{ uids: string[] }, Record<string, string>>(
+  //     this.functions, 
+  //     'getEmailsByUIDs'
+  //   );
+  //   // Call the function and return the Observable of its result data
+  //   getEmailsFn({ uids }).then(res => {return console.log(res)});
+  // }
+
+  getUsers(){
+    const col = collection(this.fs, `users`) as CollectionReference<User>;
+    return toSignal(
+      collectionData(col, { idField: 'id' }) as Observable<User[]>,
+      { initialValue: [] }
+    );
+  }
+
+
 }
+

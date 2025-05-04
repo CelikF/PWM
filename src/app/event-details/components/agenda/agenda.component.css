@@ -1,0 +1,71 @@
+/* Container for the agenda */
+.event-page__agenda {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  
+    /* “Add Activity” button */
+    .edit_footer {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+  
+      .add-activity {
+        /* reuse global .btn style */
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+      }
+    }
+  
+    /* Each activity card */
+    .activity-card {
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 1rem 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+  
+    /* Header row: title + actions */
+    .activity-card__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+  
+      .activity-card__title {
+        margin: 0;
+        font-size: 1.5rem;
+        color: #121212;
+      }
+  
+      .activity-card__actions {
+        display: flex;
+        gap: 0.5rem;
+  
+        .btn {
+          padding: 0.4rem 0.8rem;
+          font-size: 0.9rem;
+          /* inherits global .btn styles */
+        }
+      }
+    }
+  
+    /* Time pill */
+    .activity-card__time {
+      display: flex;
+      justify-content: flex-start;
+  
+      span {
+        background-color: #1B1A55;
+        color: #ffffff;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+    }
+  }
+  
+  /* No additional responsive needed since cards are full-width by default */
+  

@@ -1,1 +1,88 @@
-<p>event-details works!</p>
+<div class="event-page">
+    <!-- Top Header -->
+    <header class="top-bar">
+      <img 
+      [routerLink]="['/home']"
+      src="assets/logo_white.svg" alt="EventHub Logo" class="logo" />
+      <nav class="top-nav">
+        <button class="nav-btn">Notifications</button>
+        <button class="nav-btn">My Account</button>
+        <button class="nav-btn sign-out">Sign Out</button>
+      </nav>
+    </header>
+  
+    <!-- Secondary Header / Hero Section -->
+    <div class="event-hero"
+    [style.--hero-bg-url]="'url(' + imagePath + ')'">
+      <!-- Hero Actions (top right) -->
+      <div class="hero-actions">
+        @if(hostView){ 
+          <button 
+          class="bg-btn" (click)="openEditModal({modal_name:'image'})">Change Background</button>
+          <button class="bg-btn delete disabled">Delete Event</button>
+        }
+      </div>
+      <!-- Event Title and Edit Name (bottom left) -->
+      <div class="hero-title">
+        <h1>{{event()?.title}}</h1>
+        @if(hostView){ 
+          <button class="edit-name" (click)="openEditModal({modal_name:'name-change'})">Change Name</button>
+        }
+      </div>
+    </div>
+  
+    <!-- White Content Container -->
+    <div class="event-details-container">
+      <!-- Tabs Navigation -->
+      <nav class="event-tabs">
+        <a
+          [routerLink]="['description']"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="onTabClick('description')"
+        >
+          Description
+        </a>
+        <a
+          [routerLink]="['agenda']"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="onTabClick('agenda')"
+        >
+          Agenda
+        </a>
+        <a
+          [routerLink]="['attendees']"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="onTabClick('attendees')"
+        >
+          Attendees
+        </a>
+        <a
+          [routerLink]="['news']"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="onTabClick('news')"
+        >
+          News
+        </a>
+      </nav>
+  
+      <!-- Main Content Area -->
+        <router-outlet [routerOutletData]="{ hostView: hostView }" (activate)="onChildActivate($event)"></router-outlet>
+    </div>
+  </div>
+
+  @if ( this.isEditModalOpen === true){
+    <app-edit-modal 
+      (close)="handleCloseModal($event)" 
+      (imageSelected)="onImagePicked($event)"
+      [event]="this.event()!"
+      [attendees]="this.attendees()!"
+      [modalType]="this.modalType" 
+      [modalId]="this.modalId"></app-edit-modal>
+  }
+  
+
+  

@@ -1,0 +1,49 @@
+<!-- header -->
+<div class="modal-header">
+    <h4>Change Event Header Image</h4>
+    <button class="close-btn">×</button>
+    </div>
+
+    <!-- body -->
+    <div class="modal-body">
+    <form (submit)="saveChanges()">
+        <div class="image-path-picker">
+            <div class="ipp-input-group">
+              <!-- URL entry -->
+              <!-- <input
+                type="text"
+                class="path-input"
+                placeholder="Enter image URL or choose a file…"
+                (path)="pathInput"
+                (blur)="onPathChange()"
+              /> -->
+          
+              <!-- Browse button -->
+              <button type="button" class="browse-btn"
+                      (click)="browse(fileInput)">
+                Browse
+              </button>
+          
+              <!-- hidden file input -->
+              <input
+                type="file"
+                #fileInput
+                accept="image/*"
+                hidden
+                (change)="onFileSelected($event)"
+              />
+            </div>
+          
+            <!-- preview area -->
+            <div class="ipp-preview">
+              <span *ngIf="!imageUrl">No image selected</span>
+              <img *ngIf="imageUrl" [src]="imageUrl" alt="Preview" />
+            </div>
+          </div>
+          
+    <div class="modal-footer">
+        <button type="submit" class="invitation-send">Save</button>
+        <button type="reset" class="invitation-send" (click)="cancelChanges()"  >Cancel</button>
+    </div>
+    </form>
+    </div>

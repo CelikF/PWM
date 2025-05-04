@@ -1,0 +1,21 @@
+<!-- header -->
+<div class="modal-header">
+    <h4>Change Event Description</h4>
+    <button class="close-btn">×</button>
+    </div>
+
+    <!-- body -->
+    <div class="modal-body">
+    <form [formGroup]="form" (submit)="saveChanges()">
+        <textarea
+        class="invitation-input my-mono"
+        formControlName="description"
+        value="{{event().description}}"
+        ></textarea>
+        <!-- footer -->
+    <div class="modal-footer">
+        <button type="submit" class="invitation-send">Save</button>
+        <button type="reset" class="invitation-send" (click)="cancelChanges()"  >Cancel</button>
+    </div>
+    </form>
+    </div>
