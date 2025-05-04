@@ -12,17 +12,22 @@
     </header>
   
     <!-- Secondary Header / Hero Section -->
-    <div class="event-hero">
+    <div class="event-hero"
+    [style.--hero-bg-url]="'url(' + imagePath + ')'">
       <!-- Hero Actions (top right) -->
       <div class="hero-actions">
-        <button 
-        class="bg-btn">Change Background</button>
-        <button class="bg-btn delete disabled">Delete Event</button>
+        @if(hostView){ 
+          <button 
+          class="bg-btn" (click)="openEditModal({modal_name:'image'})">Change Background</button>
+          <button class="bg-btn delete disabled">Delete Event</button>
+        }
       </div>
       <!-- Event Title and Edit Name (bottom left) -->
       <div class="hero-title">
         <h1>{{event()?.title}}</h1>
-        <button class="edit-name" (click)="openEditModal({modal_name:'name-change'})">Change Name</button>
+        @if(hostView){ 
+          <button class="edit-name" (click)="openEditModal({modal_name:'name-change'})">Change Name</button>
+        }
       </div>
     </div>
   
@@ -65,12 +70,18 @@
       </nav>
   
       <!-- Main Content Area -->
-        <router-outlet (activate)="onChildActivate($event)"></router-outlet>
+        <router-outlet [routerOutletData]="{ hostView: hostView }" (activate)="onChildActivate($event)"></router-outlet>
     </div>
   </div>
 
   @if ( this.isEditModalOpen === true){
-    <app-edit-modal (close)="handleCloseModal($event)" [event]="this.event()!" [modalType]="this.modalType" [modalId]="this.modalId"></app-edit-modal>
+    <app-edit-modal 
+      (close)="handleCloseModal($event)" 
+      (imageSelected)="onImagePicked($event)"
+      [event]="this.event()!"
+      [attendees]="this.attendees()!"
+      [modalType]="this.modalType" 
+      [modalId]="this.modalId"></app-edit-modal>
   }
   
 

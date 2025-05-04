@@ -1,11 +1,11 @@
-import { Component, computed, effect, EventEmitter, inject, input, Output, output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, computed, effect, EventEmitter, inject, input, Output, output, Signal } from '@angular/core';
+import { ActivatedRoute, ROUTER_OUTLET_DATA } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DataService, Event } from '../../services/data.service';
 import { EventDetailsComponent } from '../../event-details.component';
 import { CommonModule } from '@angular/common';
 import { Timestamp } from '@angular/fire/firestore';
-import { ModalPayload } from '../../modals/edit-modal/edit-modal.component';
+import { ModalPayload, ParentPayload } from '../../modals/edit-modal/edit-modal.component';
 
 @Component({
   selector: 'app-description',
@@ -21,6 +21,9 @@ export class DescriptionComponent {
 
   event = this.getEvent();
   @Output() editModal = new EventEmitter<ModalPayload>();
+
+  private outletData = inject(ROUTER_OUTLET_DATA) as Signal<ParentPayload>; 
+  hostView: boolean = this.outletData().hostView; 
 
 
 

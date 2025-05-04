@@ -11,7 +11,8 @@ import {
   query,
   orderBy,
   CollectionReference,
-  Timestamp
+  Timestamp,
+  setDoc
 } from '@angular/fire/firestore';
 import { toSignal } from '@angular/core/rxjs-interop';
 import type { Observable } from 'rxjs';
@@ -19,7 +20,7 @@ import type { Observable } from 'rxjs';
 // Interfaces matching your Firestore structure
 export interface Attendee {
   id: string;
-  user_id: string;
+  user_id?: string;
   status: string;
 }
 
@@ -42,7 +43,7 @@ export interface NewsItem {
 export interface Event {
   id: number;
   image: string;
-  host_id: number;
+  host_uid: string;
   title: string;
   location: string;
   datetime: Timestamp;
@@ -106,8 +107,8 @@ export class DataService {
   }
 
   addAttendee(eventId: string, attendee: Attendee) {
-    const col = collection(this.fs, `events/${eventId}/attendees`);
-    return addDoc(col, attendee);
+    const customRef = doc(this.fs, `events/${eventId}/attendees`, attendee.id);
+    return setDoc(customRef, attendee);
   }
 
   updateAttendee(eventId: string, userId: string, data: Partial<Attendee>) {
@@ -158,6 +159,11 @@ export class DataService {
   news$(eventId: string): Signal<NewsItem[]> {
     const col = collection(this.fs, `events/${eventId}/news`);
     return toSignal((collectionData(col,{ idField: 'id' })) as Observable<NewsItem[]>, { initialValue: [] });
+  }
+
+  newsitem(eventId: string, newsId: string): Observable<NewsItem | undefined> {
+    const ref = doc(this.fs, `events/${eventId}/news/${newsId}`);
+    return docData(ref, { idField: 'id' }) as Observable<NewsItem | undefined>
   }
 
   addNews(eventId: string, news: NewsItem) {

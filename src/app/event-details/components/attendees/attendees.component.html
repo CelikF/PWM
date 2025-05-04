@@ -1,9 +1,53 @@
 <section class="invitation-section">
     <!-- Top Controls -->
-    <div class="invitation-controls">
-      <button class="btn">Manage Invitations</button>
-      <button class="btn">Customize Invitations</button>
+     @if(hostView){
+      <div class="invitation-controls">
+        <button class="btn" (click)="openEditModal({modal_name:'manage-invite'})">Manage Invitations</button>
+        <!--button class="btn">Customize Invitations</button-->
+      </div>
+    } @else {
+      <div class="dropdown">
+        <p class="dropdown-title">Your invitation Status:</p>
+        @if(currentAttendee?.status === "pending"){
+          <button class="dropdown-button">
+            Pending
+          </button>
+          <div class="dropdown-content">
+              <a (click)="updateCurrentAttendee({status:'coming'})">Coming</a>
+              <a (click)="updateCurrentAttendee({status:'maybe'})">Maybe</a>
+              <a (click)="updateCurrentAttendee({status:'cant'})">Can't</a>
+          </div>
+        }
+        @if(currentAttendee?.status === "coming"){
+          <button class="dropdown-button">
+            Coming
+          </button>
+          <div class="dropdown-content">
+              <a (click)="updateCurrentAttendee({status:'maybe'})">Maybe</a>
+              <a (click)="updateCurrentAttendee({status:'cant'})">Can't</a>
+          </div>
+        }
+        @if(currentAttendee?.status === "cant"){
+          <button class="dropdown-button">
+            Can't
+          </button>
+          <div class="dropdown-content">
+              <a (click)="updateCurrentAttendee({status:'coming'})">Coming</a>
+              <a (click)="updateCurrentAttendee({status:'maybe'})">Maybe</a>
+          </div>
+        }
+        @if(currentAttendee?.status === "maybe"){
+          <button class="dropdown-button">
+            Maybe
+          </button>
+          <div class="dropdown-content">
+              <a (click)="updateCurrentAttendee({status:'coming'})">Coming</a>
+              <a (click)="updateCurrentAttendee({status:'cant'})">Can't</a>
+          </div>
+        }
     </div>
+    }
+    
   
     <!-- Status Columns -->
     <div id="attendees_list" class="status-grid">
@@ -14,7 +58,7 @@
             @if (attendee.status === "coming"){
               <div class="person">
                 <i class="fa fa-user"></i>
-                <span>User Id:{{attendee.id}}</span>
+                <span>👤 {{getUserName(attendee)}}</span>
               </div>
             }
           }
@@ -29,7 +73,7 @@
             @if (attendee.status === "maybe"){
               <div class="person">
                 <i class="fa fa-user"></i>
-                <span>User Id:{{attendee.id}}</span>
+                <span>👤 {{getUserName(attendee)}}</span>
               </div>
             }
           }
@@ -43,7 +87,7 @@
             @if (attendee.status === "cant"){
               <div class="person">
                 <i class="fa fa-user"></i>
-                <span>User Id:{{attendee.id}}</span>
+                <span>👤 {{getUserName(attendee)}}</span>
               </div>
             }
           }
@@ -57,7 +101,7 @@
             @if (attendee.status === "pending"){
               <div class="person">
                 <i class="fa fa-user"></i>
-                <span>User Id:{{attendee.id}}</span>
+                <span>👤 {{getUserName(attendee)}}</span>
               </div>
             }
           }

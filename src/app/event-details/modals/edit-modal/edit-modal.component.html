@@ -17,6 +17,15 @@
         @if (modalType() === "activity"){
             <app-activity (close)="handleCloseModal($event)" [event]="this.event()" [activityId]="this.modalId()!"></app-activity>
         }
+        @if (modalType() === "newscard"){
+            <app-newscard (close)="handleCloseModal($event)" [event]="this.event()" [newsId]="this.modalId()!"></app-newscard>
+        }
+        @if (modalType() === "manage-invite"){
+            <app-manageinvitation (close)="handleCloseModal($event)" [event]="this.event()" [attendees]="this.attendees()"></app-manageinvitation>
+        }
+        @if (modalType() === "image"){
+            <app-image (imageSelected)="onImagePicked($event)" (close)="handleCloseModal($event)" [event]="this.event()"></app-image>
+        }
 
       </div>
     </div>

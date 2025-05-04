@@ -1,9 +1,11 @@
 <div class="event-content">
     <!-- Description Section (left on desktop) -->
     <div class="description">
+        @if(hostView){
         <div class="edit_footer" role="edit_btn" aria-labelledby="description-tab">
             <button class="btn edit-description" (click)="openEditModal({modal_name:'description'})">Edit Description </button>
           </div>
+        }
         <p>{{event()?.description}}</p>
     </div>
 
@@ -11,13 +13,17 @@
     <div class="info-card">
         <div class="card-header">{{event()?.location}}</div>
         <div class="card-body">
+          @if(hostView){
             <div role="edit_btn" aria-labelledby="description-tab">
                 <button class="btn edit-location" (click)="openEditModal({modal_name:'location'})">Edit Location </button>
               </div>
+            }
         <div class="event-time">{{event()?.datetime?.toDate() | date:'dd/MM/yyyy HH:mm' }}</div>
+        @if(hostView){
         <div  role="edit_btn" aria-labelledby="description-tab">
             <button class="btn edit-description" (click)="openEditModal({modal_name:'datetime'})">Edit Date and Time </button>
           </div>
+        }
         </div>
     </div>
 </div>

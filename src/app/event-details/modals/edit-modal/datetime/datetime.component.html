@@ -1,18 +1,10 @@
-<div class="modal-dialog modal-dialog-centered dateTimeModal" role="document">
-    <div class="modal-content dateTimeModal-content">
-  
-      <div class="dateTimeModal-header">
+
+      <div class="modal-header">
         <h4>Add Date &amp; Time</h4>
-        <button
-          type="button"
-          class="dateTimeModal-close btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
       </div>
   
       <form [formGroup]="form" (ngSubmit)="saveChanges()">
-        <div class="dateTimeModal-body">
+        <div class="modal-body">
           <!-- single time input -->
           <div class="time-row">
             <div class="time-field">
@@ -43,15 +35,13 @@
           </div>
         </div>
   
-        <div class="dateTimeModal-footer">
-          <button type="submit" class="btn save-button" [disabled]="form.invalid">
+        <div class="modal-footer">
+          <button type="submit" class="invitation-send" [disabled]="form.invalid">
             Save
           </button>
-          <button type="button" class="btn" (click)="cancelChanges()">
+          <button type="button" class="invitation-send" (click)="cancelChanges()">
             Cancel
           </button>
         </div>
       </form>
-    </div>
-  </div>
   

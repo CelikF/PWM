@@ -16,6 +16,7 @@ import { AngularFireModule } from '@angular/fire/compat';
  import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { environment } from '../../environments/environment';
+import { getFunctions, provideFunctions } from '@angular/fire/functions';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -33,6 +34,7 @@ export const appConfig: ApplicationConfig = {
     ),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
+    provideFunctions(() => getFunctions()),
     provideClientHydration(withEventReplay()),
     provideHttpClient(),
     importProvidersFrom(

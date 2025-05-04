@@ -1,6 +1,8 @@
-<div class="edit_footer" role="edit_btn" aria-labelledby="agenda-tab">
-  <button class="btn add-activity">Add News</button>
-</div>
+@if(hostView){
+  <div class="edit_footer" role="edit_btn" aria-labelledby="agenda-tab">
+    <button class="btn add-activity" (click)="addNewsitem({modal_name:'newscard', id:'-1'})">Add News</button>
+  </div>
+}
 
 @for (new of news(); track new.id){
   <article class="news-card">
@@ -8,14 +10,16 @@
       <div class="news-card__title">
         <h4>{{new.title}}</h4>
       </div>
-      <div class="news-card__ops">
-        <button class="btn edit-news-btn">
-          Edit <i class="fa fa-pencil"></i>
-        </button>
-        <button class="btn delete-news-btn">
-            Delete <i class="fa fa-trash"></i>
+      @if(hostView){
+        <div class="news-card__ops">
+          <button class="btn edit-news-btn" (click)="openEditModal({modal_name:'newscard', id:new.id.toString()})">
+            Edit <i class="fa fa-pencil"></i>
           </button>
-      </div>
+          <button class="btn delete-news-btn" (click)="onDeletePress(new.id.toString())">
+              Delete <i class="fa fa-trash"></i>
+            </button>
+        </div>
+      }
     </div>
   
     <div class="news-card__body">

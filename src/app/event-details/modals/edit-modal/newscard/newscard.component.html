@@ -1,0 +1,33 @@
+<div class="modal-header">
+    <h4>Edit News Card</h4>
+    <button class="close-btn">×</button>
+    </div>
+
+
+
+<form [formGroup]="form" (submit)="saveChanges()">
+    <div class="time-row">
+        <label for="news_title">Title</label>
+        <input
+            id="news_title"
+            class="invitation-input"
+            formControlName="title"
+            value="{{event.title}}"
+            />
+    </div>
+
+    <div class="time-row">
+        <label for="news_description">Description</label>
+        <textarea
+        id="news_description"
+        class="invitation-input my-mono"
+        formControlName="description"
+        value="{{event.description}}"
+        ></textarea>
+    </div>
+    <!-- footer -->
+<div class="modal-footer">
+    <button type="submit" class="invitation-send">Save</button>
+    <button type="reset" class="invitation-send" (click)="cancelChanges()"  >Cancel</button>
+</div>
+</form>

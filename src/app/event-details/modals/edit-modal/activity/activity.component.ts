@@ -14,7 +14,7 @@ import { Sign } from 'crypto';
 })
 export class ActivityComponent implements OnInit {
   @Input() event!: Event;
-  @Input() activityId: string | undefined;
+  @Input() activityId!: string;
 
   @Output() close = new EventEmitter<boolean>();
 
@@ -31,7 +31,7 @@ export class ActivityComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     const eventId = this.event.id.toString();
     try {
-      if (this.activityId){
+      if (!(this.activityId === "-1")){
         // Fetch the activity data once using firstValueFrom to get a single emission
         const activity: Activity | undefined = await firstValueFrom(
           this.dataService.activity(eventId, this.activityId)
@@ -65,7 +65,7 @@ export class ActivityComponent implements OnInit {
     }
 
     const eventId = this.event.id.toString();
-    const actId   = this.activityId;
+    let actId   = this.activityId;
     const update: Partial<Activity> = {
       activity_name: this.form.value.activity_name,
       start_time:    this.form.value.start_time,
@@ -77,10 +77,12 @@ export class ActivityComponent implements OnInit {
         // existing activity → update
         await this.dataService.updateActivity(eventId, actId, update);
         console.log('Activity updated.');
+        this.close.emit(true);
       } else {
         // new activity → create
         await this.dataService.addActivity(eventId, update as Activity);
         console.log('Activity created.');
+        this.close.emit(true);
       }      // tell parent to close the modal
     } catch (err) {
       console.error('Failed to save activity', err);

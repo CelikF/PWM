@@ -4,6 +4,7 @@ import { EditModalComponent, ModalPayload } from './modals/edit-modal/edit-modal
 import { DataService } from './services/data.service';
 import { Timestamp } from '@angular/fire/firestore';
 import { Subscription } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-event-details',
@@ -15,16 +16,33 @@ export class EventDetailsComponent {
 
   active_tab: string = "description";
   isEditModalOpen = false;
+  hostView = false;
 
   private route = inject(ActivatedRoute);
   private dataSvc = inject(DataService);
+  private authSvc = inject(AuthService);
 
   eventId = this.route.snapshot.paramMap.get('eventId')!;
   modalType = "";
   modalId = "";
 
   event = this.getEvent();
+  attendees = this.getAttendees();
+
   childSub?: Subscription;
+
+  imagePath: String|undefined = "";
+
+  constructor(){
+    effect(() => {
+      this.hostView = this.hostLoggedIn();
+      this.imagePath = this.event()?.image;
+    })
+
+    
+  }
+
+  
 
 
   onTabClick(tab: string){
@@ -44,6 +62,10 @@ export class EventDetailsComponent {
    return this.dataSvc.event(this.eventId);
   }
 
+  getAttendees(){
+    return this.dataSvc.attendees$(this.eventId);
+   }
+
   onChildActivate(child: any) {
     // tear down any previous subscription
     this.childSub?.unsubscribe();
@@ -62,5 +84,18 @@ export class EventDetailsComponent {
     if (event){
       this.isEditModalOpen = false;
     }
+  }
+
+  onImagePicked(selection: { url: string; file?: File }) {
+    this.imagePath = selection.url;
+    console.log(this.imagePath);
+  }
+
+  hostLoggedIn(): boolean{
+    if (this.authSvc.getCurrentUser() === undefined ||
+        this.event() === undefined){
+        return false;
+      }
+    return this.authSvc.getCurrentUser()?.uid === this.event()?.host_uid;
   }
 }
