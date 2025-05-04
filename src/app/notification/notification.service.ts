@@ -1,15 +1,36 @@
-import { Injectable, inject } from '@angular/core';
-import { Firestore, collectionData, collection } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { Notification } from './notification.model';
-import { CollectionReference } from '@firebase/firestore-types';
+import { Injectable, inject, Signal } from '@angular/core';
+import {
+  Firestore,
+  collection,
+  collectionData,
+  CollectionReference,
+  query,
+  orderBy,
+} from '@angular/fire/firestore';
+import { toSignal } from '@angular/core/rxjs-interop';
+import type { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { Notification } from './notification.model';  // ✅ Import your model
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root',
+})
 export class NotificationService {
-  private firestore: Firestore = inject(Firestore);
-  private notificationCollection = collection(this.firestore, 'notification') as CollectionReference<Notification>;
+  private firestore = inject(Firestore);
 
-  getNotifications(): Observable<Notification[]> {
-    return collectionData(this.notificationCollection, { idField: 'id' }) as Observable<Notification[]>;
-  }
+  private notificationCollection = collection(
+    this.firestore,
+    'notification'
+  ) as CollectionReference<Notification>;
+
+  notifications$: Signal<Notification[]> = toSignal(
+    collectionData(
+      this.notificationCollection,
+      { idField: 'id' }
+    ).pipe(
+      tap(data => console.log('📥 Notifications from Firestore:', data))
+    ) as Observable<Notification[]>,
+    { initialValue: [] }
+  );
 }
+

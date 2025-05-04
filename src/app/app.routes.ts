@@ -26,7 +26,12 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'new-customizer', component: NewsCustomizerComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: '**', redirectTo: 'login' },
+ // { path: '**', redirectTo: 'login' },
+  {
+    path: 'notifications',
+    loadComponent: () => import('./notification/notification-list.component').then(m => m.NotificationListComponent)
+  },
+  
   {
     path: 'notifications/:id',
     loadComponent: () => import('./notification/notification-details.component').then(m => m.NotificationDetailsComponent)

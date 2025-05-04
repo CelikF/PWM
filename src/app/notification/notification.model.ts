@@ -1,9 +1,10 @@
+import { Timestamp } from '@angular/fire/firestore';
+
 export interface Notification {
-    id: string;
-    title: string;
-    message: string;
-    senderName: string;
-    senderEmail: string;
-    date: Date; // or `Date` if you parse Firestore's timestamp
-  }
-  
+  id: string;
+  title: string;
+  message: string;
+  senderName: string;
+  senderEmail: string;
+  date: Timestamp; // ✅ not Date
+}

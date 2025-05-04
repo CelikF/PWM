@@ -2,11 +2,12 @@ import { Component, computed, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { DataService, Event } from '../event-details/services/data.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule], // ✅ <-- Include FormsModule here!
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
@@ -14,10 +15,10 @@ export class HomeComponent {
   private router = inject(Router);
   private dataService = inject(DataService);
 
-  // This is a Signal<Event[]> pulled directly from DataService
-  events = this.dataService.events$;
+  searchText: string = '';
+  events = this.dataService.events$; // Signal<Event[]>
 
-  // Utility: returns countdown string for an event
+  // Utility: returns countdown string
   getCountdown(datetime: any): string {
     const now = new Date();
     const eventTime = datetime.toDate(); // Firestore Timestamp → JS Date
@@ -35,6 +36,14 @@ export class HomeComponent {
       : `Starts in ${hours}h ${minutes}m ${seconds}s`;
   }
 
+  // Filtered results based on search
+  get filteredEvents() {
+    return this.events().filter(event =>
+      event.title.toLowerCase().includes(this.searchText.toLowerCase())
+    );
+  }
+
+  // Navigate to event details
   goToEvent(id: string | number) {
     this.router.navigate(['/ed', id]);
   }
