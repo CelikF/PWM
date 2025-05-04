@@ -17,7 +17,7 @@ export class HomeComponent {
 
   searchText: string = '';
   events = this.dataService.events$; // Signal<Event[]>
-
+  selectedDate: string = '';
   // Utility: returns countdown string
   getCountdown(datetime: any): string {
     const now = new Date();

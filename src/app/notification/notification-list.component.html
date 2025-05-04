@@ -18,7 +18,7 @@
 
 <table class="notifications-table">
   <tbody>
-    <tr *ngFor="let notification of notifications">
+    <tr *ngFor="let notification of notifications()">
       <td>
         <app-notification-card
           [notification]="notification"

@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+// notification-list.component.ts
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { NotificationService } from './notification.service';
-import { Notification } from './notification.model';
 import { NotificationCardComponent } from './notification-card.component';
 
 @Component({
@@ -13,18 +13,9 @@ import { NotificationCardComponent } from './notification-card.component';
   templateUrl: './notification-list.component.html',
   styleUrls: ['./notification-list.component.css']
 })
-export class NotificationListComponent implements OnInit {
-  notifications: Notification[] = [];
-
-  constructor(
-    private notifService: NotificationService,
-    private router: Router
-  ) {}
-
-  ngOnInit(): void {
-    const signal = this.notifService.notifications$;
-    this.notifications = signal(); // ✅ call signal to get value once
-  }
+export class NotificationListComponent {
+  notifications = inject(NotificationService).notifications$;
+  private router = inject(Router);
 
   viewNotification(id: string): void {
     this.router.navigate(['/notifications', id]);
