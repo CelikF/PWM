@@ -3,8 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { AppComponent } from './app.component'; // Import standalone component
-import { AccountComponent } from './pages/account/account.component'; // Import standalone component
+import { AppComponent } from './app.component';
+import { AccountComponent } from './pages/account/account.component';
+import { NewsCustomizerComponent } from './pages/new-customizer/new-customizer.component';
 
 @NgModule({
   declarations: [
@@ -16,8 +17,11 @@ import { AccountComponent } from './pages/account/account.component'; // Import 
     RouterModule.forRoot([
       { path: 'account', component: AccountComponent },
       { path: '', redirectTo: '/account', pathMatch: 'full' }
-    ])
+    ]),
+    AppComponent,
+    NewsCustomizerComponent
   ],
-  providers: []
+  providers: [],
+  // Removed bootstrap array as AppComponent is standalone
 })
 export class AppModule { }

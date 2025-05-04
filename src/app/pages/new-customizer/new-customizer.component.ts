@@ -1,11 +1,20 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-new-customizer',
-  imports: [],
+  selector: 'app-news-customizer',
+  standalone: true,
+  imports: [FormsModule], // Ensure FormsModule is imported for ngModel
   templateUrl: './new-customizer.component.html',
-  styleUrl: './new-customizer.component.css'
+  styleUrls: ['./new-customizer.component.css']
 })
-export class NewCustomizerComponent {
-
+export class NewsCustomizerComponent {
+  news = {
+    title: '',
+    description: '',
+    location: '',
+    imageUrl: '',
+    date: '',
+    category: ''
+  };
 }
