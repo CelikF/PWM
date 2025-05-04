@@ -200,6 +200,28 @@ export class AuthService {
       });
     }
   }
+  getUserData(uid: string): Promise<User> {
+    if (this.useFirebase) {
+      return this.afs.collection('users').doc(uid).get().toPromise().then(doc => {
+        if (doc?.exists) {
+          return doc.data() as User; // Restituisce i dati dell'utente
+        } else {
+          throw new Error('Utente non trovato');
+        }
+      });
+    } else {
+      // Simulazione per il database JSON/LocalStorage
+      if (!this.database) {
+        return Promise.reject('Database non caricato');
+      }
+      const user = this.database.users.find(u => u.uid === uid);
+      if (!user) {
+        return Promise.reject('Utente non trovato');
+      }
+      return Promise.resolve(user);
+    }
+  }
+  
 
   getCurrentUser(){
     return this.auth.currentUser;
