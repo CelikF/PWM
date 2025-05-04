@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NewsCustomizerComponent } from './new-customizer.component';
 
-import { NewCustomizerComponent } from './new-customizer.component';
-
-describe('NewCustomizerComponent', () => {
-  let component: NewCustomizerComponent;
-  let fixture: ComponentFixture<NewCustomizerComponent>;
+describe('NewsCustomizerComponent', () => {
+  let component: NewsCustomizerComponent;
+  let fixture: ComponentFixture<NewsCustomizerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NewCustomizerComponent]
+      imports: [NewsCustomizerComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(NewCustomizerComponent);
+    fixture = TestBed.createComponent(NewsCustomizerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
