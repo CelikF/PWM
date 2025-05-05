@@ -51,7 +51,6 @@ export class ActivityComponent implements OnInit {
       // The Observable is automatically unsubscribed after emitting the first value.
     } catch (error) {
       console.error('Failed to load activity data', error);
-      // Handle error (e.g., show a notification)
     }
   }
 
@@ -61,7 +60,7 @@ export class ActivityComponent implements OnInit {
 
   async saveChanges() {
     if (this.form.invalid) {
-      return; // you might show validation errors here
+      return;
     }
 
     const eventId = this.event.id.toString();
@@ -73,7 +72,7 @@ export class ActivityComponent implements OnInit {
     };
 
     try {
-      if (actId) {
+      if (!(actId === "-1")) {
         // existing activity → update
         await this.dataService.updateActivity(eventId, actId, update);
         console.log('Activity updated.');
@@ -83,10 +82,9 @@ export class ActivityComponent implements OnInit {
         await this.dataService.addActivity(eventId, update as Activity);
         console.log('Activity created.');
         this.close.emit(true);
-      }      // tell parent to close the modal
+      }
     } catch (err) {
       console.error('Failed to save activity', err);
-      // you could show an error notification here
     }
   }
 }

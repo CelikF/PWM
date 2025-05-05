@@ -19,10 +19,8 @@ export class ManageinvitationComponent {
 
   @Output() close = new EventEmitter<boolean>();
 
-  private route = inject(ActivatedRoute);
   private dataSvc = inject(DataService);
   private authSvc = inject(AuthService);
-  private injector = inject(Injector);
 
   users = this.getUsers();
 

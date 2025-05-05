@@ -19,12 +19,16 @@ export class ImageComponent {
   }>();
 
   pathInput = '';
+  ogInput = '';
   imageUrl: string | null = null;
 
   onFileSelected(ev: Event) {
     const input = ev.target as HTMLInputElement;
     const file = input.files?.[0];
+    this.ogInput = this.event().image;
     if (!file) return;
+
+    console.log(file);
 
     // create a local preview URL
     const url = URL.createObjectURL(file);
@@ -33,18 +37,7 @@ export class ImageComponent {
     this.pathInput = file.name;
 
     // emit both preview URL AND the raw File
-    this.imageSelected.emit({ url });
-  }
-
-  onPathChange() {
-    const url = this.pathInput.trim();
-    if (!url) {
-      this.imageUrl = null;
-      return;
-    }
-    this.imageUrl = url;
-    // when user typed a URL there's no File object
-    this.imageSelected.emit({ url });
+    this.imageSelected.emit({ url:'/assets/'+this.pathInput });
   }
 
   browse(fileInput: HTMLInputElement) {
@@ -56,6 +49,7 @@ export class ImageComponent {
   }
 
   cancelChanges(){
+    this.imageSelected.emit({ url:this.ogInput });
     this.close.emit(true);
   }
 }

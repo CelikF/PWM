@@ -3,7 +3,6 @@
     <!-- Header -->
     <header class="si-header">
       <h2>Send Invitation…</h2>
-      <button class="si-close-btn" aria-label="Close" (click)="closeModal()">✕</button>
     </header>
   
     <!-- Body -->
@@ -28,7 +27,7 @@
       <!-- Already invited -->
       <div class="si-already">
         <h3>Already invited</h3>
-        <input type="text" class="si-search" placeholder="Search" />
+        <!-- <input type="text" class="si-search" placeholder="Search" /> -->
         <ul class="si-invited-list">
             @for (attendee of attendees; track attendee.id) {
                 <li class="si-invited-item">
@@ -41,6 +40,9 @@
             }
         </ul>
       </div>
+    </div>
+    <div class="modal-footer">
+        <button type="reset" class="invitation-send" (click)="closeModal()"  >Close</button>
     </div>
   </div>
   

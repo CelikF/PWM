@@ -42,8 +42,6 @@ export class EventDetailsComponent {
     
   }
 
-  
-
 
   onTabClick(tab: string){
     this.active_tab = tab;
@@ -88,7 +86,7 @@ export class EventDetailsComponent {
 
   onImagePicked(selection: { url: string; file?: File }) {
     this.imagePath = selection.url;
-    console.log(this.imagePath);
+    this.dataSvc.updateEvent(this.eventId,{image:selection.url});
   }
 
   hostLoggedIn(): boolean{

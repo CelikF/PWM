@@ -18,8 +18,8 @@ export interface User {
   username: string;
   email: string;
   password?: string; // non utilizzata in firebase
-  created_events: number[];
-  attending_events: { [key: string]: string };
+  created_events?: number[];
+  attending_events?: { [key: string]: string };
 }
 
 export interface Database {
