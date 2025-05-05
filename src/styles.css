@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
 /*
 *  01 - GENERIC STYLES
 */
@@ -969,8 +970,6 @@ button#save_changes {
   justify-content: center;
   height: 100%;           
 }
-
-@import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
 
 .auth-root {
 box-sizing: border-box;
