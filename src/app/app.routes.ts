@@ -8,6 +8,7 @@ import { AgendaComponent } from './event-details/components/agenda/agenda.compon
 import { AttendeesComponent } from './event-details/components/attendees/attendees.component';
 import { NewsComponent } from './event-details/components/news/news.component';
 import { AccountComponent } from './pages/account/account.component';
+import { NewsCustomizerComponent } from './pages/new-customizer/new-customizer.component';
 
 export const routes: Routes = [
   { path: 'ed/:eventId', component:EventDetailsComponent, 
@@ -20,9 +21,20 @@ export const routes: Routes = [
       { path: '', redirectTo: 'description', pathMatch: 'full' },
     ]
   },
+  { path: 'account', component: AccountComponent },
   { path: 'login', component: AuthContainerComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'account', component: AccountComponent },
+  { path: 'new-customizer', component: NewsCustomizerComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: '**', redirectTo: 'login' }
+ // { path: '**', redirectTo: 'login' },
+  {
+    path: 'notifications',
+    loadComponent: () => import('./notification/notification-list.component').then(m => m.NotificationListComponent)
+  },
+  
+  {
+    path: 'notifications/:id',
+    loadComponent: () => import('./notification/notification-details.component').then(m => m.NotificationDetailsComponent)
+  }
+  
 ];

@@ -1,1 +1,41 @@
-<p>account works!</p>
+<div class="account-container">
+    <h2 class="account-title">My Account</h2>
+  
+    <div class="profile-section">
+      <div class="profile-label">Your Profile Picture</div>
+      <input type="file" (change)="onFileSelected($event)" />
+      <img src="assets/profile-placeholder.png" alt="Profile" class="profile-image" />
+    </div>
+  
+    <div class="info-section">
+      <div class="info-label">Your Name</div>
+      <div class="info-data">
+        {{ userName || '' }} <span class="edit-icon">&#9998;</span>
+      </div>
+    </div>
+  
+    <div class="info-section">
+      <div class="info-label">Your E-mail Address</div>
+      <div class="info-data">
+        {{ userEmail || '' }} <span class="edit-icon">&#9998;</span>
+      </div>
+    </div>
+  
+    <hr />
+  
+    <div class="password-section">
+      <h3>Reset Password</h3>
+      <div class="form-group">
+        <label>New Password</label>
+        <input type="password" [(ngModel)]="newPassword" placeholder="Enter your password" />
+      </div>
+      <div class="form-group">
+        <label>Confirm Password</label>
+        <input type="password" [(ngModel)]="confirmPassword" placeholder="Confirm your password" />
+      </div>
+    </div>
+  
+    <div class="save-button">
+      <button (click)="saveSettings()">Save</button>
+    </div>
+</div>
