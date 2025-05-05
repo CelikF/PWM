@@ -17,7 +17,7 @@ import {
 import { toSignal } from '@angular/core/rxjs-interop';
 import type { Observable } from 'rxjs';
 
-// Interfaces matching your Firestore structure
+// Interfaces matching Firestore structure
 export interface Attendee {
   id: string;
   user_id?: string;
@@ -34,10 +34,10 @@ export interface Activity {
 export interface NewsItem {
   id: number;
   event_id: number;
-  image: string;
+  image?: string;
   title: string;
   description: string;
-  content: string;
+  content?: string;
 }
 
 export interface Event {
@@ -58,9 +58,7 @@ export class DataService {
   currentEvent!: Event;
 
 
-  /**
-   * Stream of all events, ordered by datetime.
-   */
+  //Stream of all events, ordered by datetime.
   events$: Signal<Event[]> = toSignal(
     collectionData(
       query(this.eventsCol, orderBy('datetime')),
@@ -69,9 +67,7 @@ export class DataService {
     { initialValue: [] }
   );
 
-  /**
-   * Single event by ID.
-   */
+  // Single event by ID.
   event(id: any) {
     const d = doc(this.fs, 'events', id);
     return toSignal(
