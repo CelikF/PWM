@@ -43,7 +43,7 @@ export interface NewsItem {
 export interface Event {
   id: number;
   image: string;
-  host_uid: string;
+  host_id: string;
   title: string;
   location: string;
   datetime: Timestamp;
