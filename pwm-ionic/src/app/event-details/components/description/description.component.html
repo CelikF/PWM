@@ -1,0 +1,50 @@
+<ion-grid class="event-content">
+  <ion-row>
+
+    <!-- Description Section -->
+    <ion-col size="12" size-md="8" class="description">
+      @if(hostView){
+        <div class="edit_footer" role="edit_btn" aria-labelledby="description-tab">
+          <ion-button class="edit-description" expand="block" fill="solid" (click)="openEditModal({modal_name:'description'})">
+            Edit Description
+          </ion-button>
+        </div>
+      }
+      <ion-text color="dark">
+        <p>{{ event()?.description }}</p>
+      </ion-text>
+    </ion-col>
+
+    <!-- Event Info Card -->
+    <ion-col size="12" size-md="4">
+      <ion-card class="info-card">
+        <ion-card-header class="card-header">
+          <ion-text color="dark">{{ event()?.location }}</ion-text>
+        </ion-card-header>
+
+        <ion-card-content class="card-body">
+          @if(hostView){
+            <div aria-labelledby="description-tab">
+              <ion-button expand="block" fill="solid" (click)="openEditModal({modal_name:'location'})">
+                Edit Location
+              </ion-button>
+            </div>
+          }
+
+          <div class="event-time">
+            {{ event()?.datetime?.toDate() | date:'dd/MM/yyyy HH:mm' }}
+          </div>
+
+          @if(hostView){
+            <div aria-labelledby="description-tab">
+              <ion-button expand="block" fill="solid" (click)="openEditModal({modal_name:'datetime'})">
+                Edit Date and Time
+              </ion-button>
+            </div>
+          }
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+
+  </ion-row>
+</ion-grid>

@@ -1,0 +1,22 @@
+<!-- header -->
+<div class="modal-header">
+    <h4>Change Event Name</h4>
+    </div>
+
+    <!-- body -->
+    <div class="modal-body">
+    <form [formGroup]="form" (submit)="saveTitle()">
+        <input
+        class="invitation-input"
+        formControlName="title"
+        value="{{event().title}}"
+        />
+        <!-- footer -->
+    <div class="modal-footer">
+        <button type="submit" class="invitation-send">Save</button>
+        <button type="reset" class="invitation-send" (click)="cancelChanges()" >Cancel</button>
+    </div>
+    </form>
+    </div>
+
+    

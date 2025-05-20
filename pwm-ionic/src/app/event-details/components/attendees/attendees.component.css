@@ -1,0 +1,124 @@
+.invitation-section {
+  width: 100%;
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* Top control buttons */
+.invitation-controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.invitation-controls .btn {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+}
+
+/* Grid for statuses */
+.status-row {
+  --ion-grid-column-padding: 1rem; /* Horizontal spacing between columns */
+}
+
+.status-card {
+  width: 100%; /* Make card fill the column */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
+
+.status-col {
+  margin-bottom: 1.5rem;
+}
+
+.status-header {
+  background-color: #1B1A55;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+  padding: 0.5rem;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+/* Content inside status card */
+.person-list {
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.person {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #E8F4FA;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.person-icon {
+  color: #4b57a9;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .status-grid {
+    justify-content: center;
+  }
+
+  .invitation-controls {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.dropdown {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+.dropdown ion-item {
+  --padding-start: 10px;
+  --inner-padding-end: 0;
+  --background: transparent;
+  --border-color: #6e6e6e;
+  --border-style: solid;
+  --border-width: 1px;
+  --border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  border: none;
+  width: auto;
+}
+
+.dropdown-title {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+  white-space: nowrap;
+  color: #1B1A55;
+}
+
+.dropdown-select {
+  --background: transparent;
+  --placeholder-color: #1B1A55;
+  --color: #1B1A55;
+  --border-radius: 6px;
+  --border-color: #6e6e6e;
+  --border-style: solid;
+  --border-width: 1px;
+  padding: 6px 12px;
+  min-width: 130px;
+  text-align: center;
+}

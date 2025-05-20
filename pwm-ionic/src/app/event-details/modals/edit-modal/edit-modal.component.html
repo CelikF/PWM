@@ -1,0 +1,32 @@
+<div class="modal-overlay">
+    <div class="modal-dialog" (click)="$event.stopPropagation()">
+      <div class="modal-content">
+
+        @if (modalType() === "name-change"){
+            <app-title (close)="handleCloseModal($event)" [event]="this.event()"></app-title>
+        }
+        @if (modalType() === "description"){
+            <app-description (close)="handleCloseModal($event)" [event]="this.event()"></app-description>
+        }
+        @if (modalType() === "location"){
+            <app-location (close)="handleCloseModal($event)" [event]="this.event()"></app-location>
+        }
+        @if (modalType() === "datetime"){
+            <app-datetime (close)="handleCloseModal($event)" [event]="this.event()"></app-datetime>
+        }
+        @if (modalType() === "activity"){
+            <app-activity (close)="handleCloseModal($event)" [event]="this.event()" [activityId]="this.modalId()!"></app-activity>
+        }
+        @if (modalType() === "newscard"){
+            <app-newscard (close)="handleCloseModal($event)" [event]="this.event()" [newsId]="this.modalId()!"></app-newscard>
+        }
+        @if (modalType() === "manage-invite"){
+            <app-manageinvitation (close)="handleCloseModal($event)" [event]="this.event()" [attendees]="this.attendees()"></app-manageinvitation>
+        }
+        @if (modalType() === "image"){
+            <app-image (imageSelected)="onImagePicked($event)" (close)="handleCloseModal($event)" [event]="this.event()"></app-image>
+        }
+
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,11 @@
+[
+    {
+      "uid": "111",
+      "username": "testuser",
+      "email": "t@t.com",
+      "image": "https://example.com/images/default.jpg",
+      "created_events": [],
+      "attending_events": {}
+    }
+  ]
+  

@@ -1,0 +1,7 @@
+{
+  "name": "pvvm",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

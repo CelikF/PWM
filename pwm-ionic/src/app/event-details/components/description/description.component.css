@@ -1,0 +1,95 @@
+:host {
+  display: block;
+}
+
+/* Apply layout on ion-grid rows matching this component */
+ion-grid.event-content,
+.event-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: nowrap;
+}
+
+/* Description column */
+ion-col.description,
+.description {
+  flex: 1 1 auto;
+}
+
+ion-col.description .edit-description,
+.description .edit-description {
+  margin-bottom: 1rem;
+}
+
+ion-col.description p,
+.description p {
+  margin: 0;
+  color: #333;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+/* Info card */
+ion-col .info-card,
+.info-card {
+  flex: 0 0 220px; /* smaller than original */
+  max-width: 300px;
+  background-color: #E8F4FA;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-left: 2rem; /* distance from description */
+}
+
+ion-col .info-card .card-header,
+.info-card .card-header {
+  text-align: center;
+  font-weight: 600;
+  color: #333;
+}
+
+ion-col .info-card .card-body,
+.info-card .card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: stretch;
+}
+
+ion-col .info-card .card-body button,
+.info-card .card-body button {
+  width: 100%;
+}
+
+ion-col .info-card .event-time,
+.info-card .event-time {
+  text-align: center;
+  font-weight: 500;
+  color: #333;
+  margin: 0;
+}
+
+/* Mobile responsiveness: stack and reverse order */
+@media (max-width: 767px) {
+  ion-grid.event-content,
+  .event-content {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  ion-col.description,
+  .description {
+    order: 2;
+  }
+
+  ion-col .info-card,
+  .info-card {
+    order: 1;
+    flex: none;
+    width: 90%;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

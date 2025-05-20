@@ -1,0 +1,48 @@
+<section class="invitation-section">
+  <!-- Top Controls -->
+  @if(hostView){
+    <div class="invitation-controls">
+      <ion-button expand="block" fill="solid" (click)="openEditModal({modal_name:'manage-invite'})">
+        Manage Invitations
+      </ion-button>
+    </div>
+  } @else {
+    <ion-list class="dropdown">
+      <ion-item lines="none">
+        <ion-label class="dropdown-title">Your Invitation Status:</ion-label>
+
+        <ion-select
+          class="dropdown-select"
+          interface="popover"
+          placeholder="Pending"
+          [value]="currentAttendee?.status"
+          (ionChange)="updateCurrentAttendee({ status: $event.detail.value })"
+        >
+          <ion-select-option value="coming">✅ Coming</ion-select-option>
+          <ion-select-option value="maybe">🟡 Maybe</ion-select-option>
+          <ion-select-option value="cant">❌ Can't</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  }
+
+  <!-- Attendee Status Cards -->
+  <ion-grid>
+    <ion-row class="status-row">
+      <ion-col size="12" size-sm="6" size-md="3" class="status-col" *ngFor="let status of ['coming', 'maybe', 'cant', 'pending']">
+        <ion-card class="status-card">
+          <ion-card-header class="status-header">{{ status | titlecase }}</ion-card-header>
+          <ion-card-content class="person-list">
+            @for (attendee of attendees(); track attendee.id) {
+              @if (attendee.status === status){
+                <div class="person">
+                  <span>👤 {{getUserName(attendee)}}</span>
+                </div>
+              }
+            }
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+</ion-grid>
+</section>

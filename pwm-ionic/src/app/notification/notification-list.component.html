@@ -1,0 +1,30 @@
+<header class="top-bar">
+  <img 
+  src="assets/logo_white.svg" alt="EventHub Logo" class="logo" />
+  <nav class="top-nav">
+    <button class="nav-btn">Notifications</button>
+    <button class="nav-btn">My Account</button>
+    <button class="nav-btn sign-out">Sign Out</button>
+  </nav>
+</header>
+
+<div class="notifications-header">
+  <h1>Notifications</h1>
+</div>
+
+<div class="search-bar">
+  <input type="text" placeholder="Search" class="form-control" />
+</div>
+
+<table class="notifications-table">
+  <tbody>
+    <tr *ngFor="let notification of notifications()">
+      <td>
+        <app-notification-card
+          [notification]="notification"
+          (click)="viewNotification(notification.id)">
+        </app-notification-card>
+      </td>
+    </tr>
+  </tbody>
+</table>

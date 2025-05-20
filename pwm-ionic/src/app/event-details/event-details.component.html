@@ -1,0 +1,104 @@
+<ion-content class="event-page">
+
+  <!-- Top Header -->
+  <ion-header class="top-bar" translucent>
+    <ion-toolbar color="var(--primary)">
+      <ion-buttons slot="start">
+        <ion-button [routerLink]="['/home']">
+          <img src="assets/logo_white.svg" alt="EventHub Logo" class="logo" />
+        </ion-button>
+      </ion-buttons>
+      <ion-buttons slot="end" class="top-nav">
+        <ion-button class="nav-btn">Notifications</ion-button>
+        <ion-button class="nav-btn">My Account</ion-button>
+        <ion-button class="nav-btn sign-out">Sign Out</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Hero Section -->
+  <div class="event-hero" [style.--hero-bg-url]="'url(' + imagePath + ')'">
+    <!-- Hero Actions (top right) -->
+    <div class="hero-actions">
+      @if(hostView){
+        <ion-button class="bg-btn" size="small" (click)="openEditModal({modal_name:'image'})">
+          Change Background
+        </ion-button>
+        <ion-button color="danger" class="bg-btn delete disabled" size="small" disabled>
+          Delete Event
+        </ion-button>
+      }
+    </div>
+
+    <!-- Event Title and Edit Name -->
+    <div class="hero-title">
+      <h1>{{ event()?.title }}</h1>
+      @if(hostView){
+        <ion-button size="small" (click)="openEditModal({modal_name:'name-change'})">
+          Change Name
+        </ion-button>
+      }
+    </div>
+  </div>
+
+  <!-- White Content Container -->
+  <div class="event-details-container">
+    <!-- Tabs Navigation -->
+    <ion-segment color="white">
+      <ion-segment-button
+        value="description"
+        [routerLink]="['description']"
+        routerLinkActive="segment-checked"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="onTabClick('description')"
+      >
+        <ion-label>Description</ion-label>
+      </ion-segment-button>
+      <ion-segment-button
+        value="agenda"
+        [routerLink]="['agenda']"
+        routerLinkActive="segment-checked"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="onTabClick('agenda')"
+      >
+        <ion-label>Agenda</ion-label>
+      </ion-segment-button>
+      <ion-segment-button
+        value="attendees"
+        [routerLink]="['attendees']"
+        routerLinkActive="segment-checked"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="onTabClick('attendees')"
+      >
+        <ion-label>Attendees</ion-label>
+      </ion-segment-button>
+      <ion-segment-button
+        value="news"
+        [routerLink]="['news']"
+        routerLinkActive="segment-checked"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="onTabClick('news')"
+      >
+        <ion-label>News</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <!-- Main Content Area -->
+    <router-outlet
+      [routerOutletData]="{ hostView: hostView }"
+      (activate)="onChildActivate($event)"
+    ></router-outlet>
+  </div>
+
+  @if (this.isEditModalOpen === true){
+    <app-edit-modal 
+      (close)="handleCloseModal($event)" 
+      (imageSelected)="onImagePicked($event)"
+      [event]="this.event()!"
+      [attendees]="this.attendees()!"
+      [modalType]="this.modalType" 
+      [modalId]="this.modalId">
+    </app-edit-modal>
+  }
+
+</ion-content>

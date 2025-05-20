@@ -1,0 +1,34 @@
+<section id="agenda_content" class="event-page__agenda">
+    <!-- “Add Activity” button -->
+    @if(hostView){
+    <div class="edit_footer" role="edit_btn" aria-labelledby="agenda-tab">
+      <button class="btn add-activity" (click)="addActivity({modal_name:'activity', id:'-1'})">Add Activity</button>
+    </div>
+    }
+  
+    @for ( activity of activities(); track activity.id){
+      <!-- Activity Card: Meeting -->
+      <article
+        id="activity-card-1"
+        class="activity-card"
+      >
+        <div class="activity-card__header">
+          <h3 class="activity-card__title">{{activity.activity_name}}</h3>
+          <div class="activity-card__actions">
+            @if(hostView){
+            <button class="btn edit-activity" (click)="openEditModal({modal_name:'activity', id:activity.id})">
+              Edit <i class="fa fa-pencil"></i>
+            </button>
+            <button class="btn delete-activity" (click)="onDeletePress(activity.id)">
+              Delete <i class="fa fa-trash"></i>
+            </button>
+          }
+          </div>
+        </div>
+        <div class="activity-card__time">
+          <span>{{activity.start_time}} – {{activity.end_time}}</span>
+        </div>
+      </article>
+    }
+  </section>
+  

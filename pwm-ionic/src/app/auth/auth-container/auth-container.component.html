@@ -1,0 +1,30 @@
+<div class="auth-root">
+<div class="container" [ngClass]="{'right-panel-active': isRegisterActive}" id="container">
+    <!-- Form of refistration  -->
+    <div class="form-container sign-up-container">
+      <app-register></app-register>
+    </div>
+  
+    <!-- Form for login -->
+    <div class="form-container sign-in-container">
+      <app-login></app-login>
+    </div>
+  
+    <!-- Overlay -->
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <h1>Welcome Back!</h1>
+          <p>To keep connected with us please login with your personal info</p>
+          <button class="ghost" (click)="showLogin()">Sign In</button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <h1>Hello, Friend!</h1>
+          <p>Enter your personal details and start your journey with us</p>
+          <button class="ghost" (click)="showRegister()">Sign Up</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  
