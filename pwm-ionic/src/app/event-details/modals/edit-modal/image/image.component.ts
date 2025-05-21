@@ -22,6 +22,12 @@ export class ImageComponent {
   ogInput = '';
   imageUrl: string | null = null;
 
+  constructor(){
+    effect(() => {
+      this.ogInput = this.event().image;
+    })
+  }
+
   onFileSelected(ev: Event) {
     const input = ev.target as HTMLInputElement;
     const file = input.files?.[0];
@@ -34,10 +40,7 @@ export class ImageComponent {
     const url = URL.createObjectURL(file);
     this.imageUrl = url;
     
-    this.pathInput = file.name;
-
-    // emit both preview URL AND the raw File
-    this.imageSelected.emit({ url:'/assets/'+this.pathInput });
+    this.pathInput = '/assets/'+file.name;
   }
 
   browse(fileInput: HTMLInputElement) {
@@ -46,6 +49,8 @@ export class ImageComponent {
 
   saveChanges(){
     this.close.emit(true);
+    // emit both preview URL AND the raw File
+    this.imageSelected.emit({ url:this.pathInput });
   }
 
   cancelChanges(){
