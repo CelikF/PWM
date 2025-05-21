@@ -3,10 +3,11 @@ import { ActivatedRoute, ROUTER_OUTLET_DATA } from '@angular/router';
 import { DataService } from '../../services/data.service';
 import { CommonModule } from '@angular/common';
 import { ModalPayload, ParentPayload } from '../../modals/edit-modal/edit-modal.component';
+import { IonCardContent, IonButton, IonIcon, IonCardTitle, IonCardHeader, IonCard, IonContent, IonText, IonLabel } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-agenda',
-  imports: [CommonModule],
+  imports: [IonLabel, IonText, IonContent, IonCard, IonCardHeader, IonCardTitle, IonIcon, IonButton, IonCardContent, CommonModule],
   templateUrl: './agenda.component.html',
   styleUrl: './agenda.component.css'
 })

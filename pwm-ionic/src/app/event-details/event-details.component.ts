@@ -96,7 +96,6 @@ export class EventDetailsComponent {
         this.event() === undefined){
         return false;
       }
-      console.log(this.event()?.host_id);
     return this.authSvc.getCurrentUser()?.uid === this.event()?.host_id;
   }
 }
