@@ -7,7 +7,7 @@ import { IonCardContent, IonButton, IonIcon, IonCardTitle, IonCardHeader, IonCar
 
 @Component({
   selector: 'app-agenda',
-  imports: [IonLabel, IonText, IonContent, IonCard, IonCardHeader, IonCardTitle, IonIcon, IonButton, IonCardContent, CommonModule],
+  imports: [IonLabel, IonText, IonCard, IonButton, CommonModule],
   templateUrl: './agenda.component.html',
   styleUrl: './agenda.component.css'
 })
