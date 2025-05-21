@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="This is EventHub!">
+  <meta name="keywords" content="Event, Event Managing">
+  <title>EventHub</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="./components/auth/auth.css" />
+</head>
+<!-- index.html -->
+<!-- index.html -->
+<body>
+  <main xlu-include-file="components/auth/auth.html"></main>
+  
+  <!-- Caricamento template -->
+  <script src="base_layout/assemble_templates.js"></script>
+  
+  <!-- auth.js (gestione pannelli) -->
+  <script src="./components/auth/auth.js"></script>
+  
+  <!-- script_auth.js (logica DB, loginUser, registerUser, ecc.) -->
+  <script src="./components/auth/script_auth.js"></script>
+  
+  <!-- login_validation.js (attendi templatesLoaded) -->
+  <script src="./components/auth/login_validation.js"></script>
+
+  <script src="./components/auth/registration_validation.js"></script>
+
+</body>
+
+
+</html>

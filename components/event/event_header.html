@@ -1,0 +1,95 @@
+<div class="header-container">
+    <!--img id="header_img" src={{image_source}} alt="Event Image Placeholder"-->
+    
+    <!-- Left side: Header title and edit button -->
+    <div class="left-section">
+      <h1 id="event-title" style="color:white; text-shadow: 0 0 2px #fff, 0 0 2px #fff, 0 0 3px #b7c3eb, 0 0 4px #213766, 0 0 5px #005ce6, 0 0 9px #887780, 0 0 10px #f0d3e2;">{{header-title}}</h1>
+      <button class="btn edit-btn host-tool {{host}}">Change Name ✎</button>
+    </div>
+    
+    <!-- Right side: Action buttons -->
+    <div class="right-section">
+      <button class="btn change-bg-btn host-tool {{host}}">Change Background</button>
+      <button class="btn delete-event-btn host-tool {{host}}">Delete Event</button>
+    </div>
+  </div>
+  
+  <style>
+    .header-container {
+      position: relative;
+      width: 100%;
+      height: 30vh;
+      max-height: 250px;
+      background-color: #d3d3d3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+    }
+    
+    .header-container img {
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+    
+    .left-section {
+      position: absolute;
+      height:50%;
+      bottom: -1.5rem;
+      left: 15%;
+      display: flex;
+      align-items: center;
+    }
+    
+    .left-section h1 {
+      font-size: clamp(32px, 8vw, 72px);
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .left-section .edit-btn {
+      margin-left: 10px;
+      padding: 0.5em 1em;
+    }
+    
+    .right-section {
+      position: absolute;
+      flex-direction: column;
+      align-items: flex-end;
+      bottom: -1rem;
+      top: 5%;
+      right: 5%;
+      display: flex;
+      gap: 10px;
+    }
+    
+    .right-section .btn {
+      padding: 0.5em 1em;
+    }
+    
+    /* Adjust margins on medium screens */
+    @media (max-width: 1024px) {
+      .left-section {
+        left: 10%;
+      }
+      .right-section {
+        right: 10%;
+      }
+    }
+    
+    /* On small screens, further reduce margins and stack right-side buttons */
+    @media (max-width: 930px) {
+      .left-section {
+        left: 5%;
+      }
+      .right-section {
+        top: 5%;
+        right: 5%;
+        flex-direction: column;
+        align-items: flex-end;
+      }
+    }
+  </style>
