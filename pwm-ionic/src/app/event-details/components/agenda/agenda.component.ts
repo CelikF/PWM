@@ -1,9 +1,9 @@
-import { Component, effect, EventEmitter, inject, Output, Signal } from '@angular/core';
+import { Component, EventEmitter, inject, Output, Signal } from '@angular/core';
 import { ActivatedRoute, ROUTER_OUTLET_DATA } from '@angular/router';
 import { DataService } from '../../services/data.service';
 import { CommonModule } from '@angular/common';
 import { ModalPayload, ParentPayload } from '../../modals/edit-modal/edit-modal.component';
-import { IonCardContent, IonButton, IonIcon, IonCardTitle, IonCardHeader, IonCard, IonContent, IonText, IonLabel } from "@ionic/angular/standalone";
+import { IonButton, IonCard, IonText, IonLabel } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-agenda',

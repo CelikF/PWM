@@ -273,3 +273,19 @@ ion-content.event-page .event-time {
     width: 100%;
   }
 }
+
+.segment-dropdown {
+  display: none;
+}
+
+/* On small screens, switch to dropdown */
+@media (max-width: 768px) {
+  .segment-tabs {
+    display: none;
+  }
+  .segment-dropdown {
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+  }
+}

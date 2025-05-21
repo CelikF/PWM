@@ -9,8 +9,8 @@
         </ion-button>
       </ion-buttons>
       <ion-buttons slot="end" class="top-nav">
-        <ion-button class="nav-btn">Notifications</ion-button>
-        <ion-button class="nav-btn">My Account</ion-button>
+        <!-- <ion-button class="nav-btn">Notifications</ion-button>
+        <ion-button class="nav-btn">My Account</ion-button> -->
         <ion-button class="nav-btn sign-out">Sign Out</ion-button>
       </ion-buttons>
     </ion-toolbar>
@@ -44,7 +44,7 @@
   <!-- White Content Container -->
   <div class="event-details-container">
     <!-- Tabs Navigation -->
-    <ion-segment color="white">
+    <ion-segment class="segment-tabs" color="white">
       <ion-segment-button
         value="description"
         [routerLink]="['description']"
@@ -82,6 +82,22 @@
         <ion-label>News</ion-label>
       </ion-segment-button>
     </ion-segment>
+
+     <!-- Dropdown version for mobile -->
+    <ion-item class="segment-dropdown">
+      <!-- <ion-label>Tabs</ion-label> -->
+      <ion-select
+        [value]="active_tab"
+        placeholder="Select"
+        interface="popover"
+        (ionChange)="onTabClick($event.detail.value); this.router.navigate(['ed',eventId, $event.detail.value])"
+      >
+        <ion-select-option value="description">Description</ion-select-option>
+        <ion-select-option value="agenda">Agenda</ion-select-option>
+        <ion-select-option value="attendees">Attendees</ion-select-option>
+        <ion-select-option value="news">News</ion-select-option>
+      </ion-select>
+    </ion-item>
 
     <!-- Main Content Area -->
     <router-outlet

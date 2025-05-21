@@ -5,11 +5,11 @@ import { DataService } from './services/data.service';
 import { Timestamp } from '@angular/fire/firestore';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
-import { IonContent, IonLabel, IonButton, IonSegment, IonButtons, IonTitle, IonBackButton, IonRouterOutlet, IonToolbar, IonHeader } from "@ionic/angular/standalone";
+import { IonContent, IonLabel, IonButton, IonSegment, IonButtons, IonTitle, IonBackButton, IonRouterOutlet, IonToolbar, IonHeader, IonItem, IonSelect, IonSelectOption } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-event-details',
-  imports: [IonHeader, IonToolbar, IonButtons, IonSegment, IonButton, IonLabel, IonContent, RouterLink, RouterOutlet, RouterLinkActive, EditModalComponent],
+  imports: [IonItem, IonHeader, IonToolbar, IonButtons, IonSegment, IonButton, IonLabel, IonContent, RouterLink, RouterOutlet, RouterLinkActive, EditModalComponent, IonSelect, IonSelectOption],
   templateUrl: './event-details.component.html',
   styleUrl: './event-details.component.css'
 })
@@ -19,7 +19,7 @@ export class EventDetailsComponent {
   isEditModalOpen = false;
   hostView = false;
   
-  private router = inject(Router);
+  router = inject(Router);
   private route = inject(ActivatedRoute);
   private dataSvc = inject(DataService);
   private authSvc = inject(AuthService);
