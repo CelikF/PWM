@@ -44,7 +44,6 @@ ion-header.top-bar {
 
 /* Search + Button container */
 .search-bar {
-  margin-bottom: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -121,6 +120,32 @@ ion-card.event-card {
   color: #e04b4b;
   font-size: 1.4rem;
   z-index: 2;
+}
+
+.favorite-toggle-wrapper {
+  width: 100%;
+  max-width: 300px;
+  margin: 0.5rem auto 1rem auto;
+  background-color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 6px rgba(0, 0, 0, 0.08);
+}
+
+.favorite-toggle {
+  --inner-padding-end: 0;
+  --padding-start: 0;
+  --min-height: 40px;
+  --background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toggle-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #1b1a55;
 }
 
 ion-card.event-card:hover {

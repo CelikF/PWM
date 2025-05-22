@@ -25,6 +25,7 @@ export class HomeComponent {
   searchText: string = '';
   events = this.dataService.events$; // Signal<Event[]>
   selectedDate: string = '';
+  showOnlyFavorites = false;
 
   favoriteEventIds = new Set<string>();
 
@@ -89,10 +90,12 @@ export class HomeComponent {
 
   // Filtered results based on search
   get filteredEvents() {
-    return this.events().filter(event =>
-      event.title.toLowerCase().includes(this.searchText.toLowerCase())
-    );
-  }
+    return this.events().filter(event => {
+      const matchesSearch = event.title.toLowerCase().includes(this.searchText.toLowerCase());
+      const isFavorite = this.favoriteEventIds.has(String(event.id));
+      return matchesSearch && (!this.showOnlyFavorites || isFavorite);
+    });
+}
 
   // Navigate to event details
   goToEvent(id: string | number) {

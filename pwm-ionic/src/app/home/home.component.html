@@ -15,6 +15,7 @@
   </ion-header>
 
 <ion-content class="home-wrapper ion-padding">
+  
   <div class="search-bar">
     <ion-input
       [(ngModel)]="searchText"
@@ -28,6 +29,17 @@
         + Create Event
       </ion-button>
     </div>
+  </div>
+
+  <div class="favorite-toggle-wrapper">
+    <ion-item lines="none" class="favorite-toggle" detail="false">
+      <ion-label class="toggle-label">Show Favorites Only</ion-label>
+      <ion-toggle
+        slot="end"
+        [(ngModel)]="showOnlyFavorites"
+        color="danger"
+      ></ion-toggle>
+    </ion-item>
   </div>
 
   <div class="container">
