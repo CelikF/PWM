@@ -26,7 +26,10 @@
         @if (modalType() === "image"){
             <app-image (imageSelected)="onImagePicked($event)" (close)="handleCloseModal($event)" [event]="this.event()"></app-image>
         }
-
+        @if (modalType() === "delete"){
+            <app-delete (close)="handleCloseModal($event)" [event]="this.event()"></app-delete>
+        }
+        
       </div>
     </div>
   </div>

@@ -8,6 +8,7 @@ import { ActivityComponent } from './activity/activity.component';
 import { NewscardComponent } from './newscard/newscard.component';
 import { ManageinvitationComponent } from './manageinvitation/manageinvitation.component';
 import { ImageComponent } from './image/image.component';
+import { DeleteComponent } from "./delete/delete.component";
 
 export interface ModalPayload{
     modal_name:string;
@@ -28,10 +29,12 @@ export interface ParentPayload{
     DescriptionComponent,
     LocationComponent,
     DatetimeComponent,
-    ActivityComponent, 
+    ActivityComponent,
     NewscardComponent,
     ManageinvitationComponent,
-    ImageComponent]
+    ImageComponent,
+    DeleteComponent
+]
 })
 export class EditModalComponent {
   @Output() close = new EventEmitter<boolean>();
