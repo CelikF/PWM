@@ -1,4 +1,4 @@
-<div class="account-container">
+<div class="account-container" *ngIf="!loading">
   <h2 class="account-title">My Account</h2>
 
   <div class="profile-section">
@@ -8,8 +8,8 @@
   </div>
 
   <div class="form-group">
-    <label for="name">Name</label>
-    <input id="name" type="text" [(ngModel)]="accountData.name" placeholder="Enter your name" />
+    <label for="username">Username</label>
+    <input id="username" type="text" [(ngModel)]="accountData.username" placeholder="Enter your username" />
   </div>
 
   <div class="form-group">
@@ -20,14 +20,18 @@
   <hr />
 
   <div class="password-section">
-    <h3>Reset Password</h3>
+    <h3>Change Password</h3>
     <div class="form-group">
-      <label>New Password</label>
-      <input type="password" [(ngModel)]="newPassword" placeholder="Enter your password" />
+      <label>Old Password</label>
+      <input type="password" [(ngModel)]="oldPassword" placeholder="Enter your old password" />
     </div>
     <div class="form-group">
-      <label>Confirm Password</label>
-      <input type="password" [(ngModel)]="confirmPassword" placeholder="Confirm your password" />
+      <label>New Password</label>
+      <input type="password" [(ngModel)]="newPassword" placeholder="Enter your new password" />
+    </div>
+    <div class="form-group">
+      <label>Confirm New Password</label>
+      <input type="password" [(ngModel)]="confirmPassword" placeholder="Confirm your new password" />
     </div>
   </div>
 
@@ -36,4 +40,7 @@
   </div>
 
   <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+</div>
+<div *ngIf="loading" class="loading-spinner">
+  Loading...
 </div>
