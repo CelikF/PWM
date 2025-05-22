@@ -1,42 +1,62 @@
-<header class="top-bar">
-  <img 
-  src="assets/logo_white.svg" alt="EventHub Logo" class="logo" />
-  <nav class="top-nav">
-    <button class="nav-btn">Notifications</button>
-    <button class="nav-btn">My Account</button>
-    <button class="nav-btn sign-out">Sign Out</button>
-  </nav>
-</header>
+<!-- Top Header -->
+  <ion-header class="top-bar" translucent>
+    <ion-toolbar color="var(--primary)">
+      <ion-buttons slot="start">
+        <ion-button [routerLink]="['/home']">
+          <img src="assets/logo_white.svg" alt="EventHub Logo" class="logo" />
+        </ion-button>
+      </ion-buttons>
+      <ion-buttons slot="end" class="top-nav">
+        <!-- <ion-button class="nav-btn">Notifications</ion-button>
+        <ion-button class="nav-btn">My Account</ion-button> -->
+        <ion-button class="nav-btn sign-out">Sign Out</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
 
+<ion-content class="home-wrapper ion-padding">
+  <div class="search-bar">
+    <ion-input
+      [(ngModel)]="searchText"
+      placeholder="Search events..."
+      class="form-control"
+      fill="outline"
+    ></ion-input>
 
-<div class="search-bar">
-  <input
-    type="text"
-    [(ngModel)]="searchText"
-    placeholder="Search events..."
-    class="form-control"
-  />
-  <input type="date" [(ngModel)]="selectedDate" class="form-control" />
-</div>
+    <div class="create-event-container">
+      <ion-button (click)="createEvent()" shape="round">
+        + Create Event
+      </ion-button>
+    </div>
+  </div>
 
-<div class="container mt-4">
-  <div class="row">
-    <div
-      class="col-md-4"
-      *ngFor="let event of filteredEvents"
-      (click)="goToEvent(event.id)"
-    >
-      <div
-        class="event-card p-4 mb-4 rounded text-white"
+  <div class="container">
+    <div class="event-wrapper">
+      <ion-card
+        class="event-card"
+        *ngFor="let event of filteredEvents"
+        (click)="goToEvent(event.id)"
         [ngStyle]="{
           'background-image': 'url(' + event.image + ')',
           'background-size': 'cover',
           'background-position': 'center'
         }"
       >
-        <h3>{{ event.title }}</h3>
-        <p>{{ getCountdown(event.datetime) }}</p>
-      </div>
+      <ion-icon
+        name="heart"
+        class="favorite-icon"
+        *ngIf="favoriteEventIds.has(''+event.id)"
+      ></ion-icon>
+
+        <ion-card-content>
+          <h3>{{ event.title }}</h3>
+          <p>{{ getCountdown(event.datetime) }}</p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div *ngIf="filteredEvents.length === 0" class="no-events">
+      No events match your search.
     </div>
   </div>
-</div>
+</ion-content>

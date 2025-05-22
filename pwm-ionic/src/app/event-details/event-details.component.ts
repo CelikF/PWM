@@ -5,11 +5,13 @@ import { DataService } from './services/data.service';
 import { Timestamp } from '@angular/fire/firestore';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
-import { IonContent, IonLabel, IonButton, IonSegment, IonButtons, IonTitle, IonBackButton, IonRouterOutlet, IonToolbar, IonHeader, IonItem, IonSelect, IonSelectOption } from "@ionic/angular/standalone";
+import { ToastController } from '@ionic/angular';
+import { IonContent, IonLabel, IonButton, IonSegment, IonButtons, IonTitle, IonBackButton, IonRouterOutlet, IonToolbar, IonHeader, IonItem, IonSelect, IonSelectOption, IonIcon } from "@ionic/angular/standalone";
+import { FavoritesService } from './services/favorite-storage.service';
 
 @Component({
   selector: 'app-event-details',
-  imports: [IonItem, IonHeader, IonToolbar, IonButtons, IonSegment, IonButton, IonLabel, IonContent, RouterLink, RouterOutlet, RouterLinkActive, EditModalComponent, IonSelect, IonSelectOption],
+  imports: [IonIcon, IonItem, IonHeader, IonToolbar, IonButtons, IonSegment, IonButton, IonLabel, IonContent, RouterLink, RouterOutlet, RouterLinkActive, EditModalComponent, IonSelect, IonSelectOption],
   templateUrl: './event-details.component.html',
   styleUrl: './event-details.component.css'
 })
@@ -23,6 +25,9 @@ export class EventDetailsComponent {
   private route = inject(ActivatedRoute);
   private dataSvc = inject(DataService);
   private authSvc = inject(AuthService);
+  private favoritesService = inject(FavoritesService);
+
+  isFavorite = false;
 
   eventId = this.route.snapshot.paramMap.get('eventId')!;
   modalType = "";
@@ -35,12 +40,46 @@ export class EventDetailsComponent {
 
   imagePath: String|undefined = "";
 
+  async ngOnInit() {
+  await this.favoritesService.debugLogFavoritesTable();
+  await this.loadFavoriteStatus();
+  
+  console.log(this.isFavorite);
+}
+
+  async toggleFavorite() {
+    const uid = this.authSvc.getCurrentUser()?.uid;
+    if (!uid) return;
+
+    if (this.isFavorite) {
+      await this.favoritesService.removeFavorite(uid, this.eventId);
+    } else {
+      await this.favoritesService.addFavorite(uid, this.eventId);
+    }
+    console.log(await this.favoritesService.isFavorite(uid, this.eventId));
+    this.isFavorite = await this.favoritesService.isFavorite(uid, this.eventId);
+  }
+
+  async loadFavoriteStatus() {
+    const user = await this.authSvc.getCurrentUser();
+    if (!user) return;
+
+    this.isFavorite = await this.favoritesService.isFavorite(user.uid, this.eventId);
+  }
+
   
 
   constructor(){
     effect(() => {
       this.hostView = this.hostLoggedIn();
       this.imagePath = this.event()?.image;
+      const user = this.authSvc.getCurrentUser();
+      if (!user) return;
+
+      const uid = user.uid;
+      this.favoritesService.isFavorite(uid, this.eventId).then(res => {
+        this.isFavorite = res;
+      });
     })
   }
 

@@ -20,6 +20,10 @@
   <div class="event-hero" [style.--hero-bg-url]="'url(' + imagePath + ')'">
     <!-- Hero Actions (top right) -->
     <div class="hero-actions">
+      <ion-button (click)="toggleFavorite()">
+        <ion-icon slot="start" [name]="isFavorite ? 'heart' : 'heart-outline'"></ion-icon>
+        {{ isFavorite ? 'Remove Favorite' : 'Add to Favorites' }}
+      </ion-button>
       @if(hostView){
         <ion-button class="bg-btn" size="small" (click)="openEditModal({modal_name:'image'})">
           Change Background

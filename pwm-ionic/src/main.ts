@@ -23,6 +23,14 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from './environments/environment.prod';
 import { getFunctions, provideFunctions } from '@angular/fire/functions';
+import { addIcons } from 'ionicons';
+import { heart } from 'ionicons/icons';
+import { heartOutline } from 'ionicons/icons';
+
+addIcons({
+  'heart': heart,
+  'heart-outline': heartOutline
+});
 
 bootstrapApplication(AppComponent, {
   providers: [
