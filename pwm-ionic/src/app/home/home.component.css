@@ -51,6 +51,10 @@ ion-header.top-bar {
   flex-wrap: wrap;
 }
 
+ion-content{
+  --padding-top: 150px;
+}
+
 ion-input.form-control {
   width: 100%;
   --padding-start: 1rem;

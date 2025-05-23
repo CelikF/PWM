@@ -2,6 +2,7 @@ ion-content.event-page {
   font-family: 'Montserrat', sans-serif;
   color: #121212;
   min-height: 100vh;
+  --padding-top: 68px; /* Ensures content isn't hidden behind header */
 }
 
 /* Top Header */
