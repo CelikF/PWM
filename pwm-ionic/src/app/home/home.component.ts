@@ -1,7 +1,7 @@
-import { Component, computed, effect, inject, signal } from '@angular/core';
+import { Component, computed, effect, EnvironmentInjector, inject, Injector, runInInjectionContext, signal } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { DataService, Event } from '../event-details/services/data.service';
+import { Attendee, DataService, Event } from '../event-details/services/data.service';
 import { FormsModule } from '@angular/forms';
 import { Timestamp } from '@angular/fire/firestore';
 import { AuthService, User } from '../auth/auth.service';
@@ -26,16 +26,9 @@ export class HomeComponent {
   events = this.dataService.events$; // Signal<Event[]>
   selectedDate: string = '';
   showOnlyFavorites = false;
+  showOnlyMine = false;
 
   favoriteEventIds = new Set<string>();
-
-  async ngOnInit() {
-    await this.favoritesSvc.debugLogFavoritesTable();
-    await this.loadFavorites();
-    
-    console.log(this.favoriteEventIds);
-    console.log(await this.favoritesSvc.getFavorites('2Dk7zQ3ok3PV9MLHAkpco3UaHun1'))
-  }
 
   constructor() {
     this.router.events.subscribe(async (event) => {
@@ -43,15 +36,6 @@ export class HomeComponent {
         await this.loadFavorites();
       }
     });
-
-  // optional: effect to reactively check if user becomes available
-  effect(() => {
-    const user = this.authSvc.getCurrentUser();
-    if (!user) return;
-    this.favoritesSvc.getFavorites(user.uid).then(favs => {
-      this.favoriteEventIds = new Set(favs);
-    });
-  });
   }
 
   async loadFavorites(maxRetries: number = 10, delayMs: number = 300) {
@@ -90,11 +74,25 @@ export class HomeComponent {
 
   // Filtered results based on search
   get filteredEvents() {
+    const user = this.authSvc.getCurrentUser();
+    const uid = user?.uid;
+
     return this.events().filter(event => {
       const matchesSearch = event.title.toLowerCase().includes(this.searchText.toLowerCase());
       const isFavorite = this.favoriteEventIds.has(String(event.id));
-      return matchesSearch && (!this.showOnlyFavorites || isFavorite);
+      const hostMatch = uid ? event.host_id === uid : false;
+
+      return hostMatch && matchesSearch && (!this.showOnlyFavorites || isFavorite);
     });
+  }
+
+  isUserAttending(eventId: string, userId: string): Promise<boolean> {
+  return new Promise(resolve => {
+    const signal = this.dataService.attendees$(eventId);
+    const attendees = signal();
+    const isAttending = attendees.some(a => a.id === userId);
+    resolve(isAttending);
+  });
 }
 
   // Navigate to event details
