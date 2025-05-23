@@ -12,9 +12,7 @@ import { Functions, httpsCallable, HttpsCallableResult } from '@angular/fire/fun
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 
 export interface User {
-  id?: number;       // utilizzato per JSON
-  uid?: string;      // utilizzato per Firebase
-  image: string;
+  id?: string;
   username: string;
   email: string;
   password?: string; // non utilizzata in firebase
@@ -81,123 +79,66 @@ export class AuthService {
 
   // Login
   loginUser(usernameOrEmail: string, password: string): Promise<{ success: boolean, message: string, user?: any }> {
-    if (this.useFirebase) {
-      return signInWithEmailAndPassword(this.auth, usernameOrEmail, password)
-        .then(credential => {
-          if (credential.user) {
-            return { success: true, message: 'Login avvenuto con successo.', user: credential.user };
-          } else {
-            return { success: false, message: 'Errore: nessun utente restituito.' };
-          }
-        })
-        .catch(error => {
-          if (error.code === 'auth/invalid-email') {
-            return { success: false, message: 'Formato email non valido.' };
-          } else {
-            return { success: false, message: error.message };
-          }
-        });
-    } else {
-      return new Promise(resolve => {
-        if (!this.database) {
-          resolve({ success: false, message: 'Database non caricato.' });
-          return;
-        }
-        if (!usernameOrEmail || !password) {
-          resolve({ success: false, message: 'Inserisci username/email e password.' });
-          return;
-        }
-        const user = this.database.users.find(u =>
-          u.username === usernameOrEmail || u.email === usernameOrEmail
-        );
-        if (!user) {
-          resolve({ success: false, message: 'Utente non trovato.' });
-        } else if (user.password !== password) {
-          resolve({ success: false, message: 'Password errata.' });
+    return signInWithEmailAndPassword(this.auth, usernameOrEmail, password)
+      .then(credential => {
+        if (credential.user) {
+          return { success: true, message: 'Login avvenuto con successo.', user: credential.user };
         } else {
-          resolve({ success: true, message: 'Login avvenuto con successo.', user });
+          return { success: false, message: 'Errore: nessun utente restituito.' };
+        }
+      })
+      .catch(error => {
+        if (error.code === 'auth/invalid-email') {
+          return { success: false, message: 'Formato email non valido.' };
+        } else {
+          return { success: false, message: error.message };
         }
       });
-    }
   }
 
   // Registrazione
   registerUser(username: string, email: string, password: string, role: string = 'User'): Promise<{ success: boolean, message: string, user?: any }> {
-    if (this.useFirebase) {
-      return runInInjectionContext(this.injector, async () => {
-        try {
-          const usersRef = collection(this.fs, 'users');
-          const q = query(usersRef, where('email', '==', email));
-          const snapshot = await getDocs(q);
+    return runInInjectionContext(this.injector, async () => {
+      try {
+        const usersRef = collection(this.fs, 'users');
+        const q = query(usersRef, where('email', '==', email));
+        const snapshot = await getDocs(q);
 
-          if (!snapshot.empty) {
-            return { success: false, message: 'Email già in uso.' };
-          }
-
-          const credential = await createUserWithEmailAndPassword(this.auth, email, password);
-
-          if (!credential.user) {
-            return { success: false, message: 'Errore durante la creazione dell\'utente.' };
-          }
-
-          const newUser: User = {
-            uid: credential.user.uid,
-            username: username,
-            email: email,
-            image: 'https://example.com/images/default.jpg',
-            created_events: [],
-            attending_events: {}
-          };
-
-          // Optional: add to collection with auto ID (not necessary if using UID as doc ID)
-          await addDoc(usersRef, newUser);
-
-          // Set user document with UID
-          await setDoc(doc(this.fs, 'users', credential.user.uid), newUser);
-
-          return { success: true, message: 'Registrazione avvenuta con successo.', user: newUser };
-
-        } catch (error: any) {
-          if (error.code === 'auth/email-already-in-use') {
-            return { success: false, message: 'L\'email è già in uso.' };
-          } else if (error.code === 'auth/invalid-email') {
-            return { success: false, message: 'Formato email non valido.' };
-          } else {
-            return { success: false, message: error.message };
-          }
+        if (!snapshot.empty) {
+          return { success: false, message: 'Email già in uso.' };
         }
-      });
-    } else {
-      return new Promise(resolve => {
-        if (!this.database) {
-          resolve({ success: false, message: 'Database non caricato.' });
-          return;
+
+        const credential = await createUserWithEmailAndPassword(this.auth, email, password);
+
+        if (!credential.user) {
+          return { success: false, message: 'Errore durante la creazione dell\'utente.' };
         }
-        const userExists = this.database.users.some(u =>
-          u.username === username || u.email === email
-        );
-        if (userExists) {
-          resolve({ success: false, message: 'Username o email già esistente.' });
-          return;
-        }
-        const newId = this.database.users.length > 0
-          ? Math.max(...this.database.users.map(u => u.id ?? 0)) + 1
-          : 1;
+
         const newUser: User = {
-          id: newId,
-          image: 'https://example.com/images/default.jpg',
+          id: credential.user.uid, // correct: match Auth UID
           username,
           email,
-          password, // In produzione è consigliato criptare la password
           created_events: [],
           attending_events: {}
         };
-        this.database.users.push(newUser);
-        localStorage.setItem(this.dbKey, JSON.stringify(this.database));
-        resolve({ success: true, message: 'Registrazione avvenuta con successo.', user: newUser });
-      });
-    }
+
+        // ✅ ONLY this line should remain — no random document
+        await setDoc(doc(this.fs, 'users', credential.user.uid), newUser);
+
+        return { success: true, message: 'Registrazione avvenuta con successo.', user: newUser };
+
+      } catch (error: any) {
+        if (error.code === 'auth/email-already-in-use') {
+          return { success: false, message: 'L\'email è già in uso.' };
+        } else if (error.code === 'auth/invalid-email') {
+          return { success: false, message: 'Formato email non valido.' };
+        } else {
+          return { success: false, message: error.message };
+        }
+      }
+    });
   }
+
   getUserData(uid: string): Promise<User> {
     if (this.useFirebase) {
       const userDocRef = doc(this.fs, 'users', uid);
@@ -213,7 +154,7 @@ export class AuthService {
       if (!this.database) {
         return Promise.reject('Database non caricato');
       }
-      const user = this.database.users.find(u => u.uid === uid);
+      const user = this.database.users.find(u => u.id === uid);
       if (!user) {
         return Promise.reject('Utente non trovato');
       }
