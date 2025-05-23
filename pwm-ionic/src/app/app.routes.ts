@@ -9,6 +9,8 @@ import { HomeComponent } from './home/home.component';
 import { AccountComponent } from './pages/account/account.component';
 import { NewsCustomizerComponent } from './pages/new-customizer/new-customizer.component';
 import { AuthGuard } from './auth/guards/auth.guard';
+import { LoginPage } from './auth/test/login/login.page';
+import { RegisterPage } from './auth/test/register/register.page';
 
 export const routes: Routes = [
   { path: 'ed/:eventId', component:EventDetailsComponent, canActivate: [AuthGuard], 
@@ -22,7 +24,8 @@ export const routes: Routes = [
     ],
   },
   { path: 'account', component: AccountComponent,     canActivate: [AuthGuard]  },
-  { path: 'login', component: AuthContainerComponent},
+  { path: 'login', component: LoginPage},
+  { path: 'register', component: RegisterPage},
   { path: 'home', component: HomeComponent,           canActivate: [AuthGuard] },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
  // { path: '**', redirectTo: 'login' },

@@ -80,21 +80,23 @@ export class AuthService {
 
   // Login
   loginUser(usernameOrEmail: string, password: string): Promise<{ success: boolean, message: string, user?: any }> {
-    return signInWithEmailAndPassword(this.auth, usernameOrEmail, password)
-      .then(credential => {
-        if (credential.user) {
-          return { success: true, message: 'Login avvenuto con successo.', user: credential.user };
-        } else {
-          return { success: false, message: 'Errore: nessun utente restituito.' };
-        }
-      })
-      .catch(error => {
-        if (error.code === 'auth/invalid-email') {
-          return { success: false, message: 'Formato email non valido.' };
-        } else {
-          return { success: false, message: error.message };
-        }
-      });
+    return runInInjectionContext(this.injector, async () => {
+      return signInWithEmailAndPassword(this.auth, usernameOrEmail, password)
+        .then(credential => {
+          if (credential.user) {
+            return { success: true, message: 'Login avvenuto con successo.', user: credential.user };
+          } else {
+            return { success: false, message: 'Errore: nessun utente restituito.' };
+          }
+        })
+        .catch(error => {
+          if (error.code === 'auth/invalid-email') {
+            return { success: false, message: 'Formato email non valido.' };
+          } else {
+            return { success: false, message: error.message };
+          }
+        });
+    });
   }
 
   // Registrazione
@@ -164,19 +166,31 @@ export class AuthService {
   }
 
   get user$(): Observable<User | null> {
-    return new Observable<FirebaseUser | null>(subscriber => {
-      const unsubscribe = onAuthStateChanged(this.auth, user => subscriber.next(user));
-      return { unsubscribe };
-    }).pipe(
-      switchMap(user => {
-        if (!user) return of(null);
-        const userDocRef = doc(this.fs, `users/${user.uid}`);
-        return getDoc(userDocRef).then(snapshot => {
-          if (!snapshot.exists()) return null;
-          return snapshot.data() as User;
+    return new Observable<User | null>(subscriber => {
+      runInInjectionContext(this.injector, () => {
+        const unsubscribe = onAuthStateChanged(this.auth, async firebaseUser => {
+          if (!firebaseUser) {
+            subscriber.next(null);
+            return;
+          }
+
+          try {
+            const userDocRef = doc(this.fs, `users/${firebaseUser.uid}`);
+            const snapshot = await getDoc(userDocRef);
+            if (snapshot.exists()) {
+              subscriber.next(snapshot.data() as User);
+            } else {
+              subscriber.next(null);
+            }
+          } catch (err) {
+            console.error('Error fetching user doc:', err);
+            subscriber.next(null);
+          }
         });
-      })
-    );
+
+        return () => unsubscribe();
+      });
+    });
   }
 
   logout(): Promise<void> {
