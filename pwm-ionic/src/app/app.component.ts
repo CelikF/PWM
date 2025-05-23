@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { IonApp, IonRouterOutlet, IonButton, IonButtons, IonToolbar, IonHeader } from '@ionic/angular/standalone';
+import { AuthService } from './auth/auth.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +11,22 @@ import { IonApp, IonRouterOutlet, IonButton, IonButtons, IonToolbar, IonHeader }
   imports: [IonHeader, IonToolbar, IonButtons, IonButton, IonApp, IonRouterOutlet, RouterLink],
 })
 export class AppComponent {
-  constructor() {}
+  private authSvc = inject(AuthService);
+  private router = inject(Router);
+
+  isLoginPage: boolean = false;
+
+  constructor() {
+    // Listen for route changes and update `isLoginPage`
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.isLoginPage = this.router.url === '/login';
+    });
+  }
+
+  signout() {
+    this.authSvc.logout();
+    this.router.navigate(['login']);
+  }
 }

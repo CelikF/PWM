@@ -6,10 +6,11 @@ import { tap, catchError } from 'rxjs/operators';
 // Import per Firebase
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, User as FirebaseUser } from '@angular/fire/auth';
 import { addDoc, collection, collectionData, CollectionReference, doc, Firestore, getDoc, getDocs, orderBy, query, setDoc, where } from '@angular/fire/firestore';
 import { Functions, httpsCallable, HttpsCallableResult } from '@angular/fire/functions'
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { switchMap } from 'rxjs/operators';
 
 export interface User {
   id?: string;
@@ -160,6 +161,26 @@ export class AuthService {
       }
       return Promise.resolve(user);
     }
+  }
+
+  get user$(): Observable<User | null> {
+    return new Observable<FirebaseUser | null>(subscriber => {
+      const unsubscribe = onAuthStateChanged(this.auth, user => subscriber.next(user));
+      return { unsubscribe };
+    }).pipe(
+      switchMap(user => {
+        if (!user) return of(null);
+        const userDocRef = doc(this.fs, `users/${user.uid}`);
+        return getDoc(userDocRef).then(snapshot => {
+          if (!snapshot.exists()) return null;
+          return snapshot.data() as User;
+        });
+      })
+    );
+  }
+
+  logout(): Promise<void> {
+    return this.auth.signOut();
   }
   
 

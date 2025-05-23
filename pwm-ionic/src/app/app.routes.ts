@@ -8,31 +8,33 @@ import { EventDetailsComponent } from './event-details/event-details.component';
 import { HomeComponent } from './home/home.component';
 import { AccountComponent } from './pages/account/account.component';
 import { NewsCustomizerComponent } from './pages/new-customizer/new-customizer.component';
+import { AuthGuard } from './auth/guards/auth.guard';
 
 export const routes: Routes = [
-  { path: 'ed/:eventId', component:EventDetailsComponent, 
+  { path: 'ed/:eventId', component:EventDetailsComponent, canActivate: [AuthGuard], 
     children:[
-      { path: 'description', component: DescriptionComponent },
-      { path: 'agenda',      component: AgendaComponent    },
-      { path: 'attendees',   component: AttendeesComponent },
-      { path: 'news',        component: NewsComponent      },
+      { path: 'description', component: DescriptionComponent, canActivate: [AuthGuard]},
+      { path: 'agenda',      component: AgendaComponent, canActivate: [AuthGuard]},
+      { path: 'attendees',   component: AttendeesComponent, canActivate: [AuthGuard]},
+      { path: 'news',        component: NewsComponent, canActivate: [AuthGuard]},
       // default to description if no child path is provided
       { path: '', redirectTo: 'description', pathMatch: 'full' },
-    ]
+    ],
   },
-  { path: 'account', component: AccountComponent },
-  { path: 'login', component: AuthContainerComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'new-customizer', component: NewsCustomizerComponent },
+  { path: 'account', component: AccountComponent,     canActivate: [AuthGuard]  },
+  { path: 'login', component: AuthContainerComponent},
+  { path: 'home', component: HomeComponent,           canActivate: [AuthGuard] },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
  // { path: '**', redirectTo: 'login' },
   {
     path: 'notifications',
-    loadComponent: () => import('./notification/notification-list.component').then(m => m.NotificationListComponent)
+    loadComponent: () => import('./notification/notification-list.component').then(m => m.NotificationListComponent),
+    canActivate: [AuthGuard] 
   },
   
   {
     path: 'notifications/:id',
-    loadComponent: () => import('./notification/notification-details.component').then(m => m.NotificationDetailsComponent)
+    loadComponent: () => import('./notification/notification-details.component').then(m => m.NotificationDetailsComponent),
+    canActivate: [AuthGuard] 
   }
 ];
