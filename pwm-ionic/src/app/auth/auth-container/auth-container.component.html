@@ -26,5 +26,21 @@
       </div>
     </div>
   </div>
+
+  <!-- Mobile Header Navigation -->
+<div class="mobile-header">
+  <button [class.active]="!isRegisterActive" (click)="showLogin()">Sign In</button>
+  <button [class.active]="isRegisterActive" (click)="showRegister()">Sign Up</button>
+</div>
+
+  <!-- Mobile Form Container -->
+  <div class="mobile-container">
+    <div class="mobile-form" [class.active]="!isRegisterActive">
+      <app-login></app-login>
+    </div>
+    <div class="mobile-form" [class.active]="isRegisterActive">
+      <app-register></app-register>
+    </div>
+  </div>
 </div>
   
