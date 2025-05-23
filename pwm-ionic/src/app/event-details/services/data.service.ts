@@ -41,7 +41,7 @@ export interface NewsItem {
 }
 
 export interface Event {
-  id: number;
+  id: string;
   image?: string;
   host_id: string;
   title: string;
