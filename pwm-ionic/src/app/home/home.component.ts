@@ -5,14 +5,13 @@ import { Attendee, DataService, Event } from '../event-details/services/data.ser
 import { FormsModule } from '@angular/forms';
 import { Timestamp } from '@angular/fire/firestore';
 import { AuthService, User } from '../auth/auth.service';
-import { IonCardContent, IonButton, IonContent, IonButtons, IonImg, IonToolbar, IonHeader } from "@ionic/angular/standalone";
 import { IonicModule } from '@ionic/angular';
 import { FavoritesService } from '../event-details/services/favorite-storage.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, IonicModule], // ✅ <-- Include FormsModule here!
+  imports: [CommonModule, RouterModule, FormsModule, IonicModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
@@ -29,12 +28,25 @@ export class HomeComponent {
   showOnlyMine = false;
 
   favoriteEventIds = new Set<string>();
+  attendeesCache: Record<string, Attendee[]> = {};
 
   constructor() {
     this.router.events.subscribe(async (event) => {
       if (event instanceof NavigationEnd && this.router.url.includes('/home')) {
         await this.loadFavorites();
       }
+    });
+
+    effect(() => {
+      const events = this.events();
+      const user = this.authSvc.getCurrentUser();
+      if (!events.length || !user) return;
+
+      // Populate attendeesCache once
+      Promise.all(events.map(async (event) => {
+        const attendees = await this.dataService.getAttendeesOnce(String(event.id));
+        this.attendeesCache[String(event.id)] = attendees;
+      }));
     });
   }
 
@@ -74,26 +86,35 @@ export class HomeComponent {
 
   // Filtered results based on search
   get filteredEvents() {
-    const user = this.authSvc.getCurrentUser();
-    const uid = user?.uid;
+  const allEvents = this.events();
+      const user = this.authSvc.getCurrentUser();  if (!user) return [];
 
-    return this.events().filter(event => {
-      const matchesSearch = event.title.toLowerCase().includes(this.searchText.toLowerCase());
-      const isFavorite = this.favoriteEventIds.has(String(event.id));
-      const hostMatch = uid ? event.host_id === uid : false;
+  return allEvents.filter(event => {
+    const matchesSearch = event.title.toLowerCase().includes(this.searchText.toLowerCase());
+    const isFavorite = this.favoriteEventIds.has(String(event.id));
+    
+    const isAssociated = this.isUserAssociatedWithEvent(event, user.uid, this.attendeesCache);
 
-      return hostMatch && matchesSearch && (!this.showOnlyFavorites || isFavorite);
-    });
-  }
-
-  isUserAttending(eventId: string, userId: string): Promise<boolean> {
-  return new Promise(resolve => {
-    const signal = this.dataService.attendees$(eventId);
-    const attendees = signal();
-    const isAttending = attendees.some(a => a.id === userId);
-    resolve(isAttending);
+    return matchesSearch
+      && (!this.showOnlyFavorites || isFavorite)
+      && isAssociated;
   });
 }
+
+  isUserAssociatedWithEvent(event: Event, userId: string, attendeesMap: Record<string, Attendee[]>): boolean {
+    if (event.host_id === userId) return true;
+    const attendees = attendeesMap[String(event.id)] || [];
+    return attendees.some(a => a.id === userId);
+  }
+
+
+  async isUserAttendee(eventId: string, userId: string): Promise<boolean> {
+    const attendees = await this.dataService.getAttendeesOnce(eventId);
+    console.log(attendees);
+    console.log(eventId);
+    return attendees.some(a => a.id === userId);
+  }
+
 
   // Navigate to event details
   goToEvent(id: string | number) {
