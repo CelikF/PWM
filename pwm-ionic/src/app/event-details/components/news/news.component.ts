@@ -1,12 +1,12 @@
-import { Component, effect, EventEmitter, inject, Output, Signal } from '@angular/core';
+import { Component, EventEmitter, inject, Output, Signal } from '@angular/core';
 import { ActivatedRoute, ROUTER_OUTLET_DATA } from '@angular/router';
 import { DataService } from '../../services/data.service';
 import { ModalPayload, ParentPayload } from '../../modals/edit-modal/edit-modal.component';
-import { IonText, IonButton, IonIcon, IonCard } from "@ionic/angular/standalone";
+import { IonText, IonButton, IonCard } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-news',
-  imports: [IonCard, IonIcon, IonButton, IonText, ],
+  imports: [IonCard, IonButton, IonText, ],
   templateUrl: './news.component.html',
   styleUrl: './news.component.css'
 })

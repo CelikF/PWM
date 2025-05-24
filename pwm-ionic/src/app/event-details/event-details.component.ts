@@ -11,7 +11,7 @@ import { FavoritesService } from './services/favorite-storage.service';
 
 @Component({
   selector: 'app-event-details',
-  imports: [IonIcon, IonItem, IonHeader, IonToolbar, IonButtons, IonSegment, IonButton, IonLabel, IonContent, RouterLink, RouterOutlet, RouterLinkActive, EditModalComponent, IonSelect, IonSelectOption],
+  imports: [IonIcon, IonItem, IonSegment, IonButton, IonLabel, IonContent, RouterLink, RouterOutlet, RouterLinkActive, EditModalComponent, IonSelect, IonSelectOption],
   templateUrl: './event-details.component.html',
   styleUrl: './event-details.component.css'
 })

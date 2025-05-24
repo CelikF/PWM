@@ -11,9 +11,10 @@ import { NewsCustomizerComponent } from './pages/new-customizer/new-customizer.c
 import { AuthGuard } from './auth/guards/auth.guard';
 import { LoginPage } from './auth/test/login/login.page';
 import { RegisterPage } from './auth/test/register/register.page';
+import { DetailsGuard } from './event-details/guard/details-guard.guard';
 
 export const routes: Routes = [
-  { path: 'ed/:eventId', component:EventDetailsComponent, canActivate: [AuthGuard], 
+  { path: 'ed/:eventId', component:EventDetailsComponent, canActivate: [AuthGuard, DetailsGuard], 
     children:[
       { path: 'description', component: DescriptionComponent, canActivate: [AuthGuard]},
       { path: 'agenda',      component: AgendaComponent, canActivate: [AuthGuard]},

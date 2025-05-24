@@ -1,4 +1,4 @@
-import { Injectable, inject, Signal } from '@angular/core';
+import { Injectable, inject, Signal, EnvironmentInjector, runInInjectionContext } from '@angular/core';
 import {
   Firestore,
   collection,
@@ -12,7 +12,9 @@ import {
   orderBy,
   CollectionReference,
   Timestamp,
-  setDoc
+  setDoc,
+  getDocs,
+  getDoc
 } from '@angular/fire/firestore';
 import { toSignal } from '@angular/core/rxjs-interop';
 import type { Observable } from 'rxjs';
@@ -54,6 +56,7 @@ export interface Event {
 export class DataService {
   private fs = inject(Firestore);
   private eventsCol = collection(this.fs, 'events') as CollectionReference<Event>;
+  private injector = inject(EnvironmentInjector);
 
   currentEvent!: Event;
 
@@ -100,6 +103,25 @@ export class DataService {
       { initialValue: [] }
     );
     //return toSignal(collectionData(col) as Observable<Attendee[]>, { initialValue: [] });
+  }
+
+  async getAttendeesOnce(eventId: string): Promise<Attendee[]> {
+    
+
+    return runInInjectionContext(this.injector, async () => {
+      const col = collection(this.fs, `events/${eventId}/attendees`);
+      const snapshot = await getDocs(col);
+      return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Attendee));
+    });
+  }
+
+  async getEventOnce(eventId: string): Promise<Event | null> {
+
+    return runInInjectionContext(this.injector, async () => {
+      const ref = doc(this.fs, `events/${eventId}`);
+      const snapshot = await getDoc(ref);
+      return snapshot.exists() ? (snapshot.data() as Event) : null;
+    });
   }
 
   addAttendee(eventId: string, attendee: Attendee) {
