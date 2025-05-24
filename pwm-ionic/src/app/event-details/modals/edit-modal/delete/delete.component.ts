@@ -1,11 +1,13 @@
 import { Component, EventEmitter, inject, input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
 import { DataService } from 'src/app/event-details/services/data.service';
 
 @Component({
   selector: 'app-delete',
   templateUrl: './delete.component.html',
   styleUrls: ['./delete.component.scss'],
+  imports: [IonicModule]
 })
 export class DeleteComponent{
 

@@ -1,57 +1,47 @@
 <!-- header -->
 <div class="modal-header">
-    <h4>Edit Activity</h4>
+  <h4>Edit Activity</h4>
+</div>
+
+<!-- body -->
+<div class="modal-body">
+  <form [formGroup]="form" (submit)="saveChanges()">
+    <ion-input
+      class="invitation-input"
+      formControlName="activity_name"
+      fill="outline">
+    </ion-input>
+
+    <div class="dateTimeModal-body">
+  <div class="time-row">
+    <div class="time-field">
+      <ion-label>Start Time:</ion-label>
+      <ion-datetime
+        formControlName="start_time"
+        presentation="time"
+        hour-cycle="h23">
+      </ion-datetime>
     </div>
 
-    <!-- body -->
-    <div class="modal-body">
-    <form [formGroup]="form" (submit)="saveChanges()">
-        <input
-        class="invitation-input"
-        formControlName="activity_name"
-        />
+    <div class="time-field">
+      <ion-label>End Time:</ion-label>
+      <ion-datetime
+        formControlName="end_time"
+        presentation="time"
+        hour-cycle="h23">
+      </ion-datetime>
+    </div>
+  </div>
+</div>
 
-          
-                <div class="dateTimeModal-body">
-                  <!-- single time input -->
-                  <div class="time-row">
-                    <div class="time-field">
-                      <label for="timePicker">Start Time</label>
-                      <input
-                        type="time"
-                        id="timePicker"
-                        class="form-control"
-                        formControlName="start_time"
-                        step="60"
-                        min="00:00"
-                        max="23:59"
-                      />
-                    </div>
-                  </div>
-
-                  <div class="time-row">
-                    <div class="time-field">
-                      <label for="timePicker">End Time</label>
-                      <input
-                        type="time"
-                        id="timePicker"
-                        class="form-control"
-                        formControlName="end_time"
-                        step="60"
-                        min="00:00"
-                        max="23:59"
-                      />
-                    </div>
-                  </div>
-          
-                </div>
-          
-          
-
-        <!-- footer -->
+    <!-- footer -->
     <div class="modal-footer">
-        <button type="submit" class="invitation-send">Save</button>
-        <button type="reset" class="invitation-send" (click)="cancelChanges()" >Cancel</button>
+      <ion-button type="submit" expand="block" color="primary">
+        Save
+      </ion-button>
+      <ion-button type="reset" expand="block" fill="outline" (click)="cancelChanges()">
+        Cancel
+      </ion-button>
     </div>
-    </form>
-    </div>
+  </form>
+</div>

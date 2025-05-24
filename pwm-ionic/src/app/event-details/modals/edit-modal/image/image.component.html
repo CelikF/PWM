@@ -1,40 +1,40 @@
-<!-- header -->
+<!-- Header -->
 <div class="modal-header">
-    <h4>Change Event Header Image</h4>
+  <h4>Change Event Header Image</h4>
+</div>
+
+<!-- Body -->
+<div class="modal-body">
+  <form (submit)="saveChanges()">
+    <div class="image-path-picker">
+      <div class="ipp-input-group">
+        <ion-button class="browse-btn" (click)="browse(fileInput)" expand="block">
+          Browse
+        </ion-button>
+
+        <input
+          type="file"
+          #fileInput
+          accept="image/*"
+          hidden
+          (change)="onFileSelected($event)" />
+      </div>
+
+      <div class="ipp-preview">
+        <span *ngIf="!imageUrl">No image selected</span>
+        <ion-img *ngIf="imageUrl" [src]="imageUrl" class="image-preview-img"></ion-img>
+
+      </div>
     </div>
 
-    <!-- body -->
-    <div class="modal-body">
-    <form (submit)="saveChanges()">
-        <div class="image-path-picker">
-            <div class="ipp-input-group">
-          
-              <!-- Browse button -->
-              <button type="button" class="browse-btn"
-                      (click)="browse(fileInput)">
-                Browse
-              </button>
-          
-              <!-- hidden file input -->
-              <input
-                type="file"
-                #fileInput
-                accept="image/*"
-                hidden
-                (change)="onFileSelected($event)"
-              />
-            </div>
-          
-            <!-- preview area -->
-            <div class="ipp-preview">
-              <span *ngIf="!imageUrl">No image selected</span>
-              <img *ngIf="imageUrl" [src]="imageUrl" alt="Preview" />
-            </div>
-          </div>
-          
+    <!-- Footer -->
     <div class="modal-footer">
-        <button type="submit" class="invitation-send">Save</button>
-        <button type="reset" class="invitation-send" (click)="cancelChanges()"  >Cancel</button>
+      <ion-button type="submit" >
+        Save
+      </ion-button>
+      <ion-button type="reset" fill="outline"  (click)="cancelChanges()">
+        Cancel
+      </ion-button>
     </div>
-    </form>
-    </div>
+  </form>
+</div>

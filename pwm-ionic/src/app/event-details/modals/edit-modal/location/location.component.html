@@ -1,20 +1,26 @@
-<!-- header -->
+<!-- Header -->
 <div class="modal-header">
-    <h4>Change Event Location</h4>
-    </div>
+  <h4>Change Event Location</h4>
+</div>
 
-    <!-- body -->
-    <div class="modal-body">
-    <form [formGroup]="form" (submit)="saveChanges()">
-        <input
-        class="invitation-input"
-        formControlName="location"
-        value="{{event().location}}"
-        />
-        <!-- footer -->
+<!-- Body -->
+<div class="modal-body">
+  <form [formGroup]="form" (ngSubmit)="saveChanges()">
+    <ion-input
+      class="invitation-input"
+      formControlName="location"
+      fill="outline"
+      placeholder="Enter a location">
+    </ion-input>
+
+    <!-- Footer -->
     <div class="modal-footer">
-        <button type="submit" class="invitation-send">Save</button>
-        <button type="reset" class="invitation-send" (click)="cancelChanges()" >Cancel</button>
+      <ion-button type="submit" [disabled]="form.invalid">
+        Save
+      </ion-button>
+      <ion-button type="reset" fill="outline" (click)="cancelChanges()">
+        Cancel
+      </ion-button>
     </div>
-    </form>
+  </form>
 </div>

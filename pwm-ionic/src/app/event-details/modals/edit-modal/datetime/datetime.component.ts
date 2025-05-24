@@ -2,10 +2,11 @@ import { Component, effect, EventEmitter, inject, input, Output } from '@angular
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DataService } from '../../../services/data.service';
 import { Timestamp } from '@angular/fire/firestore';
+import { IonicModule } from '@ionic/angular';
 
 @Component({
   selector: 'app-datetime',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, IonicModule],
   templateUrl: './datetime.component.html',
   styleUrl: './datetime.component.css'
 })
@@ -20,31 +21,33 @@ export class DatetimeComponent {
   maxDate = '2050-12-31';
 
   form = this.formbuilder.group({
-    date: this.formbuilder.control('', Validators.required),
-    time: this.formbuilder.control('', Validators.required),
+    datetime: this.formbuilder.control('', Validators.required),
   });
 
-  constructor(){
+  constructor() {
     effect(() => {
       const ev = this.event();
-    if (ev?.datetime) {
-      const d = (ev.datetime.toDate()).toISOString().split('T')[0];
-      const t = (ev.datetime.toDate()).toTimeString().slice(0,5);
-      this.form.patchValue({ date: d, time: t });
-    }
-    })
+      if (ev?.datetime) {
+        const local = ev.datetime.toDate();
+        const tzOffsetMs = local.getTimezoneOffset() * 60000;
+        const localISO = new Date(local.getTime() - tzOffsetMs).toISOString().slice(0, 19); // "YYYY-MM-DDTHH:mm:ss"
+        this.form.patchValue({ datetime: localISO });
+      }
+    });
   }
 
-  async saveChanges(){
+  async saveChanges() {
     if (this.form.invalid) return;
-    const { date, time } = this.form.value;
+    const datetime = this.form.value.datetime;
+    if (!datetime) return;
+
     const id = this.event()!.id.toString();
-    const iso = `${date}T${time}:00`;
-    const jsDate = new Date(iso);
+    const jsDate = new Date(datetime);
     const ts = Timestamp.fromDate(jsDate);
     await this.dataSvc.updateEvent(id, { datetime: ts });
     this.close.emit(true);
   }
+
 
   cancelChanges(){
     this.close.emit(true);

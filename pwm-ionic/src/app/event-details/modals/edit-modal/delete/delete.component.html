@@ -1,16 +1,21 @@
-<!-- header -->
+<!-- Header -->
 <div class="modal-header">
-    <h4>Delete Event</h4>
-    <button class="close-btn">×</button>
-    </div>
+  <h4>Delete Event</h4>
+</div>
 
-    <!-- body -->
-    <div class="modal-body">
+<!-- Body -->
+<div class="modal-body">
+  <p class="delete-confirm-text">
+    Do you really want to delete this Event?
+  </p>
 
-        <p>Do you really want to delete this Event?</p>
-
-        <div class="modal-footer">
-            <button type="submit" class="invitation-send" (click)="submit()" >Delete</button>
-            <button type="reset" class="invitation-send" (click)="closeModal()"  >Cancel</button>
-        </div>
-    </div>
+  <!-- Footer -->
+  <div class="modal-footer">
+    <ion-button color="danger" (click)="submit()">
+      Delete
+    </ion-button>
+    <ion-button fill="outline" (click)="closeModal()">
+      Cancel
+    </ion-button>
+  </div>
+</div>

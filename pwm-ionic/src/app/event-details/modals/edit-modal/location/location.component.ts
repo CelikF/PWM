@@ -1,10 +1,11 @@
 import { Component, effect, EventEmitter, inject, input, Output } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DataService } from '../../../services/data.service';
+import { IonicModule } from '@ionic/angular';
 
 @Component({
   selector: 'app-location',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, IonicModule],
   templateUrl: './location.component.html',
   styleUrl: './location.component.css'
 })

@@ -4,10 +4,11 @@ import { Activity, DataService, Event, NewsItem } from '../../../services/data.s
 import { ModalPayload } from '../edit-modal.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
+import { IonicModule } from '@ionic/angular';
 
 @Component({
   selector: 'app-newscard',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, IonicModule],
   templateUrl: './newscard.component.html',
   styleUrl: './newscard.component.css'
 })

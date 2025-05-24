@@ -2,10 +2,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Activity, DataService, Event } from '../../../services/data.service';
 import { firstValueFrom } from 'rxjs';
+import { IonButton, IonDatetime, IonLabel } from "@ionic/angular/standalone";
+import { IonicModule } from '@ionic/angular';
 
 @Component({
   selector: 'app-activity',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, IonicModule],
   templateUrl: './activity.component.html',
   styleUrl: './activity.component.css',
   standalone: true

@@ -1,33 +1,38 @@
+<!-- Header -->
 <div class="modal-header">
-    <h4>Edit News Card</h4>
-    <button class="close-btn">×</button>
-    </div>
-
-
-
-<form [formGroup]="form" (submit)="saveChanges()">
-    <div class="time-row">
-        <label for="news_title">Title</label>
-        <input
-            id="news_title"
-            class="invitation-input"
-            formControlName="title"
-            value="{{event.title}}"
-            />
-    </div>
-
-    <div class="time-row">
-        <label for="news_description">Description</label>
-        <textarea
-        id="news_description"
-        class="invitation-input my-mono"
-        formControlName="description"
-        value="{{event.description}}"
-        ></textarea>
-    </div>
-    <!-- footer -->
-<div class="modal-footer">
-    <button type="submit" class="invitation-send">Save</button>
-    <button type="reset" class="invitation-send" (click)="cancelChanges()"  >Cancel</button>
+  <h4>Edit News Card</h4>
 </div>
+
+<!-- Form -->
+<form [formGroup]="form" (ngSubmit)="saveChanges()">
+  <div class="form-group">
+    <ion-label for="news_title">Title</ion-label>
+    <ion-input
+      id="news_title"
+      class="invitation-input"
+      formControlName="title"
+      fill="outline">
+    </ion-input>
+  </div>
+
+  <div class="form-group">
+    <ion-label for="news_description">Description</ion-label>
+    <ion-textarea
+      id="news_description"
+      class="invitation-input my-mono"
+      formControlName="description"
+      auto-grow="true"
+      fill="outline">
+    </ion-textarea>
+  </div>
+
+  <!-- Footer -->
+  <div class="modal-footer">
+    <ion-button type="submit" [disabled]="form.invalid">
+      Save
+    </ion-button>
+    <ion-button type="reset" fill="outline" (click)="cancelChanges()">
+      Cancel
+    </ion-button>
+  </div>
 </form>

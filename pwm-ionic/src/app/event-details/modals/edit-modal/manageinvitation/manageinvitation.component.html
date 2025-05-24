@@ -1,48 +1,48 @@
-<!-- Send Invitation Modal -->
-<div class="send-invitation-modal">
-    <!-- Header -->
-    <header class="si-header">
-      <h2>Send Invitation…</h2>
-    </header>
-  
-    <!-- Body -->
-    <div class="si-body">
-      <!-- Input + Send -->
-      <div class="si-input-row">
-        <form (submit)="addAttendee()" [formGroup]="form">
-            <input
-            type="email"
-            class="si-email-input"
-            formControlName="email"
-            placeholder="Enter their email"
-            />
-            <button type="submit" class="si-send-btn">
-            Send <span class="si-send-icon">✈️</span>
-            </button>
-        </form>
-      </div>
-  
-      <hr class="si-divider" />
-  
-      <!-- Already invited -->
-      <div class="si-already">
-        <h3>Already invited</h3>
-        <!-- <input type="text" class="si-search" placeholder="Search" /> -->
-        <ul class="si-invited-list">
-            @for (attendee of attendees; track attendee.id) {
-                <li class="si-invited-item">
-                    <span class="si-person-icon">👤</span>
-                    <span class="si-person-name">{{getUserName(attendee)}}</span>
-                    <button class="si-remove-btn" aria-label="Remove invitation" (click)="deleteAttendee(attendee.id)">✕</button>
-                </li>
-            } @empty {
-                <p>No guests yet</p>
-            }
-        </ul>
-      </div>
-    </div>
-    <div class="modal-footer">
-        <button type="reset" class="invitation-send" (click)="closeModal()"  >Close</button>
-    </div>
+<!-- Header -->
+<div class="modal-header">
+  <h4>Send Invitation…</h4>
+</div>
+
+<!-- Body -->
+<div class="modal-body">
+  <!-- Email Input + Send -->
+  <form (submit)="addAttendee()" [formGroup]="form" class="si-input-row">
+    <ion-input
+      type="email"
+      class="si-email-input"
+      formControlName="email"
+      placeholder="Enter their email"
+      fill="outline">
+    </ion-input>
+
+    <ion-button type="submit" >
+      Send
+        <ion-icon name="send-outline" slot="end"></ion-icon>
+    </ion-button>
+  </form>
+
+  <hr class="si-divider" />
+
+  <!-- Already Invited -->
+  <div class="si-already">
+    <h5>Already invited</h5>
+    <ul class="si-invited-list">
+      @for (attendee of attendees; track attendee.id) {
+        <li class="si-invited-item">
+          <span class="si-person-icon">👤</span>
+          <span class="si-person-name">{{ getUserName(attendee) }}</span>
+          <button class="si-remove-btn" aria-label="Remove invitation" (click)="deleteAttendee(attendee.id)">✕</button>
+        </li>
+      } @empty {
+        <p class="no-guests">No guests yet</p>
+      }
+    </ul>
   </div>
-  
+</div>
+
+<!-- Footer -->
+<div class="modal-footer">
+  <ion-button type="button" fill="outline" class="invitation-send" (click)="closeModal()">
+    Close
+  </ion-button>
+</div>

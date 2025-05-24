@@ -1,22 +1,26 @@
-<!-- header -->
+<!-- Header -->
 <div class="modal-header">
-    <h4>Change Event Name</h4>
-    </div>
+  <h4>Change Event Name</h4>
+</div>
 
-    <!-- body -->
-    <div class="modal-body">
-    <form [formGroup]="form" (submit)="saveTitle()">
-        <input
-        class="invitation-input"
-        formControlName="title"
-        value="{{event().title}}"
-        />
-        <!-- footer -->
+<!-- Body -->
+<div class="modal-body">
+  <form [formGroup]="form" (submit)="saveTitle()">
+    <ion-input
+      class="invitation-input"
+      formControlName="title"
+      placeholder="Enter new event title"
+      fill="outline">
+    </ion-input>
+
+    <!-- Footer -->
     <div class="modal-footer">
-        <button type="submit" class="invitation-send">Save</button>
-        <button type="reset" class="invitation-send" (click)="cancelChanges()" >Cancel</button>
+      <ion-button type="submit" [disabled]="form.invalid">
+        Save
+      </ion-button>
+      <ion-button type="reset" fill="outline" (click)="cancelChanges()">
+        Cancel
+      </ion-button>
     </div>
-    </form>
-    </div>
-
-    
+  </form>
+</div>

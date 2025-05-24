@@ -1,47 +1,30 @@
+<!-- Header -->
+<div class="modal-header">
+  <h4>Add Date &amp; Time</h4>
+</div>
 
-      <div class="modal-header">
-        <h4>Add Date &amp; Time</h4>
-      </div>
-  
-      <form [formGroup]="form" (ngSubmit)="saveChanges()">
-        <div class="modal-body">
-          <!-- single time input -->
-          <div class="time-row">
-            <div class="time-field">
-              <label for="timePicker">Time</label>
-              <input
-                type="time"
-                id="timePicker"
-                class="form-control"
-                formControlName="time"
-                step="60"
-                min="00:00"
-                max="23:59"
-              />
-            </div>
-          </div>
-  
-          <!-- single date input -->
-          <div class="date-field">
-            <label for="datePicker">Date</label>
-            <input
-              type="date"
-              id="datePicker"
-              class="form-control"
-              formControlName="date"
-              min="{{ minDate }}"
-              max="{{ maxDate }}"
-            />
-          </div>
-        </div>
-  
-        <div class="modal-footer">
-          <button type="submit" class="invitation-send" [disabled]="form.invalid">
-            Save
-          </button>
-          <button type="button" class="invitation-send" (click)="cancelChanges()">
-            Cancel
-          </button>
-        </div>
-      </form>
-  
+<!-- Body -->
+<div class="modal-body">
+  <form [formGroup]="form" (ngSubmit)="saveChanges()">
+    <div class="dateTimeModal-body">
+      <ion-label>Date &amp; Time</ion-label>
+      <ion-datetime
+        formControlName="datetime"
+        presentation="date-time"
+        [min]="minDate"
+        [max]="maxDate"
+        hour-cycle="h23">
+      </ion-datetime>
+    </div>
+
+    <!-- Footer -->
+    <div class="modal-footer">
+      <ion-button type="submit" [disabled]="form.invalid" class="invitation-send">
+        Save
+      </ion-button>
+      <ion-button type="button" fill="outline" (click)="cancelChanges()" class="invitation-send">
+        Cancel
+      </ion-button>
+    </div>
+  </form>
+</div>

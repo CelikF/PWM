@@ -5,10 +5,11 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../../auth/auth.service';
 import { ModalPayload } from '../edit-modal.component';
 import { firstValueFrom, materialize } from 'rxjs';
+import { IonicModule } from '@ionic/angular';
 
 @Component({
   selector: 'app-manageinvitation',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, IonicModule],
   templateUrl: './manageinvitation.component.html',
   styleUrl: './manageinvitation.component.css'
 })

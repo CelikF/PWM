@@ -1,10 +1,11 @@
 import { Component, effect, EventEmitter, inject, input, Output } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DataService } from '../../../services/data.service';
+import { IonicModule } from '@ionic/angular';
 
 @Component({
   selector: 'app-description',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, IonicModule],
   templateUrl: './description.component.html',
   styleUrl: './description.component.css'
 })
