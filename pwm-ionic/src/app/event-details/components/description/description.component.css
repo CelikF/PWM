@@ -2,94 +2,113 @@
   display: block;
 }
 
-/* Apply layout on ion-grid rows matching this component */
-ion-grid.event-content,
-.event-content {
+/* Grid Container */
+ion-grid.event-content {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem 0;
+  overflow-x: hidden;
+}
+
+/* Desktop layout */
+ion-row.desktop-layout {
   display: flex;
-  align-items: flex-start;
-  gap: 2rem;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 
-/* Description column */
-ion-col.description,
+/* Description Column */
 .description {
-  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
 }
 
-ion-col.description .edit-description,
-.description .edit-description {
-  margin-bottom: 1rem;
+/* ✅ Small, Centered Button */
+.edit-description {
+  align-self: center; /* centers the button */
+  font-size: 0.875rem;
+  padding: 0.3rem 1rem;
+  --background: #4b57a9;
+  --color: white;
+  --border-radius: 4px;
+  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --padding-start: 12px;
+  --padding-end: 12px;
 }
 
-ion-col.description p,
-.description p {
-  margin: 0;
+/* Text */
+.description p,
+.placeholder-text {
   color: #333;
-  line-height: 1.6;
   font-size: 1rem;
+  line-height: 1.6;
+  margin: 0.5rem 0 1rem 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
-/* Info card */
-ion-col .info-card,
+.placeholder-text {
+  color: #888;
+  font-style: italic;
+}
+
+/* Info Card Column */
+.info-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .info-card {
-  flex: 0 0 220px; /* smaller than original */
-  max-width: 300px;
   background-color: #E8F4FA;
   border-radius: 10px;
   padding: 1rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-left: 2rem; /* distance from description */
+  width: 100%;
+  max-width: 260px;
+  align-self: flex-start;
 }
 
-ion-col .info-card .card-header,
-.info-card .card-header {
+.card-header {
   text-align: center;
   font-weight: 600;
   color: #333;
 }
 
-ion-col .info-card .card-body,
-.info-card .card-body {
+.card-body {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  align-items: stretch;
 }
 
-ion-col .info-card .card-body button,
-.info-card .card-body button {
+.card-body button {
   width: 100%;
 }
 
-ion-col .info-card .event-time,
-.info-card .event-time {
+.event-time {
   text-align: center;
   font-weight: 500;
   color: #333;
-  margin: 0;
+  margin: 0.5rem 0;
 }
 
-/* Mobile responsiveness: stack and reverse order */
+/* Mobile Responsive */
 @media (max-width: 767px) {
-  ion-grid.event-content,
-  .event-content {
+  ion-row.desktop-layout {
     flex-direction: column;
-    gap: 1.5rem;
   }
 
-  ion-col.description,
+  .info-wrapper {
+    order: 1;
+    justify-content: center;
+  }
+
   .description {
     order: 2;
   }
 
-  ion-col .info-card,
   .info-card {
-    order: 1;
-    flex: none;
-    width: 90%;
-    max-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 90%;
+    margin: 0 auto 1rem auto;
   }
 }

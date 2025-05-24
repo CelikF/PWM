@@ -1,4 +1,4 @@
-import { Component, computed, effect, EventEmitter, inject, input, Output, output, Signal } from '@angular/core';
+import { Component, computed, effect, EventEmitter, inject, Input, input, Output, output, Signal } from '@angular/core';
 import { ActivatedRoute, ROUTER_OUTLET_DATA } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DataService, Event } from '../../services/data.service';
@@ -17,16 +17,19 @@ import { IonGrid, IonButton, IonCol, IonCard, IonCardHeader, IonText, IonCardCon
 export class DescriptionComponent {
   private route = inject(ActivatedRoute);
   private dataSvc = inject(DataService);
+  
 
+  hostView = false;
   eventId = this.route.parent!.snapshot.paramMap.get('eventId')!;
 
   event = this.getEvent();
   @Output() editModal = new EventEmitter<ModalPayload>();
 
-  private outletData = inject(ROUTER_OUTLET_DATA) as Signal<ParentPayload>; 
-  hostView: boolean = this.outletData().hostView; 
-
-
+  ngOnInit(): void {
+    this.dataSvc.getHostView().subscribe(val => {
+      this.hostView = val;
+    });
+  }
 
   getEvent(){
     return this.dataSvc.event(this.eventId);

@@ -17,7 +17,7 @@ import {
   getDoc
 } from '@angular/fire/firestore';
 import { toSignal } from '@angular/core/rxjs-interop';
-import type { Observable } from 'rxjs';
+import { BehaviorSubject, type Observable } from 'rxjs';
 
 // Interfaces matching Firestore structure
 export interface Attendee {
@@ -197,5 +197,15 @@ export class DataService {
   deleteNews(eventId: string, newsId: string) {
     const d = doc(this.fs, `events/${eventId}/news/${newsId}`);
     return deleteDoc(d);
+  }
+
+  private hostView$ = new BehaviorSubject<boolean>(false);
+
+  setHostView(value: boolean) {
+    this.hostView$.next(value);
+  }
+
+  getHostView() {
+    return this.hostView$.asObservable();
   }
 }

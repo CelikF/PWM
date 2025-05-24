@@ -5,13 +5,12 @@ import { DataService } from './services/data.service';
 import { Timestamp } from '@angular/fire/firestore';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
-import { ToastController } from '@ionic/angular';
-import { IonContent, IonLabel, IonButton, IonSegment, IonButtons, IonTitle, IonBackButton, IonRouterOutlet, IonToolbar, IonHeader, IonItem, IonSelect, IonSelectOption, IonIcon } from "@ionic/angular/standalone";
+import { IonicModule, ToastController } from '@ionic/angular';
 import { FavoritesService } from './services/favorite-storage.service';
 
 @Component({
   selector: 'app-event-details',
-  imports: [IonIcon, IonItem, IonSegment, IonButton, IonLabel, IonContent, RouterLink, RouterOutlet, RouterLinkActive, EditModalComponent, IonSelect, IonSelectOption],
+  imports: [IonicModule, RouterLink, RouterLinkActive, EditModalComponent, RouterOutlet],
   templateUrl: './event-details.component.html',
   styleUrl: './event-details.component.css'
 })
@@ -41,10 +40,8 @@ export class EventDetailsComponent {
   imagePath: String|undefined = "";
 
   async ngOnInit() {
-  await this.favoritesService.debugLogFavoritesTable();
-  await this.loadFavoriteStatus();
-  
-  console.log(this.isFavorite);
+    await this.favoritesService.debugLogFavoritesTable();
+    await this.loadFavoriteStatus();
 }
 
   async toggleFavorite() {
@@ -56,7 +53,6 @@ export class EventDetailsComponent {
     } else {
       await this.favoritesService.addFavorite(uid, this.eventId);
     }
-    console.log(await this.favoritesService.isFavorite(uid, this.eventId));
     this.isFavorite = await this.favoritesService.isFavorite(uid, this.eventId);
   }
 
@@ -72,6 +68,7 @@ export class EventDetailsComponent {
   constructor(){
     effect(() => {
       this.hostView = this.hostLoggedIn();
+      this.dataSvc.setHostView(this.hostView);
       this.imagePath = this.event()?.image;
       const user = this.authSvc.getCurrentUser();
       if (!user) return;
@@ -94,7 +91,6 @@ export class EventDetailsComponent {
     if (payload.id){
       this.modalId = payload.id;
     }
-    console.log(this.modalType);
   }
 
   getEvent(){
