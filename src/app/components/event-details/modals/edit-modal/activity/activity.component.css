@@ -1,0 +1,102 @@
+:root {
+  --modal-bg: #fff;
+  --modal-text: #333;
+  --modal-radius: 12px;
+  --modal-box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  --modal-primary: #007bff;
+  --modal-secondary: #6c757d;
+  --modal-footer-text: #fff;
+}
+
+/* Modal container and layout */
+.modal-header {
+  display: flex;
+  justify-content: center; /* Centers the content horizontally */
+  align-items: center;     /* Vertically center if needed */
+  padding: 1rem;
+  text-align: center;
+}
+
+.modal-header h4 {
+  flex: 1;                 /* Allows it to take full width */
+  text-align: center;      /* Centers the text itself */
+  margin: 0;
+  font-weight: 500;
+}
+
+.modal-body {
+  padding: 2rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  background-color: var(--modal-bg);
+  color: var(--modal-text);
+  text-align: center;
+}
+
+.modal-footer {
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, var(--modal-primary), var(--modal-secondary));
+  color: var(--modal-footer-text);
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  border-bottom-left-radius: var(--modal-radius);
+  border-bottom-right-radius: var(--modal-radius);
+}
+
+.form-control {
+  background: white;
+}
+
+/* Input field */
+.invitation-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Time input section */
+.dateTimeModal-body {
+  margin-bottom: 1.5rem;
+}
+
+.time-row {
+  display: flex;
+  justify-content: center; /* Centers the time fields horizontally */
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.time-field {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers label and ion-datetime */
+  flex: 1;
+  max-width: 150px; /* Optional: prevent them from stretching too wide */
+}
+
+.time-field ion-label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Buttons */
+ion-button {
+  margin-top: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .time-row {
+    transform: scale(0.9);
+    transform-origin: center;
+  }
+
+  .modal-body {
+    padding: 1rem;
+  }
+}

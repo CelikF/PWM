@@ -1,40 +1,30 @@
-// src/app/app.routes.ts
 import { Routes } from '@angular/router';
-import { AuthContainerComponent } from './auth/auth-container/auth-container.component';
-import { HomeComponent } from './home/home.component';
-import { EventDetailsComponent } from './event-details/event-details.component';
-import { DescriptionComponent } from './event-details/components/description/description.component';
-import { AgendaComponent } from './event-details/components/agenda/agenda.component';
-import { AttendeesComponent } from './event-details/components/attendees/attendees.component';
-import { NewsComponent } from './event-details/components/news/news.component';
-import { AccountComponent } from './pages/account/account.component';
-import { NewsCustomizerComponent } from './pages/new-customizer/new-customizer.component';
+import { LoginPage } from './components/auth/login/login.page';
+import { RegisterPage } from './components/auth/register/register.page';
+import { AgendaComponent } from './components/event-details/components/agenda/agenda.component';
+import { AttendeesComponent } from './components/event-details/components/attendees/attendees.component';
+import { DescriptionComponent } from './components/event-details/components/description/description.component';
+import { NewsComponent } from './components/event-details/components/news/news.component';
+import { EventDetailsComponent } from './components/event-details/event-details.component';
+import { HomeComponent } from './components/home/home.component';
+import { AuthGuard } from './guards/auth-guard/auth.guard';
+import { DetailsGuard } from './guards/details-guard/details-guard.guard';
+
 
 export const routes: Routes = [
-  { path: 'ed/:eventId', component:EventDetailsComponent, 
+  { path: 'ed/:eventId', component:EventDetailsComponent, canActivate: [AuthGuard, DetailsGuard], 
     children:[
-      { path: 'description', component: DescriptionComponent },
-      { path: 'agenda',      component: AgendaComponent    },
-      { path: 'attendees',   component: AttendeesComponent },
-      { path: 'news',        component: NewsComponent      },
+      { path: 'description', component: DescriptionComponent, canActivate: [AuthGuard]},
+      { path: 'agenda',      component: AgendaComponent, canActivate: [AuthGuard]},
+      { path: 'attendees',   component: AttendeesComponent, canActivate: [AuthGuard]},
+      { path: 'news',        component: NewsComponent, canActivate: [AuthGuard]},
       // default to description if no child path is provided
       { path: '', redirectTo: 'description', pathMatch: 'full' },
-    ]
+    ],
   },
-  { path: 'account', component: AccountComponent },
-  { path: 'login', component: AuthContainerComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'new-customizer', component: NewsCustomizerComponent },
+  { path: 'login', component: LoginPage},
+  { path: 'register', component: RegisterPage},
+  { path: 'home', component: HomeComponent,           canActivate: [AuthGuard] },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
  // { path: '**', redirectTo: 'login' },
-  {
-    path: 'notifications',
-    loadComponent: () => import('./notification/notification-list.component').then(m => m.NotificationListComponent)
-  },
-  
-  {
-    path: 'notifications/:id',
-    loadComponent: () => import('./notification/notification-details.component').then(m => m.NotificationDetailsComponent)
-  }
-  
 ];
