@@ -2,23 +2,6 @@
 
   <!-- Hero Section -->
   <div class="event-hero" [style.--hero-bg-url]="'url(' + imagePath + ')'">
-    <!-- Hero Actions (top right) -->
-    <div class="hero-actions">
-      <ion-button (click)="toggleFavorite()">
-        <ion-icon color="danger" slot="start" [name]="isFavorite ? 'heart' : 'heart-outline'"></ion-icon>
-        {{ isFavorite ? 'Remove Favorite' : 'Add to Favorites' }}
-      </ion-button>
-      @if(hostView){
-        <ion-button class="bg-btn" size="small" (click)="openEditModal({modal_name:'image'})">
-          Change Background
-        </ion-button>
-        <ion-button color="danger" class="bg-btn delete" size="small" (click)="openEditModal({modal_name:'delete'})">
-          Delete Event
-        </ion-button>
-      }
-    </div>
-
-    <!-- Event Title and Edit Name -->
     <div class="hero-title">
       <h1>{{ event()?.title }}</h1>
       @if(hostView){
@@ -31,7 +14,6 @@
 
   <!-- White Content Container -->
   <div class="event-details-container">
-    <!-- Tabs Navigation -->
     <ion-segment class="segment-tabs" color="white">
       <ion-segment-button
         value="description"
@@ -71,9 +53,7 @@
       </ion-segment-button>
     </ion-segment>
 
-     <!-- Dropdown version for mobile -->
     <ion-item class="segment-dropdown">
-      <!-- <ion-label>Tabs</ion-label> -->
       <ion-select
         [value]="active_tab"
         placeholder="Select"
@@ -87,12 +67,43 @@
       </ion-select>
     </ion-item>
 
-    <!-- Main Content Area -->
     <router-outlet
       [routerOutletData]="{ hostView: hostView }"
-      (activate)="onChildActivate($event)"
-    ></router-outlet>
+      (activate)="onChildActivate($event)">
+    </router-outlet>
   </div>
+
+  <!-- Floating Action Button -->
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end" class="fab-wrapper">
+    <ion-fab-button (click)="fabOpen = !fabOpen">
+      <ion-icon name="ellipsis-vertical"></ion-icon>
+    </ion-fab-button>
+
+    <ion-fab-list side="top" [activated]="fabOpen">
+      <div class="fab-button-wrapper" title="Toggle Favorite">
+        <ion-fab-button (click)="toggleFavorite(); fabOpen = false">
+          <ion-icon [name]="isFavorite ? 'heart' : 'heart-outline'" color="danger"></ion-icon>
+        </ion-fab-button>
+        <span class="fab-label">{{isFavorite ? 'Remove Favorite' : 'Add to Favorites'}}</span>
+      </div>
+
+      @if (hostView) {
+        <div class="fab-button-wrapper" title="Change Image">
+          <ion-fab-button (click)="openEditModal({modal_name:'image'}); fabOpen = false">
+            <ion-icon name="image-outline"></ion-icon>
+          </ion-fab-button>
+          <span class="fab-label">Change Background</span>
+        </div>
+
+        <div class="fab-button-wrapper" title="Delete Event">
+          <ion-fab-button color="danger" (click)="openEditModal({modal_name:'delete'}); fabOpen = false">
+            <ion-icon name="trash"></ion-icon>
+          </ion-fab-button>
+          <span class="fab-label">Delete Event</span>
+        </div>
+        }
+    </ion-fab-list>
+  </ion-fab>
 
   @if (this.isEditModalOpen === true){
     <app-edit-modal 

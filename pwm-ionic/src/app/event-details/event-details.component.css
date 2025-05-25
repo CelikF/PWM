@@ -5,6 +5,35 @@ ion-content.event-page {
   --padding-top: 68px; /* Ensures content isn't hidden behind header */
 }
 
+ion-content.event-page {
+  --background: #f9f9f9;
+}
+
+/* Floating Button Wrapper */
+.fab-wrapper {
+  z-index: 9999;
+}
+
+/* Optional: Adjust visibility depending on context */
+ion-fab-button {
+  --background: var(--ion-color-primary);
+  --color: white;
+}
+
+
+
+.event-details-container {
+  background-color: white;
+  border-radius: 1rem 1rem 0 0;
+  margin-top: -1rem;
+  padding: 1rem;
+}
+
+/* Make sure the segment tabs look good */
+.segment-tabs {
+  margin-bottom: 1rem;
+}
+
 /* Top Header */
 ion-content.event-page .top-bar {
   display: flex;
@@ -12,6 +41,39 @@ ion-content.event-page .top-bar {
   align-items: center;
   background-color: var(--secondary);
   padding: 0.5rem 1rem;
+}
+
+.fab-wrapper {
+  z-index: 9999;
+}
+
+.fab-button-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 0.5rem;
+}
+
+.fab-label {
+  position: absolute;
+  right: 100%;
+  margin-right: 0.75rem;
+  background-color: #333;
+  color: white;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.75rem;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+  transform: translateX(5px);
+}
+
+.fab-button-wrapper:hover .fab-label {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 ion-content.event-page .logo {

@@ -6,11 +6,12 @@ import { Timestamp } from '@angular/fire/firestore';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { FavoritesService } from './services/favorite-storage.service';
-import { IonContent, IonSegment, IonButton, IonIcon, IonLabel, IonItem, IonSelect, IonSelectOption, IonSegmentButton } from "@ionic/angular/standalone";
+import { IonContent, IonSegment, IonButton, IonIcon, IonLabel, IonItem, IonSelect, IonSelectOption, IonSegmentButton, IonFabButton, IonFabList, IonFab } from "@ionic/angular/standalone";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-event-details',
-  imports: [IonItem, IonLabel, IonIcon, IonButton, IonSegment, IonSegmentButton, IonContent, RouterLink, RouterLinkActive, EditModalComponent, RouterOutlet, IonSelect, IonSelectOption],
+  imports: [IonFab, IonFabList, IonFabButton, IonItem, IonLabel, IonIcon, IonButton, IonSegment, IonSegmentButton, IonContent, RouterLink, RouterLinkActive, EditModalComponent, RouterOutlet, IonSelect, IonSelectOption, CommonModule],
   templateUrl: './event-details.component.html',
   styleUrl: './event-details.component.css'
 })
@@ -19,6 +20,7 @@ export class EventDetailsComponent {
   active_tab: string = "description";
   isEditModalOpen = false;
   hostView = false;
+  fabOpen = false;
   
   router = inject(Router);
   private route = inject(ActivatedRoute);

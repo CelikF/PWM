@@ -24,13 +24,16 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from './environments/environment.prod';
 import { getFunctions, provideFunctions } from '@angular/fire/functions';
 import { addIcons } from 'ionicons';
-import { closeOutline, heart, sendOutline } from 'ionicons/icons';
+import { closeOutline, ellipsisVertical, heart, imageOutline, sendOutline, trash, trashOutline } from 'ionicons/icons';
 import { heartOutline } from 'ionicons/icons';
 
 addIcons({
   'heart': heart,
   'heart-outline': heartOutline,
-  'send-outline': sendOutline
+  'send-outline': sendOutline,
+  'image-outline': imageOutline,
+  'ellipsis-vertical': ellipsisVertical,
+  'trash': trash
 });
 
 bootstrapApplication(AppComponent, {

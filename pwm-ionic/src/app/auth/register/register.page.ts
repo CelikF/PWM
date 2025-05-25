@@ -20,10 +20,6 @@ import { IonContent, IonItem, IonLabel, IonButton, IonInput } from "@ionic/angul
 })
 export class RegisterPage {
   form: FormGroup;
-  username = '';
-  email = '';
-  password = '';
-  confirmPassword = '';
   errorMessageRegister = '';
 
   constructor(
@@ -57,7 +53,7 @@ export class RegisterPage {
       return;
     }
     // Invoca la registrazione passando username, email e password
-    const result = await this.auth.registerUser(this.username, this.email, this.password);
+    const result = await this.auth.registerUser(username, email, password);
     
     // Se la registrazione ha successo, mostra un alert e naviga verso "/home"
     if (result.success) {
