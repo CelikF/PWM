@@ -1,0 +1,25 @@
+<ion-item
+  class="notification-card"
+  lines="none"
+  detail="false"
+  [routerLink]="['/notification', notification.id]"
+>
+  <ion-label class="notification-content">
+    <span class="sender">{{ notification.senderName }}</span>
+    <span class="title">{{ notification.title }}</span>
+    <span class="message">{{ notification.message }}</span>
+  </ion-label>
+
+  <div class="notification-meta" slot="end">
+    <span class="date">{{ notification.date.toDate() | date: 'MMM d, y' }}</span>
+    <ion-button
+      fill="solid"
+      color="danger"
+      class="delete-button"
+      (click)="delete.emit(notification.id); $event.stopPropagation();"
+    >
+      
+      Delete
+    </ion-button>
+  </div>
+</ion-item>

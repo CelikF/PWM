@@ -1,0 +1,36 @@
+<div class="form-wrapper">
+  <h2>Create Notification</h2>
+
+  <ion-input
+    label="Sender Name"
+    labelPlacement="floating"
+    [(ngModel)]="senderName"
+    required
+  ></ion-input>
+
+  <ion-input
+    label="Sender Email"
+    labelPlacement="floating"
+    [(ngModel)]="senderEmail"
+    required
+  ></ion-input>
+
+  <ion-input
+    label="Title"
+    labelPlacement="floating"
+    [(ngModel)]="title"
+    required
+  ></ion-input>
+
+  <ion-input
+    label="Message"
+    labelPlacement="floating"
+    [(ngModel)]="message"
+    required
+  ></ion-input>
+
+  <div class="button-row">
+    <ion-button expand="block" (click)="createNotification()">Create</ion-button>
+    <ion-button expand="block" fill="clear" color="medium" (click)="close()">Cancel</ion-button>
+  </div>
+</div>

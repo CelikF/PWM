@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/home']">
+        <img src="assets/logo_white.svg" alt="EventHub Logo" class="logo" />
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Notifications</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>My Account</ion-button>
+      <ion-button color="danger" (click)="signOut()">Sign Out</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+
+  <!-- Page Title -->
+  <div class="notifications-title">
+    <h1>Notifications</h1>
+  </div>
+
+  <!-- Search Bar -->
+  <ion-searchbar
+    placeholder="Search by the title"
+    [(ngModel)]="searchText"
+    (ionInput)="searchText = $event.detail.value ?? ''">
+  </ion-searchbar>
+
+  <!-- Notifications List -->
+ <ion-list *ngIf="(filteredNotifications() || []).length > 0; else noNotifications">
+  <ion-item lines="none" class="full-width" *ngFor="let notification of filteredNotifications()">
+    <app-notification-card
+      [notification]="notification"
+      (delete)="confirmDelete($event)">
+    </app-notification-card>
+  </ion-item>
+</ion-list>
+
+
+  <!-- No Notifications -->
+  <ng-template #noNotifications>
+    <ion-text color="medium">
+      <p class="ion-text-center">No notifications available.</p>
+    </ion-text>
+  </ng-template>
+
+<ion-button
+  expand="block"
+  color="primary"
+  (click)="openCreateNotification()"
+  class="create-button"
+>
+  <ion-icon name="add-outline" slot="start"></ion-icon>
+  Create Notification
+</ion-button>
+
+
+</ion-content>

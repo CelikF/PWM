@@ -1,0 +1,83 @@
+.logo {
+  height: 40px;
+}
+
+ion-searchbar {
+  margin-bottom: 1rem;
+}
+
+ion-text p {
+  margin-top: 3rem;
+  font-size: 1rem;
+  text-align: center;
+}
+
+:host {
+  display: block;
+  background-color: #f5f6fa;
+}
+
+app-notification-card {
+  display: block;
+  width: 100%;
+}
+
+ion-list {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.full-width {
+  width: 100%;
+  padding: 0;
+  --inner-padding-end: 0;
+  --inner-padding-start: 0;
+}
+
+.create-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 999;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 14px 24px;
+  font-size: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.notifications-title {
+  margin: 0 0 1rem 0;
+  text-align: center;
+}
+
+.notifications-title h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+/* 🔁 Responsive stacking for small screens */
+@media (max-width: 768px) {
+  .notification-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .notification-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .delete-button {
+    align-self: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .notifications-title h1 {
+    font-size: 1.4rem;
+  }
+}

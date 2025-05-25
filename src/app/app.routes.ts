@@ -11,6 +11,7 @@ import { AuthGuard } from './guards/auth-guard/auth.guard';
 import { DetailsGuard } from './guards/details-guard/details-guard.guard';
 
 
+
 export const routes: Routes = [
   { path: 'ed/:eventId', component:EventDetailsComponent, canActivate: [AuthGuard, DetailsGuard], 
     children:[
@@ -27,4 +28,25 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent,           canActivate: [AuthGuard] },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
  // { path: '**', redirectTo: 'login' },
+
+ {
+    path: 'notifications',
+    loadComponent: () =>
+      import('./notification/notification-list.component').then(
+        (m) => m.NotificationListComponent
+      ),
+    canActivate: [AuthGuard]
+  },
+
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  // { path: '**', redirectTo: 'login' },
+
+  {
+  path: 'notification/:id',
+  loadComponent: () =>
+    import('./notification/notification-details.component').then(m => m.NotificationDetailsComponent),
+  canActivate: [AuthGuard] // optional
+}
+
+
 ];

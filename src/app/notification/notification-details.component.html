@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Notification Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="notification-title">
+    <h5>{{ notification?.title }}</h5>
+  </div>
+
+  <div class="notification-sender">
+    <img src="assets/profile-placeholder.png" alt="Profile Image" class="sender-avatar" />
+    <div class="sender-details">
+      <span class="sender-name">{{ notification?.senderName }}</span>
+      <span class="sender-email">&lt;{{ notification?.senderEmail }}&gt;</span>
+    </div>
+    <span class="notification-time">
+  {{ notification?.date?.toDate() | date: 'medium' }}
+</span>
+  </div>
+
+  <div class="notification-message">
+    <p class="message-text">{{ notification?.message }}</p>
+  </div>
+
+  <div class="response-buttons">
+    <ion-button color="success">✔ I'm going</ion-button>
+    <ion-button color="medium">❓ Maybe</ion-button>
+    <ion-button color="danger">✖ Not going</ion-button>
+  </div>
+</ion-content>
