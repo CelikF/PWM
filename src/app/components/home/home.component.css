@@ -4,44 +4,6 @@ html, body {
   overflow-y: auto;
 }
 
-/* Top Header (Ionic compatible) */
-ion-header.top-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: var(--secondary);
-  padding: 0.5rem 1rem;
-  --background: var(--secondary);
-}
-
-.logo {
-  height: 40px;
-}
-
-.top-nav .nav-btn {
-  background-color: #4b57a9;
-  color: #fff;
-  border: none;
-  border-radius: 20px;
-  padding: 0.5rem 1rem;
-  margin-left: 0.5rem;
-  font-family: 'Montserrat', sans-serif;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.top-nav .nav-btn:hover {
-  background-color: #3a4580;
-}
-
-.top-nav .sign-out {
-  background-color: #e04b4b;
-}
-
-.top-nav .sign-out:hover {
-  background-color: #c53f3f;
-}
-
 /* Search + Button container */
 .search-bar {
   display: flex;
