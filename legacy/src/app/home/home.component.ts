@@ -43,7 +43,6 @@ export class HomeComponent {
     );
   }
 
-  // Navigate to event details
   goToEvent(id: string | number) {
     this.router.navigate(['/ed', id]);
   }
