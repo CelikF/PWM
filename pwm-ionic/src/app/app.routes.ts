@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { AuthContainerComponent } from './auth/auth-container/auth-container.component';
 import { AgendaComponent } from './event-details/components/agenda/agenda.component';
 import { AttendeesComponent } from './event-details/components/attendees/attendees.component';
 import { DescriptionComponent } from './event-details/components/description/description.component';
@@ -7,10 +6,9 @@ import { NewsComponent } from './event-details/components/news/news.component';
 import { EventDetailsComponent } from './event-details/event-details.component';
 import { HomeComponent } from './home/home.component';
 import { AccountComponent } from './pages/account/account.component';
-import { NewsCustomizerComponent } from './pages/new-customizer/new-customizer.component';
 import { AuthGuard } from './auth/guards/auth.guard';
-import { LoginPage } from './auth/test/login/login.page';
-import { RegisterPage } from './auth/test/register/register.page';
+import { LoginPage } from './auth/login/login.page';
+import { RegisterPage } from './auth/register/register.page';
 import { DetailsGuard } from './event-details/guard/details-guard.guard';
 
 export const routes: Routes = [

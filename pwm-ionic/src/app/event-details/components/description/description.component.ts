@@ -1,11 +1,8 @@
-import { Component, computed, effect, EventEmitter, inject, Input, input, Output, output, Signal } from '@angular/core';
-import { ActivatedRoute, ROUTER_OUTLET_DATA } from '@angular/router';
-import { Observable } from 'rxjs';
-import { DataService, Event } from '../../services/data.service';
-import { EventDetailsComponent } from '../../event-details.component';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { DataService } from '../../services/data.service';
 import { CommonModule } from '@angular/common';
-import { Timestamp } from '@angular/fire/firestore';
-import { ModalPayload, ParentPayload } from '../../modals/edit-modal/edit-modal.component';
+import { ModalPayload } from '../../modals/edit-modal/edit-modal.component';
 import { IonGrid, IonButton, IonCol, IonCard, IonCardHeader, IonText, IonCardContent, IonRow } from "@ionic/angular/standalone";
 
 @Component({

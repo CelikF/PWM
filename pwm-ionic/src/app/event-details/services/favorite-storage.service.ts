@@ -17,6 +17,10 @@ export class FavoritesService {
 
     if (platform === 'web') {
       console.log('Using localStorage for favorites (web)');
+      const data = localStorage.getItem(this.localStorageKey);
+      if (!data) {
+        localStorage.setItem(this.localStorageKey, JSON.stringify([]));
+      }
       return;
     }
 

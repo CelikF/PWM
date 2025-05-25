@@ -1,11 +1,11 @@
-import { Component, computed, effect, EventEmitter, inject, input, Output, output } from '@angular/core';
+import { Component, effect, EventEmitter, inject, input, Output } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DataService } from '../../../services/data.service';
-import { IonicModule } from '@ionic/angular';
+import { IonButton, IonInput } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-title',
-  imports: [ReactiveFormsModule, IonicModule],
+  imports: [IonButton, ReactiveFormsModule, IonInput],
   templateUrl: './title.component.html',
   styleUrl: './title.component.css'
 })

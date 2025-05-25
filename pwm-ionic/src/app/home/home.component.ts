@@ -5,13 +5,14 @@ import { Attendee, DataService, Event } from '../event-details/services/data.ser
 import { FormsModule } from '@angular/forms';
 import { Timestamp } from '@angular/fire/firestore';
 import { AuthService, User } from '../auth/auth.service';
-import { IonicModule } from '@ionic/angular';
 import { FavoritesService } from '../event-details/services/favorite-storage.service';
+import { IonButton, IonContent, IonInput, IonItem, IonLabel, IonToggle, IonIcon, IonCardContent, IonCard } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, IonicModule],
+  imports: [IonCardContent, IonIcon, IonLabel, IonItem, IonContent, IonInput, IonButton, IonToggle, IonCard,
+     CommonModule, RouterModule, FormsModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })

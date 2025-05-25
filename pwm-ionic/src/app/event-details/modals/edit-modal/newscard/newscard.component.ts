@@ -1,14 +1,12 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Activity, DataService, Event, NewsItem } from '../../../services/data.service';
-import { ModalPayload } from '../edit-modal.component';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { DataService, Event, NewsItem } from '../../../services/data.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
-import { IonicModule } from '@ionic/angular';
+import { IonInput, IonLabel, IonTextarea, IonButton } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-newscard',
-  imports: [ReactiveFormsModule, IonicModule],
+  imports: [IonButton, ReactiveFormsModule, IonLabel, IonInput, IonTextarea],
   templateUrl: './newscard.component.html',
   styleUrl: './newscard.component.css'
 })

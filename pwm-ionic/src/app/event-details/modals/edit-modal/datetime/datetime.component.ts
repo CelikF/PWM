@@ -2,11 +2,11 @@ import { Component, effect, EventEmitter, inject, input, Output } from '@angular
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DataService } from '../../../services/data.service';
 import { Timestamp } from '@angular/fire/firestore';
-import { IonicModule } from '@ionic/angular';
+import { IonButton, IonLabel, IonDatetime } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-datetime',
-  imports: [ReactiveFormsModule, IonicModule],
+  imports: [IonLabel, IonButton, ReactiveFormsModule, IonDatetime],
   templateUrl: './datetime.component.html',
   styleUrl: './datetime.component.css'
 })

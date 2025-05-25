@@ -4,11 +4,11 @@ import { Attendee, DataService } from '../../services/data.service';
 import { AuthService } from '../../../auth/auth.service';
 import { CommonModule } from '@angular/common';
 import { ModalPayload, ParentPayload } from '../../modals/edit-modal/edit-modal.component';
-import { IonCol, IonCard, IonCardHeader, IonCardContent, IonRow, IonGrid, IonButton, IonItem, IonText, IonContent, IonLabel, IonList, IonSelect, IonSelectOption } from "@ionic/angular/standalone";
+import { IonCol, IonCard, IonCardHeader, IonCardContent, IonRow, IonGrid, IonButton, IonItem, IonLabel, IonList, IonSelect, IonSelectOption } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-attendees',
-  imports: [IonList, IonLabel, IonItem, IonButton, IonGrid, IonRow, IonCardContent, IonCardHeader, IonCard, IonCol, CommonModule, IonItem, IonList, IonSelect, IonSelectOption],
+  imports: [IonList, IonLabel, IonItem, IonButton, IonGrid, IonRow, IonCardContent, IonCardHeader, IonCard, IonCol, CommonModule, IonList, IonSelect, IonSelectOption],
   templateUrl: './attendees.component.html',
   styleUrl: './attendees.component.css'
 })

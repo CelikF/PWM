@@ -1,12 +1,11 @@
-import { Component, effect, EventEmitter, inject, input, Output } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { DataService } from '../../../services/data.service';
+import { Component, effect, EventEmitter, input, Output } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
+import { IonButton, IonImg } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-image',
-  imports: [ReactiveFormsModule, CommonModule, IonicModule],
+  imports: [IonImg, ReactiveFormsModule, CommonModule, IonButton],
   templateUrl: './image.component.html',
   styleUrl: './image.component.css'
 })

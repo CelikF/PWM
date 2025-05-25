@@ -5,12 +5,12 @@ import { DataService } from './services/data.service';
 import { Timestamp } from '@angular/fire/firestore';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
-import { IonicModule, ToastController } from '@ionic/angular';
 import { FavoritesService } from './services/favorite-storage.service';
+import { IonContent, IonSegment, IonButton, IonIcon, IonLabel, IonItem, IonSelect, IonSelectOption, IonSegmentButton } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-event-details',
-  imports: [IonicModule, RouterLink, RouterLinkActive, EditModalComponent, RouterOutlet],
+  imports: [IonItem, IonLabel, IonIcon, IonButton, IonSegment, IonSegmentButton, IonContent, RouterLink, RouterLinkActive, EditModalComponent, RouterOutlet, IonSelect, IonSelectOption],
   templateUrl: './event-details.component.html',
   styleUrl: './event-details.component.css'
 })

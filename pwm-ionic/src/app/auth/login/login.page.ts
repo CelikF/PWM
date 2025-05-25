@@ -1,18 +1,17 @@
-// src/app/login/login.page.ts
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { IonicModule }      from '@ionic/angular';
+
 import { CommonModule }     from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
-import { AuthService } from '../../auth.service';
+import { AuthService } from '../auth.service';
+import { IonContent, IonButton, IonItem, IonLabel, IonInput } from "@ionic/angular/standalone";
 
 @Component({
   standalone: true,
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
-  imports: [
-    IonicModule,
+  imports: [IonLabel, IonItem, IonButton, IonContent, IonInput,
     CommonModule,
     ReactiveFormsModule,
     RouterModule

@@ -1,15 +1,12 @@
-import { Component, computed, effect, EventEmitter, inject, Injector, Input, Output, runInInjectionContext, Signal } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Attendee, DataService, Event } from '../../../services/data.service';
-import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../../auth/auth.service';
-import { ModalPayload } from '../edit-modal.component';
-import { firstValueFrom, materialize } from 'rxjs';
-import { IonicModule } from '@ionic/angular';
+import { IonButton, IonIcon, IonInput } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-manageinvitation',
-  imports: [ReactiveFormsModule, IonicModule],
+  imports: [ReactiveFormsModule, IonInput, IonButton, IonIcon],
   templateUrl: './manageinvitation.component.html',
   styleUrl: './manageinvitation.component.css'
 })

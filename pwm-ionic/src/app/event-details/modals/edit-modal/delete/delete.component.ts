@@ -1,13 +1,13 @@
-import { Component, EventEmitter, inject, input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, inject, input, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
+import { IonButton } from '@ionic/angular/standalone';
 import { DataService } from 'src/app/event-details/services/data.service';
 
 @Component({
   selector: 'app-delete',
   templateUrl: './delete.component.html',
   styleUrls: ['./delete.component.scss'],
-  imports: [IonicModule]
+  imports: [IonButton]
 })
 export class DeleteComponent{
 
