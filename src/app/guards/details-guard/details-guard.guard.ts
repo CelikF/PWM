@@ -1,4 +1,3 @@
-// event-details-access.guard.ts
 import { Injectable, inject } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivateFn, Router } from '@angular/router';
 import { of, switchMap } from 'rxjs';

@@ -50,7 +50,7 @@ export class RegisterPage {
     }
     // Verifica che le due password coincidano
     if (password !== confirmPassword) {
-      toast.error("You confirmation password does't match");
+      toast.error("You confirmation password does't match your password");
       return;
     }
     // Invoca la registrazione passando username, email e password
