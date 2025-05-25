@@ -1,0 +1,121 @@
+<ion-content class="event-page">
+
+  <!-- Hero Section -->
+  <div class="event-hero" 
+  [class.no-image]="!imagePath"
+  [style.--hero-bg-url]="imagePath ? 'url(' + imagePath + ')' : 'none'">
+    <div class="hero-title">
+      <h1>{{ event()?.title }}</h1>
+      @if(hostView){
+        <ion-button size="small" (click)="openEditModal({modal_name:'name-change'})">
+          Change Name
+        </ion-button>
+      }
+    </div>
+  </div>
+
+  <!-- White Content Container -->
+  <div class="event-details-container">
+    <ion-segment class="segment-tabs" color="white">
+      <ion-segment-button
+        value="description"
+        [routerLink]="['description']"
+        routerLinkActive="segment-checked"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="onTabClick('description')"
+      >
+        <ion-label>Description</ion-label>
+      </ion-segment-button>
+      <ion-segment-button
+        value="agenda"
+        [routerLink]="['agenda']"
+        routerLinkActive="segment-checked"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="onTabClick('agenda')"
+      >
+        <ion-label>Agenda</ion-label>
+      </ion-segment-button>
+      <ion-segment-button
+        value="attendees"
+        [routerLink]="['attendees']"
+        routerLinkActive="segment-checked"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="onTabClick('attendees')"
+      >
+        <ion-label>Attendees</ion-label>
+      </ion-segment-button>
+      <ion-segment-button
+        value="news"
+        [routerLink]="['news']"
+        routerLinkActive="segment-checked"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="onTabClick('news')"
+      >
+        <ion-label>News</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <ion-item class="segment-dropdown">
+      <ion-select
+        [value]="active_tab"
+        placeholder="Select"
+        interface="popover"
+        (ionChange)="onTabClick($event.detail.value); this.router.navigate(['ed',eventId, $event.detail.value])"
+      >
+        <ion-select-option value="description">Description</ion-select-option>
+        <ion-select-option value="agenda">Agenda</ion-select-option>
+        <ion-select-option value="attendees">Attendees</ion-select-option>
+        <ion-select-option value="news">News</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <router-outlet
+      [routerOutletData]="{ hostView: hostView }"
+      (activate)="onChildActivate($event)">
+    </router-outlet>
+  </div>
+
+  <!-- Floating Action Button -->
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end" class="fab-wrapper">
+    <ion-fab-button (click)="fabOpen = !fabOpen">
+      <ion-icon name="ellipsis-vertical"></ion-icon>
+    </ion-fab-button>
+
+    <ion-fab-list side="top" [activated]="fabOpen">
+      <div class="fab-button-wrapper" title="Toggle Favorite">
+        <ion-fab-button (click)="toggleFavorite(); fabOpen = false">
+          <ion-icon [name]="isFavorite ? 'heart' : 'heart-outline'" color="danger"></ion-icon>
+        </ion-fab-button>
+        <span class="fab-label">{{isFavorite ? 'Remove Favorite' : 'Add to Favorites'}}</span>
+      </div>
+
+      @if (hostView) {
+        <div class="fab-button-wrapper" title="Change Image">
+          <ion-fab-button (click)="openEditModal({modal_name:'image'}); fabOpen = false">
+            <ion-icon name="image-outline"></ion-icon>
+          </ion-fab-button>
+          <span class="fab-label">Change Background</span>
+        </div>
+
+        <div class="fab-button-wrapper" title="Delete Event">
+          <ion-fab-button color="danger" (click)="openEditModal({modal_name:'delete'}); fabOpen = false">
+            <ion-icon name="trash"></ion-icon>
+          </ion-fab-button>
+          <span class="fab-label">Delete Event</span>
+        </div>
+        }
+    </ion-fab-list>
+  </ion-fab>
+
+  @if (this.isEditModalOpen === true){
+    <app-edit-modal 
+      (close)="handleCloseModal($event)" 
+      (imageSelected)="onImagePicked($event)"
+      [event]="this.event()!"
+      [attendees]="this.attendees()!"
+      [modalType]="this.modalType" 
+      [modalId]="this.modalId">
+    </app-edit-modal>
+  }
+
+</ion-content>

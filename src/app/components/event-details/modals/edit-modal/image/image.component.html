@@ -1,0 +1,37 @@
+<!-- Header -->
+<div class="modal-header">
+  <h4>Change Event Header Image</h4>
+</div>
+
+<!-- Body -->
+<div class="modal-body">
+    <div class="image-path-picker">
+      <div class="ipp-input-group">
+        <ion-button class="browse-btn" (click)="browse(fileInput)" expand="block">
+          Browse
+        </ion-button>
+
+        <input
+          type="file"
+          #fileInput
+          accept="image/*"
+          hidden
+          (change)="onFileSelected($event)" />
+      </div>
+
+      <div class="ipp-preview">
+        <span *ngIf="!imageUrl">No image selected</span>
+        <ion-img *ngIf="imageUrl" [src]="imageUrl" class="image-preview-img"/>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="modal-footer">
+      <ion-button type="submit" (click)="saveChanges()">
+        Save
+      </ion-button>
+      <ion-button type="reset" fill="outline"  (click)="cancelChanges()">
+        Cancel
+      </ion-button>
+    </div>
+</div>
